@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+# ============================================================
+# eufy demo · post-receive 自动部署 hook
+# 由裸仓库触发：把 main 检出到 apps/<name>，构建后同步到 webroot
+# 用同一份脚本服务三个仓库，按仓库名分发。
+# ============================================================
+set -uo pipefail
+
+# post-receive 的 cwd 就是裸仓库根目录；但 GIT_DIR 在不同 git 版本下
+# 可能是 "." 或绝对路径，统一归一化成绝对路径再取仓库名。
+GITD="$(cd "${GIT_DIR:-.}" && pwd)"
+REPO="$(basename "$GITD" .git)"      # eufy-growth-next / eufy-growth-cn / eufy-growth
+NAME="${REPO#eufy-growth-}"          # next / cn / eufy-growth
+[ "$NAME" = "$REPO" ] && NAME="react" # eufy-growth → react
+
+ROOT="$HOME/eufy-demo"
+APP="$ROOT/apps/$NAME"
+WEB="/var/www/eufy-demo/$NAME"
+NODE_BIN="$HOME/node22/bin"
+BASE="/eufy-demo/$NAME/"
+URL="https://taoxie.vip$BASE"
+LOG="$ROOT/logs/deploy-$NAME.log"
+
+mkdir -p "$ROOT/logs" "$APP"
+
+run() {
+  set -e
+  echo "[$(date '+%F %T')] push 触发 → $REPO (name=$NAME)"
+  git --git-dir="$GITD" --work-tree="$APP" checkout -f main
+  cd "$APP"
+
+  case "$NAME" in
+    next)
+      export PATH="$NODE_BIN:$PATH"
+      export TMPDIR="$APP/.tmp"; mkdir -p "$TMPDIR"
+      export MALLOC_ARENA_MAX=1
+      echo "→ npm ci"
+      npm ci --no-audit --no-fund --loglevel=error
+      echo "→ 表述纪律校验"
+      node scripts/check-discipline.mjs
+      echo "→ 构建（base=$BASE）"
+      EUFY_BASE="$BASE" NODE_OPTIONS="--max-old-space-size=768" npm run build
+      echo "→ 同步前端到 $WEB"
+      mkdir -p "$WEB"
+      rsync -a --delete "$APP/dist/" "$WEB/"
+      echo "→ 同步 dist 给 Node 服务自持"
+      rsync -a --delete "$WEB/" "$APP/dist/"
+      echo "→ 重启 Agent 服务"
+      sudo systemctl restart eufy-next.service
+      ;;
+    cn)
+      echo "→ 纯静态：直接同步到 $WEB"
+      mkdir -p "$WEB"
+      rsync -a --delete --exclude '.git*' --exclude '*.md' --exclude '*.zip' "$APP/" "$WEB/"
+      ;;
+    react)
+      export PATH="$NODE_BIN:$PATH"
+      export TMPDIR="$APP/.tmp"; mkdir -p "$TMPDIR"
+      export MALLOC_ARENA_MAX=1
+      if [ -f package-lock.json ]; then
+        echo "→ npm ci"
+        npm ci --no-audit --no-fund --loglevel=error
+        echo "→ 构建（base=./ 相对路径，子路径可直接挂）"
+        NODE_OPTIONS="--max-old-space-size=768" npm run build
+        SRC="$APP/dist"
+      else
+        echo "→ 无 lockfile，回退使用仓库内已提交的 dist/"
+        SRC="$APP/dist"
+      fi
+      echo "→ 同步到 $WEB"
+      mkdir -p "$WEB"
+      rsync -a --delete "$SRC/" "$WEB/"
+      ;;
+    *)
+      echo "!! 未知仓库 $REPO，跳过" >&2
+      return 1
+      ;;
+  esac
+
+  chmod -R a+rX "$WEB"
+  echo "✔ 部署完成：$URL"
+}
+
+if out="$(run 2>&1)"; then
+  printf '%s\n' "$out" | tee -a "$LOG"
+  echo "✔ $NAME 部署成功"
+  echo "   → $URL"
+else
+  printf '%s\n' "$out" | tee -a "$LOG"
+  echo "✘ $NAME 部署失败，日志：$LOG"
+  exit 1
+fi

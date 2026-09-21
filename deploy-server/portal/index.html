@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eufy 成长同行 · Demo 聚合入口</title>
+<meta name="description" content="中国 0–6「会走 · 会说 · 会吃」三个 demo 的统一入口：纯静态完整版、React + 摄像头 Agent 动态版、React 早期原型。">
+<style>
+:root{
+  --ink:#1c2620; --ink2:#46564d; --ink3:#7c8a81;
+  --paper:#f5f6f2; --card:#fff; --line:#e3e7e0;
+  --accent:#1f7a5c; --accent2:#0f513c; --accent-weak:#e6f2ec;
+  --blue:#087c9a; --blue-weak:#e3f1f6; --amber:#a8760d; --amber-weak:#fbf1dd;
+  --red:#b23b3b; --red-weak:#fbe9e7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+code{font-family:Consolas,Menlo,monospace}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+
+/* ===== 顶栏 ===== */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(245,246,242,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px}
+.logo svg{width:26px;height:26px;color:var(--accent)}
+.logo .tag{font-size:10.5px;font-weight:800;letter-spacing:.5px;background:var(--accent);color:#fff;padding:3px 7px;border-radius:7px}
+.nav-links{margin-left:auto;display:flex;gap:6px;align-items:center}
+.nav-links a{font-size:13.5px;color:var(--ink2);padding:7px 13px;border-radius:20px;font-weight:600}
+.nav-links a:hover{background:var(--accent-weak);color:var(--accent2)}
+.nav-links a.primary{background:var(--accent);color:#fff}
+.nav-links a.primary:hover{background:var(--accent2)}
+
+/* ===== Hero ===== */
+.hero{padding:56px 0 34px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:30px;height:2.5px;background:var(--accent)}
+h1{font-size:42px;line-height:1.25;font-weight:800;letter-spacing:-.5px;margin-bottom:18px}
+h1 .hl{color:var(--accent)}
+.hero p.lead{font-size:17px;color:var(--ink2);max-width:720px;margin-bottom:20px}
+.hero p.lead b{color:var(--ink)}
+.strip{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--ink3);align-items:center}
+.strip .pill{font-weight:700;color:#7a5a06;background:repeating-linear-gradient(45deg,#fff4d6,#fff4d6 6px,#fde9b8 6px,#fde9b8 12px);
+  border:1px solid #e8cf8a;border-radius:20px;padding:3px 11px}
+
+/* ===== 区块 ===== */
+section{padding:40px 0}
+.sec-title{font-size:13px;font-weight:700;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+h2{font-size:28px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px}
+.sec-sub{color:var(--ink3);font-size:15px;margin-bottom:26px;max-width:820px}
+
+/* ===== demo 卡 ===== */
+.demos{display:grid;gap:18px}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;
+  grid-template-columns:56px 1fr auto;gap:20px;align-items:start;transition:.15s}
+.demo:hover{border-color:#bcdccd;box-shadow:0 8px 24px rgba(28,38,32,.06)}
+.demo .ico{width:56px;height:56px;border-radius:15px;display:flex;align-items:center;justify-content:center}
+.demo .ico svg{width:28px;height:28px}
+.ico.static{background:var(--accent-weak);color:var(--accent)}
+.ico.dynamic{background:var(--blue-weak);color:var(--blue)}
+.ico.archive{background:var(--amber-weak);color:var(--amber)}
+.demo h3{font-size:19px;margin-bottom:4px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.demo .path{font-size:11.5px;color:var(--ink3);background:var(--paper);border:1px solid var(--line);
+  border-radius:6px;padding:2px 8px;font-family:Consolas,monospace}
+.demo p{font-size:14px;color:var(--ink2);margin:8px 0 10px;max-width:640px}
+.demo ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+.demo ul li{font-size:11.5px;color:var(--ink2);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:3px 11px}
+.demo .side{display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:150px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:700;
+  padding:10px 18px;border-radius:11px;transition:.15s;white-space:nowrap}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent2)}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink2)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn.sm{font-size:12.5px;padding:7px 13px;border-radius:9px}
+.state{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--ink3)}
+.state i{width:8px;height:8px;border-radius:50%;background:#cfd6d0;font-style:normal}
+.state.on i{background:var(--accent);box-shadow:0 0 0 3px var(--accent-weak)}
+.state.off i{background:var(--red);box-shadow:0 0 0 3px var(--red-weak)}
+.state.on{color:var(--accent2)} .state.off{color:var(--red)}
+
+/* ===== 管线 ===== */
+.pipe{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.flow{display:grid;grid-template-columns:repeat(4,1fr)}
+.flow .step{padding:20px;border-right:1px solid var(--line);position:relative}
+.flow .step:last-child{border-right:0}
+.flow .step .n{font-family:Consolas,monospace;font-size:11px;font-weight:800;color:var(--accent);letter-spacing:1px}
+.flow .step b{display:block;font-size:14.5px;margin:6px 0}
+.flow .step span{font-size:12.5px;color:var(--ink3);line-height:1.6}
+.flow .step::after{content:"›";position:absolute;right:-7px;top:50%;transform:translateY(-50%);
+  color:var(--ink3);font-size:16px;font-weight:800;background:#fff;width:14px;text-align:center;z-index:1}
+.flow .step:last-child::after{display:none}
+
+pre{background:#101714;color:#cdd8d1;border-radius:12px;padding:16px 18px;font-size:12.5px;line-height:1.85;overflow-x:auto}
+pre .c{color:#7c8a81}
+pre .g{color:#7fd3b3}
+pre .y{color:#e8b44b}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.box h3{font-size:15.5px;margin-bottom:10px}
+.box ul{margin-left:18px;font-size:13.5px;color:var(--ink2)}
+.box li{margin:6px 0}
+.box li b{color:var(--ink)}
+
+footer{background:var(--ink);color:#b9c4bc;padding:34px 0;margin-top:40px;font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;align-items:center}
+footer a{color:#7fd3b3}
+
+@media (max-width:900px){
+  h1{font-size:30px}
+  .demo{grid-template-columns:1fr;gap:14px}
+  .demo .side{align-items:flex-start;flex-direction:row;flex-wrap:wrap;min-width:0}
+  .flow{grid-template-columns:1fr}
+  .flow .step{border-right:0;border-bottom:1px solid var(--line)}
+  .flow .step::after{display:none}
+  .grid2{grid-template-columns:1fr}
+  .nav-links a:not(.primary){display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11a9 9 0 0 1 18 0"/><rect x="2" y="11" width="20" height="9" rx="3"/><circle cx="8" cy="15.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+      eufy 成长同行 <span class="tag">demo</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#demos">三个 demo</a>
+      <a href="#pipeline">部署管线</a>
+      <a href="#howto">维护方式</a>
+      <a class="primary" href="next/" target="_blank">打开完整版</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">eufy · 安克黑客松 · 智能安防赛道</div>
+    <h1>三个 demo，<span class="hl">一个入口</span>。<br>看完哪一版都能顺手换。</h1>
+    <p class="lead">家里本来就在的 eufy 摄像头，把 <b>会走 · 会说 · 会吃</b> 的关键成长瞬间，变成家长记得住、社区儿保医生看得懂的记录——<b>不诊断、不评分、不识别身份、不做营养</b>。</p>
+    <div class="strip">
+      <span class="pill">演示数据流 · 非预录实测</span>
+      <span id="ls-check">正在检测 Agent 服务…</span>
+    </div>
+  </div>
+</div>
+
+<section id="demos">
+  <div class="wrap">
+    <div class="sec-title">Three Demos · 三个 demo</div>
+    <h2>静态版看内容，动态版看链路，原型留作对比</h2>
+    <p class="sec-sub">三个 demo 同源不同侧重，全部挂在本页子路径下，共用 taoxie.vip 的 HTTPS 证书。</p>
+
+    <div class="demos">
+      <!-- 1. cn 纯静态 -->
+      <div class="demo">
+        <span class="ico static">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>
+        </span>
+        <div>
+          <h3>纯静态完整版 <span class="path">/eufy-demo/cn/</span></h3>
+          <div class="strip" style="margin-bottom:2px"><span class="state on"><i></i>静态 · 无后端依赖</span></div>
+          <p>8090 UI 语言的原始版本。手机 App 演示 + 6 分钟路演 + 中国 0–6 主方案报告 + 英国市场调研路演，全部单文件，<b>离线也能开</b>。</p>
+          <ul>
+            <li>app.html 手机演示</li>
+            <li>deck.html 路演 15 页</li>
+            <li>report.html 主方案</li>
+            <li>uk-deck.html 英国调研 21 页</li>
+          </ul>
+        </div>
+        <div class="side">
+          <a class="btn primary" href="cn/app.html" target="_blank">打开 App 演示</a>
+          <a class="btn ghost sm" href="cn/deck.html" target="_blank">路演</a>
+          <a class="btn ghost sm" href="cn/report.html" target="_blank">方案报告</a>
+          <a class="btn ghost sm" href="cn/uk-deck.html" target="_blank">英国调研</a>
+        </div>
+      </div>
+
+      <!-- 2. next 完整版 -->
+      <div class="demo">
+        <span class="ico dynamic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M9 6 10.5 3.5h3L15 6"/><circle cx="12" cy="12.5" r="3.5"/></svg>
+        </span>
+        <div>
+          <h3>完整版 · React + 摄像头 Agent <span class="path">/eufy-demo/next/</span></h3>
+          <div class="strip" style="margin-bottom:2px"><span class="state" id="ls-next"><i></i>检测中…</span><span class="state on"><i></i>实时页含 SSE 会话</span></div>
+          <p>五页闭环：今天 / 实时 Agent / 待确认 / 周报 / 设置。判定层是<b>纯代码状态机</b>——不经 LLM；LLM 只接已确认记录做表述，不碰原始音视频。</p>
+          <ul>
+            <li>实时页可开跳跃 / 共读 / 进餐会话</li>
+            <li>SSE 事件流逐条推送</li>
+            <li>证据状态机 candidate → 三态确认</li>
+            <li>构建期禁词校验</li>
+          </ul>
+        </div>
+        <div class="side">
+          <a class="btn primary" href="next/" target="_blank">打开完整版</a>
+          <a class="btn ghost sm" href="next/report.html" target="_blank">方案报告</a>
+          <a class="btn ghost sm" href="next/deck.html" target="_blank">路演</a>
+        </div>
+      </div>
+
+      <!-- 3. react 原型 -->
+      <div class="demo">
+        <span class="ico archive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 5.5A2 2 0 0 1 6 4h13v15H6a2 2 0 0 0-2 2z"/><path d="M19 19H6a2 2 0 0 0-2 2"/></svg>
+        </span>
+        <div>
+          <h3>React 早期原型 <span class="path">/eufy-demo/react/</span></h3>
+          <div class="strip" style="margin-bottom:2px"><span class="state on"><i></i>静态 · 归档保留</span></div>
+          <p>中国 + 英国双档案的手机优先原型。界面语言后来被 cn 版接管，这一版保留作为演进对比，不再迭代。</p>
+          <ul>
+            <li>双档案原型</li>
+            <li>手机优先布局</li>
+            <li>归档，不更新</li>
+          </ul>
+        </div>
+        <div class="side">
+          <a class="btn ghost" href="react/" target="_blank">打开原型</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pipeline" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-title">Deploy Pipeline · 部署管线</div>
+    <h2>本地 git push，服务器自动构建并上线</h2>
+    <p class="sec-sub">三个裸仓库各带一个 post-receive hook。推上去就自动检出、构建、同步到 webroot，动态版还会重启 Agent 服务。不用登服务器。</p>
+    <div class="pipe">
+      <div class="flow">
+        <div class="step"><span class="n">01</span><b>本地 push</b><span><code>git push demo main</code> 推到你自己的服务器裸仓库</span></div>
+        <div class="step"><span class="n">02</span><b>hook 检出</b><span>post-receive 把 main 检出到 <code>~/eufy-demo/apps/&lt;name&gt;</code></span></div>
+        <div class="step"><span class="n">03</span><b>构建</b><span>装依赖 → 跑禁词校验 → 构建（动态版按子路径 base 构建）</span></div>
+        <div class="step"><span class="n">04</span><b>上线</b><span>rsync 到 <code>/var/www/eufy-demo/&lt;name&gt;</code>，动态版 <code>systemctl restart</code></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="howto">
+  <div class="wrap">
+    <div class="sec-title">Maintain · 维护方式</div>
+    <h2>三条命令管三个 demo</h2>
+    <p class="sec-sub">首次在本地仓库加一次 remote，之后只用 push。</p>
+    <pre><span class="c"># 一次性：加远程（三个仓库各加一次）</span>
+git remote add demo ssh://ubuntu@43.143.231.106/home/ubuntu/eufy-demo/repos/eufy-growth-next.git
+
+<span class="c"># 之后：改完就发</span>
+git push demo main            <span class="c"># next   → /eufy-demo/next/</span>
+git push demo main            <span class="c"># cn     → /eufy-demo/cn/</span>
+git push demo main            <span class="c"># react  → /eufy-demo/react/</span>
+
+<span class="c"># 服务器侧排障</span>
+systemctl status eufy-next    <span class="c"># 摄像头 Agent 服务</span>
+tail -f ~/eufy-demo/logs/eufy-next.log</pre>
+
+    <div class="grid2" style="margin-top:22px">
+      <div class="box">
+        <h3>线上拓扑</h3>
+        <ul>
+          <li><b>/eufy-demo/</b> 本页（门户）</li>
+          <li><b>/eufy-demo/cn/</b> 纯静态 · /var/www/eufy-demo/cn</li>
+          <li><b>/eufy-demo/next/</b> React · /var/www/eufy-demo/next</li>
+          <li><b>/eufy-demo/next/api/</b> → 127.0.0.1:8111（SSE 关缓冲）</li>
+          <li><b>/eufy-demo/react/</b> 原型 · /var/www/eufy-demo/react</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>降级行为（诚实说明）</h3>
+        <ul>
+          <li>Agent 服务停 → 完整版静态页照常打开，实时页显示「Agent 服务未连接」</li>
+          <li>mock 数据流全程常驻角标，不冒充实测</li>
+          <li>未接识别模型前，live 只出信号不出里程碑候选</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>eufy 成长同行 · 黑客松演示原型</span>
+    <span>虚构示例数据，非实测结果</span>
+    <span>默认不上云 · 不用于训练 · 未确认素材 7 天自动删</span>
+    <span style="margin-left:auto"><a href="next/">打开完整版 →</a></span>
+  </div>
+</footer>
+
+<script>
+/* 探一次摄像头 Agent 健康状态，把「在线/离线」如实标出来 */
+(function () {
+  var box = document.getElementById('ls-check');
+  var next = document.getElementById('ls-next');
+  function set(el, on, text) {
+    if (!el) return;
+    el.className = 'state ' + (on ? 'on' : 'off');
+    el.innerHTML = '<i></i>' + text;
+  }
+  fetch('next/api/health', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (d) {
+      set(next, true, 'Agent 服务在线 · ' + (d.source || 'unknown'));
+      if (box) box.textContent = '摄像头 Agent 后端在线 · 实时页可开三尖刀会话';
+    })
+    .catch(function () {
+      set(next, false, 'Agent 服务离线 · 实时页降级');
+      if (box) box.textContent = '摄像头 Agent 后端未连接 · 静态功能不受影响';
+    });
+})();
+</script>
+
+</body>
+</html>

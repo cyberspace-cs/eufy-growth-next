@@ -41,6 +41,38 @@ scripts/demo-server.sh stop|restart
 - 全部绑定 0.0.0.0，同网段直接访问 `http://<本机IP>:8000/`
 - 公网演示：https://rz6xfrye.qwenwork.host/ （静态版）
 
+## 公网 Demo 部署（push 即发布）
+
+上面那套解决「现场同一个局域网一起看」，这一节解决「把链接发给评委/队友，谁都能打开」。
+
+| 路径 | 内容 | 类型 |
+|---|---|---|
+| <https://taoxie.vip/eufy-demo/> | 聚合门户（三张卡 + Agent 在线探活） | 静态 |
+| <https://taoxie.vip/eufy-demo/cn/> | 纯静态完整版（8090 UI 原版） | 静态 |
+| <https://taoxie.vip/eufy-demo/next/> | **本仓库**：React + 摄像头 Agent | 静态 + Node |
+| <https://taoxie.vip/eufy-demo/next/api/> | Agent HTTP / SSE | 反代 127.0.0.1:8111 |
+| <https://taoxie.vip/eufy-demo/react/> | React 早期原型 | 静态 |
+
+服务器 `43.143.231.106` 上三个裸仓库各带 post-receive：推上去自动检出 → 构建 → 同步 webroot →
+动态版重启 `eufy-next.service`，构建日志直接回流到 `git push` 输出里。
+
+```bash
+bash deploy-server/push-all.sh          # 一次推三个仓库
+bash deploy-server/push-all.sh next     # 只发本仓库
+```
+
+首次在新机器上装配服务器：`bash deploy-server/install.sh`（幂等）。目录布局、排障、
+降级行为见 `deploy-server/README.md`。
+
+**子路径部署要点**：`vite.config.ts` 的 `base` 由环境变量 `EUFY_BASE` 决定，
+`src/App.tsx` 的接口前缀由 `import.meta.env.BASE_URL` 派生。因此同一份代码
+在 `npm run dev`（根路径）与线上（`/eufy-demo/next/`）都不需要改配置：
+
+```bash
+npm run build                              # 默认 base='/'，本地 8081 用
+EUFY_BASE=/eufy-demo/next/ npm run build   # 子路径部署（hook 自动这么调）
+```
+
 ## 架构
 
 ```

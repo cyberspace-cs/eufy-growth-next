@@ -14,3 +14,6 @@ deploy/
 # Demo 服务器运行时（PID/日志）
 .demo-run/
 demo/index.html
+
+# 本地构建用临时目录（沙箱 TMPDIR 落实）
+.tmp/

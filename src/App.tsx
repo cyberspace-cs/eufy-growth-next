@@ -7,6 +7,12 @@ import type { Evidence, Knife, TriState } from './types';
 
 type Tab = 'home' | 'live' | 'review' | 'report' | 'settings';
 
+/* API 前缀从构建 base 派生：
+ * - 本地 dev / 独立端口部署（base='/'）      → /api
+ * - 子路径部署（base='/eufy-demo/next/'）    → /eufy-demo/next/api
+ * 这样同一份代码在两种挂载方式下都无需改配置。 */
+const API = import.meta.env.BASE_URL.replace(/\/+$/, '') + '/api';
+
 /* ---------- 图标（内联 SVG，cn 同款） ---------- */
 const ICO: Record<string, string> = {
   walk: '<circle cx="13" cy="4.3" r="2"/><path d="M12 8l-3 4 3 2.5L11 19M12 8l3.5 3L18 12M9 12l-3 1.5M11 14.5 8 20"/>',
@@ -254,7 +260,7 @@ function Live({ toast }: { toast: (m: string) => void }) {
   const [candidates, setCandidates] = useState<LiveCandidate[]>([]);
 
   useEffect(() => {
-    const es = new EventSource('/api/stream');
+    const es = new EventSource(API + '/stream');
     es.onopen = () => setConnected(true);
     es.onerror = () => setConnected(false);
     es.onmessage = (msg) => {
@@ -272,14 +278,14 @@ function Live({ toast }: { toast: (m: string) => void }) {
 
   const startSession = async (blade: string) => {
     setCandidates([]); setEvents([]);
-    const r = await fetch('/api/session/start', {
+    const r = await fetch(API + '/session/start', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ blade }),
     });
     if (r.ok) toast(`会话已开启 · ${BLADES[blade as Knife].name}（同意优先，可随时结束）`);
   };
-  const stopSession = async () => { await fetch('/api/session/stop', { method: 'POST' }); toast('会话已结束，采集即停'); };
+  const stopSession = async () => { await fetch(API + '/session/stop', { method: 'POST' }); toast('会话已结束，采集即停'); };
   const confirmCand = async (id: string, tri: string) => {
-    await fetch(`/api/candidates/${id}/confirm`, {
+    await fetch(`${API}/candidates/${id}/confirm`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tri }),
     });
     toast(tri === 'reject' ? '已排除' : '已确认，进入成长册');
