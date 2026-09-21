@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eufy 成长同行 · 中国 0–6 主方案报告（三尖刀修订版 V3-CN）</title>
+<style>
+:root{
+  --ink:#1c2620; --ink2:#46564d; --ink3:#7c8a81;
+  --paper:#ffffff; --bg:#f4f6f2; --line:#e2e7e0;
+  --accent:#1f7a5c; --accent2:#0f513c; --accent-weak:#e6f2ec;
+  --amber:#a8760d; --amber-weak:#fbf1dd;
+  --blue:#087c9a; --blue-weak:#e3f1f6;
+  --red:#b23b3b; --red-weak:#fbe9e7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;font-size:15.5px}
+.wrap{max-width:920px;margin:0 auto;padding:0 26px 120px}
+.cover{background:var(--ink);color:#eef2ee;padding:72px 0 60px;margin-bottom:8px}
+.cover .inner{max-width:920px;margin:0 auto;padding:0 40px}
+.cover .kicker{color:#7fd3b3;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:40px;line-height:1.3;font-weight:800;color:#fff;margin-bottom:14px}
+.cover .sub{font-size:17px;color:#b9c4bc;line-height:1.8}
+.cover .meta{margin-top:34px;padding-top:18px;border-top:1px solid #2a332e;font-size:13px;color:#8b978f;display:flex;flex-wrap:wrap;gap:8px 32px}
+.demo-flag{display:inline-block;margin-top:22px;font-size:12.5px;font-weight:700;color:#f0d896;border:1px solid #6b5a28;padding:6px 14px;border-radius:20px;background:rgba(240,216,150,.08)}
+h2{font-size:25px;font-weight:800;margin:46px 0 14px;padding-top:18px;border-top:2px solid var(--ink);scroll-margin-top:20px}
+h3{font-size:18.5px;font-weight:800;margin:26px 0 9px}
+h4{font-size:15.5px;font-weight:700;margin:18px 0 6px}
+p{margin:9px 0;color:var(--ink2)}
+ul,ol{margin:8px 0 8px 22px;color:var(--ink2)}
+li{margin:5px 0}
+b,strong{color:var(--ink)}
+.lead{font-size:17px;color:var(--ink2)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:16px 0}
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:760px){.g3,.g2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;background:#fff;border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;line-height:1.6}
+th{background:var(--ink);color:#fff;font-weight:700}
+tr:nth-child(even) td{background:#fafbf8}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;vertical-align:middle}
+.tag.new{background:var(--accent-weak);color:var(--accent2)}
+.tag.mod{background:var(--amber-weak);color:var(--amber)}
+.tag.del{background:var(--red-weak);color:var(--red)}
+.tag.keep{background:#eceee9;color:var(--ink2)}
+.tag.g{background:var(--accent-weak);color:var(--accent2)}
+.tag.b{background:var(--blue-weak);color:var(--blue)}
+.tag.a{background:var(--amber-weak);color:var(--amber)}
+.tag.r{background:var(--red-weak);color:var(--red)}
+.note{border-left:4px solid var(--amber);background:var(--amber-weak);padding:13px 18px;border-radius:0 10px 10px 0;margin:15px 0;font-size:14px;color:#6d4e08}
+.note.red{border-color:var(--red);background:var(--red-weak);color:#8a2a2a}
+.note.green{border-color:var(--accent);background:var(--accent-weak);color:var(--accent2)}
+.note.blue{border-color:var(--blue);background:var(--blue-weak);color:#0a5a70}
+.delblock{border:1px dashed var(--red);background:#fdf3f2;border-radius:10px;padding:12px 18px;margin:14px 0;color:#8a2a2a;font-size:14px}
+.toc{columns:2;column-gap:40px;font-size:14px;margin:16px 0}
+.toc a{color:var(--ink2);text-decoration:none;display:block;margin:4px 0;break-inside:avoid}
+.toc a:hover{color:var(--accent)}
+.small{font-size:12.5px;color:var(--ink3)}
+.src{font-size:12px;color:var(--ink3);margin:6px 0 0}
+.qa{border-bottom:1px dashed var(--line);padding:14px 0}
+.qa .q{font-weight:700;color:var(--ink);font-size:15px}
+.qa .a{margin-top:6px}
+.qa .a::before{content:"答：";font-weight:700;color:var(--accent)}
+.timeline-tbl td:first-child{font-weight:700;white-space:nowrap;background:#fafbf8}
+.flowbox{display:flex;gap:0;flex-wrap:wrap;margin:14px 0}
+.flowbox .s{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px;position:relative}
+.flowbox .s b{display:block;font-size:14px;margin-bottom:3px}
+.flowbox .s span{font-size:12.5px;color:var(--ink3)}
+.footer-note{text-align:center;font-size:12px;color:var(--ink3);margin-top:60px;padding-top:20px;border-top:1px solid var(--line)}
+@media print{
+  body{background:#fff;font-size:12px}
+  .cover{padding:40px 0}
+  h2{page-break-after:avoid}
+  .card,table,.note{page-break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="inner">
+    <div class="kicker">eufy · 智能安防赛道 · 中国市场主方案</div>
+    <h1>eufy 成长同行（中国 0–6）<br>「会走 · 会说 · 会吃」三尖刀产品与技术方案</h1>
+    <p class="sub">一台家里本来就在的 eufy 摄像头，把 0–6 岁关键成长瞬间自动变成<br>家长记得住、社区儿保医生看得懂的成长记录与沟通材料。</p>
+    <div class="meta">
+      <span>版本：V3-CN（由英国 V2.1 修订）</span>
+      <span>日期：2026-09-21</span>
+      <span>配套产物：app.html（现场 demo）· deck.html（6 分钟路演）</span>
+      <span>英国 V2.1 报告保留，作为「会走」切片方法论资产</span>
+    </div>
+    <div class="demo-flag">演示数据流 · 非预录实测 · 不破解固件 · 不换皮</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<h2 id="read">如何阅读本修订版（修订标记说明）</h2>
+<p>本版在英国市场 V2.1（defense 报告）基础上，按黑客松中国赛题做整体改造。全文使用四类标记：</p>
+<p>
+  <span class="tag new">新增·中国</span> 英国版没有、本版新增的中国内容；
+  <span class="tag mod">修改</span> 保留原结构但口径改写；
+  <span class="tag del">删除 / 本期不做</span> 原内容移除或显式放弃；
+  <span class="tag keep">保留</span> 沿用英国版方法论（主要是「会走」切片与诚实边界）。
+</p>
+
+<h2 id="changelog">本次修订要点一览（Change Log）</h2>
+<table>
+<tr><th style="width:150px">板块</th><th style="width:90px">标记</th><th>修订内容</th></tr>
+<tr><td>政策主锚</td><td><span class="tag mod">修改</span></td><td>北美 CDC/AAP/ASHA、英国 NHS/NICE 与教育部 3–6 指南 → <b>「五健」（国卫妇幼发〔2025〕21 号，13 部门，2026–2030）为上位主锚</b>，WS/T 系列与《婴幼儿早期发展服务指南（试行）》(2025) 为能力目录。</td></tr>
+<tr><td>产品主线</td><td><span class="tag mod">修改</span></td><td>英国版四条观察主线 → 收敛为<b>会走 / 会说 / 会吃三尖刀</b>，三条现场都演；视力、口腔诚实放进下一代。</td></tr>
+<tr><td>会走</td><td><span class="tag keep">保留</span>+<span class="tag mod">修改</span></td><td>保留「蛙跳 / 向前跳距离」切片方法论与已知物体标定；临床锚点从英国百分位改为 <b>WS/T 月龄里程碑（30 月双脚向前跳）</b>，距离仅作个体纵向 Δ（演示中 +5.5cm 是个体记录，不是标准阈值）。</td></tr>
+<tr><td>会说</td><td><span class="tag new">新增·中国</span></td><td>咬住五健<b>「0–6 心理行为发育筛查率 2030 达 90%」</b>硬指标；只做对话回合 + 家长确认词 / 句 Firsts，远场不下诊断、不做声纹。</td></tr>
+<tr><td>会吃</td><td><span class="tag mod">修改</span></td><td><b>行为层升为旗舰</b>（自主用勺、饥饱回应、进餐不看屏、每餐约 20 分钟、追喂识别，均为指南原话、可视觉判定）；食物降为候选且家长确认。</td></tr>
+<tr><td>营养估算</td><td><span class="tag del">删除</span></td><td>英国版食物四层 / 营养热量估算整段删除（见 §8.3），不猜混合食材、不算热量、不判过敏原。</td></tr>
+<tr><td>记录体系</td><td><span class="tag new">新增·中国</span></td><td>三档记录：每周便签 → 每月成长册（WS/T 月龄对照）→ <b>8 次社区随访证据包（3/6/8/12/18/24/30/36 月龄）</b>，对接母子健康手册（对标英国 Red Book，中国化）。</td></tr>
+<tr><td>数据治理</td><td><span class="tag mod">修改</span></td><td>英国 ICO/GDPR → 《个人信息保护法》最小必要、《儿童个人信息网络保护规定》（14 岁以下监护人同意）、《未成年人网络保护条例》；赛题四红线逐条对齐。</td></tr>
+<tr><td>市场证据</td><td><span class="tag new">新增·中国</span></td><td>痛点中国化：隔代追喂、边吃边看动画、哄喂怕饿；差评 / 帖子取证渠道列出，<b>标注为落地前待补，不编造数据</b>。</td></tr>
+<tr><td>设备章</td><td><span class="tag new">新增·中国</span></td><td>写明智能安防赛道发放室外机（T8171/T8214）与三尖刀所需室内机位的差距；demo 默认 mock + 适配层，live 走本机真实取流，eufy SDK 预留，不预录。</td></tr>
+<tr><td>演示时长</td><td><span class="tag mod">修改</span></td><td>8 分钟脚本 → <b>6 分钟三尖刀动线</b>。</td></tr>
+</table>
+
+<h2 id="toc">目录</h2>
+<div class="toc">
+  <a href="#s1">1　决策摘要（中国版）</a>
+  <a href="#s2">2　政策三层锚点：五健 × WS/T × 可采集行为</a>
+  <a href="#s3">3　产品定义与四条红线</a>
+  <a href="#s4">4　尖刀一 · 会走：兔子跳过线</a>
+  <a href="#s5">5　尖刀二 · 会说：对话回合与 Firsts</a>
+  <a href="#s6">6　尖刀三 · 会吃：行为层旗舰</a>
+  <a href="#s7">7　三档记录与 8 次随访证据包</a>
+  <a href="#s8">8　数据诚实边界与删除清单</a>
+  <a href="#s9">9　数据治理与合规（中国法 + 赛题红线）</a>
+  <a href="#s10">10　赛题硬件核实与设备适配层</a>
+  <a href="#s11">11　技术架构与证据状态机</a>
+  <a href="#s12">12　6 分钟现场演示脚本与降级方案</a>
+  <a href="#s13">13　评委 Q&amp;A（12 问，按三尖刀重写）</a>
+  <a href="#s14">14　下一代路线与来源索引</a>
+</div>
+
+<h2 id="s1">1　决策摘要（中国版） <span class="tag new">新增·中国</span></h2>
+<div class="card">
+<p class="lead"><b>一句话：</b>不新增硬件、不制造焦虑——复用家庭已部署的 eufy 机位，把「会走、会说、会吃」的行为事实自动沉淀为候选证据，家长三态确认后入册，在 8 次社区随访时成为儿保医生看得懂的沟通材料。</p>
+</div>
+<table>
+<tr><th style="width:130px">要素</th><th>结论</th></tr>
+<tr><td>目标用户</td><td>0–6 岁（旗舰演示固定 24–30 月龄）儿童家庭，含隔代照护场景；下游使用者为社区卫生服务中心儿保医生。</td></tr>
+<tr><td>核心场景</td><td>客厅活动区（会走）、共读 / 游戏桌近端音频（会说）、餐桌（会吃）。</td></tr>
+<tr><td>政策理由</td><td>五健之健康骨骼、<b>健康心理（筛查率 2030 达 90%，原文鼓励数智技术分级分类管理）</b>、健康体重；能力目录对齐 WS/T 580 / WS/T 479 与早期发展指南。</td></tr>
+<tr><td>差异化</td><td>红线即差异：<b>不诊断、不评分排名、不识别身份、不做营养</b>；机器只做记录与分流，诊断权留给医生。</td></tr>
+<tr><td>演示形态</td><td>390×844 单文件离线手机 demo（app.html）；mock 确定性脚本 + live 本机真实取流双数据源；预置 26 月龄孩子一周剧本。</td></tr>
+<tr><td>诚实前提</td><td>赛道发放的是室外机，室内机位为最大变量；默认 mock + 适配层，明确标注，不靠预录冒充。</td></tr>
+</table>
+
+<h2 id="s2">2　政策三层锚点：五健 × WS/T × 可采集行为 <span class="tag new">新增·中国</span></h2>
+<p>三层结构：<b>为什么做（五健上位主锚）→ 对齐哪条（WS/T / 国家指南能力目录）→ 看到什么（eufy 可客观采集的行为）</b>。</p>
+<table>
+<tr><th style="width:80px">尖刀</th><th>上位主锚：五健</th><th>能力目录</th><th>可采集行为</th></tr>
+<tr>
+  <td><b style="color:var(--accent)">会走</b></td>
+  <td>健康骨骼 + 体质（户外锻炼、体态、肥胖联防）</td>
+  <td>WS/T 580 大运动能区；0–6 健康管理 18/24/30/36 月龄发育评估</td>
+  <td>跑停、双脚同时离地跳、踢球、<b>双脚向前跳过线</b>、交替上楼</td>
+</tr>
+<tr>
+  <td><b style="color:var(--blue)">会说</b></td>
+  <td><b>健康心理</b>：0–6 岁心理行为发育筛查（监测）比例 2030 年达 90%；原话“探索人工智能、大数据等数智技术……分级分类精细化管理”</td>
+  <td>WS/T 580 语言能区；《婴幼儿早期发展服务指南（试行）》(2025) 语言月龄里程碑</td>
+  <td>对话回应回合、家长确认的词汇 / 短句 Firsts、共同注意（指物 / 追视）</td>
+</tr>
+<tr>
+  <td><b style="color:var(--amber)">会吃</b></td>
+  <td><b>健康体重</b>：0–6 岁体重管理、肥胖早防、健康饮食行为</td>
+  <td>WS/T 479 科学喂养；早期发展指南喂养部分（回应式喂养、饥饱信号、进餐不看屏、每餐约 20 分钟）</td>
+  <td>自主进食（手 / 勺 / 杯）、饥饱信号与家长回应、进餐看屏、进餐时长、追喂</td>
+</tr>
+</table>
+<div class="note"><b>视力、口腔两健的诚实处理：</b>现有室内机位对户外光照 / 近距离用眼、刷牙动作不可靠，<b>显式列入下一代路线（§14）</b>，不硬凑“五健全覆盖”。</div>
+<p class="src">来源：国卫妇幼发〔2025〕21 号文件公开报道与政策解读；WS/T 580、WS/T 479 卫生行业标准；《婴幼儿早期发展服务指南（试行）》(2025)。路演前由队内存档原文复核表述。</p>
+
+<h2 id="s3">3　产品定义与四条红线 <span class="tag mod">修改</span></h2>
+<h3>3.1 定位与“魂”</h3>
+<p>家长要的不是“检测到运动 / 声音”，而是“<b>我知道孩子好好的、在按时长大</b>”——把不确定变确定。产品只做两件事：在家长看不到 / 记不住的时候替家庭<b>留住行为事实</b>；在随访场景替医生<b>准备沟通材料</b>。</p>
+<h3>3.2 四条不做（一票否决项）</h3>
+<div class="grid g2">
+  <div class="card"><b>不做诊断与评分</b><p>不做发育商 / 发育评分 / 排名，不判“语言迟缓”“智商高低”；持续异常只提示借随访咨询医生。</p></div>
+  <div class="card"><b>不做视觉营养师</b><p>不猜混合食材、不算热量营养、不判过敏原（详见 §8.3 删除说明）。</p></div>
+  <div class="card"><b>不识别身份</b><p>无人脸识别、无声纹识别，不识别“是谁”；机位只输出行为候选。</p></div>
+  <div class="card"><b>不作假</b><p>不预录冒充、不换皮、不交付只接不到真设备的纯界面；mock 全程显著标注。</p></div>
+</div>
+<h3>3.3 数据四标签（全站每条输出必带其一）</h3>
+<p>
+  <span class="tag g">画面/声音可见</span> 机器直接观察到的行为事实；
+  <span class="tag a">家长确认</span> 经三态确认 / 勾选后入册；
+  <span class="tag b">建议</span> 不带判定的行动提示；
+  <span class="tag r">无法判断</span> 遮挡 / 嘈杂 / 样本不足，不生成结论。
+</p>
+
+<h2 id="s4">4　尖刀一 · 会走：兔子跳过线 <span class="tag keep">保留</span><span class="tag mod">修改</span></h2>
+<h3>4.1 月龄窗与黄金锚点</h3>
+<p>月龄窗 12–36 月，旗舰聚焦 <b>24–30 月</b>。WS/T 580 大运动能区 + 早期发展指南：24 月跑稳能停、双脚同时离地原地跳、不扶摆腿踢大球；<b>30 月双脚向前跳</b>；36 月交替脚上楼 / 单脚站。</p>
+<h3>4.2 旗舰任务「兔子跳过线」</h3>
+<div class="flowbox">
+  <div class="s"><b>① 已知物体标定</b><span>地上贴胶带（或门框 / 已知宽度铺路板），不做精确深度测距</span></div>
+  <div class="s"><b>② 逐帧姿态</b><span>双脚离地帧 t1、落地帧 t2；像素换算 cm/px</span></div>
+  <div class="s"><b>③ 过线判定</b><span>双脚同时离地且前进距离 d&gt;0 → 候选</span></div>
+  <div class="s"><b>④ 三态确认</b><span>做到了 / 有时会 / 还不会，家长确认入册</span></div>
+  <div class="s"><b>⑤ 个体 Δ</b><span>与自己上一次 confirmed 距离比较，只做纵向记录</span></div>
+</div>
+<div class="note green"><b>距离口径（相对英国版的关键修改）：</b>临床锚点只用<b>月龄里程碑“能不能向前跳”</b>，不挂英国百分位；演示中 18.0cm → 23.5cm 的 <b>+5.5cm 是“个体记录”，不是标准阈值、不与其他孩子比较</b>。</div>
+<h3>4.3 四张任务卡</h3>
+<p>红灯停绿灯行（跑停）／袋鼠原地跳／踢纸球／<b>兔子跳过线（旗舰）</b>。</p>
+<h3>4.4 诚实边界 <span class="tag keep">保留</span></h3>
+<ul>
+  <li>家用单摄对扶走、遮挡场景识别率低（英国版调研外部证据约 <b>38.9%</b>，作为量级参考沿用，中国场景待复测）；</li>
+  <li><b>没拍到 ≠ 不会</b>：固定报告“有效观察天数 / 清晰片段数”，遮挡片段直接丢弃、不评价；</li>
+  <li>倒退、单侧不对称、持续踮脚等异常步态：<b>只提示就医、不做判断</b>。</li>
+</ul>
+
+<h2 id="s5">5　尖刀二 · 会说：对话回合与 Firsts <span class="tag new">新增·中国</span></h2>
+<h3>5.1 为什么“会说”是中国版必选项</h3>
+<p>五健文件把 <b>0–6 岁儿童心理行为发育筛查（监测）比例 2030 年达到 90%</b> 写为硬指标，并原文鼓励数智技术做分级分类精细化管理。家庭端的行为记录，正是社区筛查体系最缺的“两次随访之间”的素材。</p>
+<h3>5.2 月龄锚（早期发展服务指南原文）</h3>
+<table>
+<tr><th>月龄</th><th>语言里程碑</th><th>demo 对应</th></tr>
+<tr><td>12 月</td><td>听懂 ≥1 个物品名</td><td>共同注意辅助</td></tr>
+<tr><td>18 月</td><td><b>说出 3 个有意义的词</b></td><td>家长确认新词去重计数</td></tr>
+<tr><td>24 月</td><td><b>说简单句子</b></td><td>旗舰：3 字短句 Firsts（“我要香蕉”）</td></tr>
+<tr><td>30 月</td><td>回答简单问题</td><td>对话回合趋势</td></tr>
+<tr><td>36 月</td><td>说出简单故事大部分情节</td><td>下一代扩展</td></tr>
+</table>
+<h3>5.3 只做三件最稳的行为层</h3>
+<ol>
+  <li><b>回应式对话回合</b>：家长说 → 孩子应 → 家长接的 turn-taking 计数，不要求识别每个词；</li>
+  <li><b>家长确认的新词 / 短句 Firsts</b>：候选文本可由家长改正，确认后去重入词表；</li>
+  <li><b>共同注意</b>：成人指 / 看 → 孩子追视 / 指物（视觉辅助）。</li>
+</ol>
+<h3>5.4 判定与最硬边界</h3>
+<ul>
+  <li>VAD 切清晰语音段；背景噪声超阈 / 多声源 → 直接标 <span class="tag r">无法判断</span>，demo 中“电视 + 三人说话”片段即如此处理；</li>
+  <li>幼儿远场 ASR 错误率高：<b>只给趋势与样本，不下语言诊断、不输出词汇量 / 语言年龄</b>；</li>
+  <li><b>不做声纹 / 身份识别</b>；样本不足不出提示；</li>
+  <li>样本充足且持续低于月龄预期时，<b>只建议借 30 月龄社区随访向儿保医生咨询</b>——机器分流，医生诊断。</li>
+</ul>
+
+<h2 id="s6">6　尖刀三 · 会吃：行为层旗舰 <span class="tag mod">修改</span></h2>
+<h3>6.1 月龄窗</h3>
+<p>6–24 月辅食 → 自主进食窗（习惯延伸至 3 岁）。</p>
+<h3>6.2 旗舰是“怎么吃”：五条指南原话、全部可视觉判定</h3>
+<table>
+<tr><th style="width:150px">行为（指南口径）</th><th>视觉判定方式</th><th>政策 / 标准出处</th></tr>
+<tr><td><b>自主进食</b>：手抓 → 用勺 → 用杯</td><td>勺 / 杯到嘴动作、手抓动作识别</td><td>WS/T 580 适应 / 精细能区</td></tr>
+<tr><td><b>饥饱信号与回应</b></td><td>转头 / 推开 = 饱、前倾 / 张嘴 / 指 = 饿；识别成人是否回应</td><td>回应式喂养（WS/T 479、早期发展指南）</td></tr>
+<tr><td><b>进餐不看屏</b></td><td>餐桌有无手机 / 电子屏 + 孩子注视计时</td><td>指南原话“进餐时不观看电视、手机”</td></tr>
+<tr><td><b>每餐约 20 分钟</b></td><td>开 / 收餐计时；&gt;20 分钟提示，&gt;30 分钟标记</td><td>指南原话（最长 ≤30 分钟）</td></tr>
+<tr><td><b>不强迫 / 追喂识别</b></td><td>成人端碗离开餐桌跟随 = 追喂候选</td><td>指南要求不以食物为奖惩、不强迫进食</td></tr>
+</table>
+<h3>6.3 食物候选（非旗舰，家长确认）</h3>
+<p>仅在<b>餐前清晰帧</b>给出“香蕉 / 燕麦”候选，家长一键勾选才写入随访包；可改正、可标无法判断；不推断混合菜。</p>
+<h3>6.4 中国文化共鸣（落地报告补取证） <span class="tag new">新增·中国</span></h3>
+<ul>
+  <li>隔代追喂：成人端碗满屋跟、哄着喂；</li>
+  <li>边吃边看动画：手机 / 电视成为喂饭工具；</li>
+  <li>哄喂怕饿：忽视孩子推开、转头的饱信号；</li>
+  <li>强迫进食：以食物为奖惩（“再吃一口给你看动画”）。</li>
+</ul>
+<div class="note"><b>差评 / 帖子取证状态（诚实标注）：</b>计划渠道为小红书、抖音、京东商品差评、母婴社区（宝宝树等），以“追喂 / 不吃饭 / 边吃边看”为关键词截取真实帖子与差评。<b>本版未完成取证，不编造条目；作为路演前 P0 待办</b>。</div>
+<h3>6.5 边界</h3>
+<p>餐盘少了 ≠ 吃下去；不判食量、不打“吃得好不好”的分，只记行为事实 + 回应式喂养提示。</p>
+
+<h2 id="s7">7　三档记录与 8 次随访证据包 <span class="tag new">新增·中国</span></h2>
+<div class="flowbox">
+  <div class="s"><b>每周 · 家庭成长便签</b><span>自动生成，≤3 条行为片段 + Firsts，轻、不打扰</span></div>
+  <div class="s"><b>每月 · 成长册</b><span>WS/T 月龄里程碑对照（会走 / 会说 / 会吃），家长确认入册</span></div>
+  <div class="s"><b>随访节点 · 证据包</b><span>8 次月龄节点一键导出 / 分享，附入母子健康手册</span></div>
+</div>
+<h3>7.1 8 次节点（国家基本公卫 0–6 岁儿童健康管理）</h3>
+<table class="timeline-tbl">
+<tr><th>节点</th><th>证据包内容（演示）</th></tr>
+<tr><td>3 / 6 / 8 月龄</td><td>会吃为主：辅食、手抓、饥饱回应、进餐不看屏（下一代机位完善后开放，demo 显示为已归档 / 未到窗）</td></tr>
+<tr><td>12 / 18 月龄</td><td>会说起步：听懂物品名、3 个词；会吃用勺；会走独走 / 踢球</td></tr>
+<tr><td><b>24 月龄</b></td><td>跑停 / 原地跳 / 踢球；简单句；自主用勺（demo 主角已过节点）</td></tr>
+<tr><td><b>30 月龄（下一次）</b></td><td><b>旗舰导出节点</b>：双脚向前跳、24→30 月窗全部家长确认记录、有效观察天数、家长想问医生的问题</td></tr>
+<tr><td>36 月龄</td><td>交替上楼 / 单脚站、回答问题 / 讲故事；三尖刀收口</td></tr>
+</table>
+<p class="small">另有新生儿 / 满月访视及 4–6 岁每年 1 次健康检查，demo 聚焦 8 次月龄节点；对标英国 Red Book（个人儿童健康记录），中国版对接<b>母子健康手册 / 儿童健康管理档案</b>。</p>
+<h3>7.2 证据包字段</h3>
+<p>儿童昵称（演示数据标注）、观察区间、有效观察天数（分尖刀）、数据来源声明（设备 + 家长逐条确认）、三尖刀确认记录表（时间 / 行为 / 三态 / 个体 Δ / 家长确认食物）、边界声明、家长咨询问题、分享链接有效期。<b>材料只作沟通参考，不构成诊断或发育评分。</b></p>
+
+<h2 id="s8">8　数据诚实边界与删除清单</h2>
+<h3>8.1 什么自动采 <span class="tag keep">保留</span></h3>
+<p>机位内、任务卡定义内、清晰度达标的<b>行为候选</b>：动作类别、时间戳、置信度、（会走）已知物体标定距离、（会说）回合数与候选转写、（会吃）时长 / 看屏 / 追喂 / 自主进食。</p>
+<h3>8.2 什么只靠家长、什么不碰 <span class="tag keep">保留</span></h3>
+<ul>
+  <li>三态确认、食物勾选、词 / 句改正、备注、是否入册与分享：<b>全部家长动作</b>；</li>
+  <li>不碰：身份（人脸 / 声纹）、诊断结论、评分排名、营养热量、过敏原、食量、画面外行为、情绪定性。</li>
+</ul>
+<h3>8.3 营养估算整段删除说明 <span class="tag del">删除 / 本期不做</span></h3>
+<div class="delblock">
+<b>删除项（英国 V2.1 食物识别分层与营养 / 热量估算）：</b><br>
+不推断混合菜品、不估算克数与热量、不做营养素与过敏原判断、不输出膳食评分。<br>
+<b>删除理由：</b>① 家用单摄对中餐混合菜肴可靠性不足，错误的营养结论比没有结论更有害；② 健康体重的政策锚点可由<b>喂养行为</b>（回应式、不看屏、时长、不强迫）直接承接，这些均为指南原话且视觉可判定；③ 红线清晰有助于现场答辩。食物仅保留“餐前清晰帧候选 + 家长确认”一档。
+</div>
+<h3>8.4 词表纪律（demo 已内置校验口径）</h3>
+<p>全站禁止出现：发育商、语言年龄、同龄百分位、智商、专注力分数、教学评分、营养诊断、达标、落后、人生第一次、掌握了、排名。首次记录统一表述为“<b>本系统首次记录到……</b>”；无样本统一表述为“<b>未获得可判断样本，不等同于不会</b>”。</p>
+
+<h2 id="s9">9　数据治理与合规（中国法 + 赛题红线） <span class="tag mod">修改</span></h2>
+<h3>9.1 存储与生命周期</h3>
+<ul>
+  <li>端侧 / 本地（HomeBase / microSD）优先，<b>默认不上云、不用于训练</b>（demo 中为不可关闭的固定承诺）；</li>
+  <li>训练授权单独勾选，不与功能授权捆绑；</li>
+  <li>未确认素材 <b>7 天自动删</b>，仅家长点选的精选长期保存；</li>
+  <li>敏感场景（卧室 / 卫生间）默认遮罩；一键停采 / 一键删除；分享链接可过期、可撤回。</li>
+</ul>
+<h3>9.2 法规依据</h3>
+<table>
+<tr><th>法规 / 规范</th><th>落点</th></tr>
+<tr><td>《个人信息保护法》</td><td>最小必要、告知同意、本地优先；敏感个人信息单独同意</td></tr>
+<tr><td>《儿童个人信息网络保护规定》</td><td><b>14 岁以下未成年人个人信息处理须取得监护人同意</b>，并制定专门处理规则</td></tr>
+<tr><td>《未成年人网络保护条例》</td><td>未成年人信息严格保密、最小授权、删除与撤回权</td></tr>
+<tr><td>WS/T 580 / WS/T 479、早期发展指南</td><td>能力目录与表述口径来源，不把指南月龄表述改写成评分</td></tr>
+</table>
+<h3>9.3 赛题四红线逐条对齐</h3>
+<table>
+<tr><th>赛题红线</th><th>本方案对齐</th></tr>
+<tr><td>① 只检测行为，不识别身份</td><td>无人脸、无声纹；机位只输出行为候选</td></tr>
+<tr><td>② 报警 / 删除 / 控制必须人确认</td><td>证据三态确认入册；停采、删除、分享均为家长动作</td></tr>
+<tr><td>③ 不留数据后患、未成年人保护</td><td>默认不上云、7 天自动删、遮罩、链接可撤回、监护人同意</td></tr>
+<tr><td>④ 不作假</td><td>mock 常驻“演示数据流·非预录实测”角标；不破解固件、不换皮；live 只报告真实接通的信号</td></tr>
+</table>
+
+<h2 id="s10">10　赛题硬件核实与设备适配层 <span class="tag new">新增·中国</span></h2>
+<div class="note red"><b>最大合规变量（已在 demo 中诚实呈现）：</b>智能安防赛道现场发放的是<b>室外机 T8171 / T8214</b>，机位不覆盖客厅活动区、餐桌与近端音频；三尖刀所需的<b>室内云台 S350（视觉）与近端麦克风 soundcore/E21（会说）</b>属于自备设备或演示适配。</div>
+<h3>10.1 双数据源适配层（app.html 已实现）</h3>
+<table>
+<tr><th>模式</th><th>能力</th><th>边界标注</th></tr>
+<tr><td><span class="tag a">mock（默认）</span></td><td>确定性脚本驱动 SVG 机位画面、检测框、VAD 段、检测日志与候选生成；预置 26 月龄孩子一周数据</td><td>常驻“演示数据流·非预录实测”角标；明确不是预录视频、不是模型实测</td></tr>
+<tr><td><span class="tag g">live（本机取流）</span></td><td>浏览器 getUserMedia 调用<b>本机真实摄像头 / 麦克风</b>：帧间差分运动量、Web Audio VAD 语音段均为真实信号</td><td>识别模型未接入前<b>不产生里程碑候选</b>，界面明示“实时取流·识别模型待接入”</td></tr>
+<tr><td>eufy SDK（预留）</td><td>S350 Web SDK / P2P 取流、soundcore/E21 音频接入位以接口与注释预留</td><td>不伪造、不逆向固件；接入后替换 SourceLayer 实现即可</td></tr>
+</table>
+<h3>10.2 降级方案</h3>
+<ul>
+  <li>现场无室内设备：全程 mock，三尖刀闭环照演，开场主动声明数据源；</li>
+  <li>有笔记本摄像头 / 麦：切 live 演示真实取流与运动量 / VAD 信号，证明“不是纯界面”；</li>
+  <li>自备 S350 / E21：按预留适配层接入（赛前完成则替换，未完成不承诺）。</li>
+</ul>
+
+<h2 id="s11">11　技术架构与证据状态机 <span class="tag new">新增·中国</span></h3>
+<h3>11.1 工程形态</h3>
+<p>三件单文件离线 HTML（app / deck / report），原生 JS、无框架、无 CDN、无构建；图标全部内联 SVG；localStorage 存证（演示）。</p>
+<h3>11.2 证据状态机</h3>
+<div class="flowbox">
+  <div class="s"><b>candidate 候选</b><span>画面 / 声音可见，带置信度、时间戳、片段引用、7 天过期</span></div>
+  <div class="s"><b>家长三态确认</b><span>做到了 / 有时会 / 还不会；可改正文本、勾选食物、加备注</span></div>
+  <div class="s"><b>confirmed 入册</b><span>进成长册、Firsts、个体 Δ、随访证据包</span></div>
+  <div class="s"><b>rejected / unjudgeable</b><span>排除不计数；无法判断不生成任何结论</span></div>
+</div>
+<h3>11.3 核心数据结构</h3>
+<div class="card"><p class="small" style="font-family:Consolas,monospace;white-space:pre-wrap;color:var(--ink2)">evidence = { id, blade:'walk|talk|eat', code, observedAt,
+  source:'vision|audio', status:'candidate|confirmed|rejected|unjudgeable',
+  tri:'done|sometimes|notyet', value, unit, confidence,
+  words[], foods[], distCm, note, clipRef, expireDays }
+milestone = { blade, code, monthExpect, wsDomain, status, firstAt }</p></div>
+
+<h2 id="s12">12　6 分钟现场演示脚本与降级方案 <span class="tag mod">修改</span></h2>
+<table>
+<tr><th style="width:110px">时间</th><th>内容</th><th style="width:200px">操作 / 产物</th></tr>
+<tr><td>0:00–0:40</td><td>痛点 + 政策：五健 90% 心理监测、8 次随访、家长三焦虑</td><td>deck 1–2 页</td></tr>
+<tr><td>0:40–1:10</td><td>定位 + 三尖刀 + 数据治理一句话承诺</td><td>deck 3–5 页</td></tr>
+<tr><td>1:10–2:20</td><td><b>演会走（70s）</b>：兔子跳过线自动捕捉 → 三态确认 → 成长时间轴与 Δ</td><td>app 场景页 → 待确认 → 成长册</td></tr>
+<tr><td>2:20–3:20</td><td><b>演会说（60s）</b>：共读对话回合 + 24 月短句 Firsts；噪声片段自动无法判断</td><td>app 会说机位 → 确认入词表</td></tr>
+<tr><td>3:20–4:20</td><td><b>演会吃（60s）</b>：自主用勺 + 不看屏 + 饥饱回应 + 追喂候选；食物家长确认</td><td>app 会吃机位 → 勾选确认</td></tr>
+<tr><td>4:20–5:10</td><td>三档记录 + 30 月龄随访证据包（对接母子健康手册）</td><td>app 成长册 / 随访页导出</td></tr>
+<tr><td>5:10–5:40</td><td>数据治理现场反证：停采 / 遮罩 / 7 天删 / 不识别身份</td><td>app 隐私页开关实操</td></tr>
+<tr><td>5:40–6:00</td><td>下一代建议卡（视力 / 口腔 / 户外多机位）+ 收尾</td><td>deck 15 页</td></tr>
+</table>
+<div class="note"><b>降级：</b>设备不通 → 全程 mock 并在开场 10 秒内声明；投影失败 → deck 打印件（已适配 P 键打印样式）；时间被压到 3 分钟 → 只演“会走捕捉→确认→随访包”一条链。</div>
+
+<h2 id="s13">13　评委 Q&amp;A（12 问，按三尖刀重写） <span class="tag mod">修改</span></h2>
+<div class="qa"><div class="q">1. 这和普通摄像头的“运动检测 / 哭声检测”有什么区别？</div><div class="a">运动检测输出的是信号，我们输出的是<b>带月龄锚点、经家长确认的行为记录</b>，并且终点是随访沟通材料；信号是中间产物，不是产品。</div></div>
+<div class="qa"><div class="q">2. 不做诊断，价值在哪里？</div><div class="a">五健 90% 心理筛查目标缺的不是诊断者（医生在），而是<b>两次随访之间的家庭观察素材</b>。我们做记录与分流，把诊断权完整留给儿保医生，这恰是合规可持续的位置。</div></div>
+<div class="qa"><div class="q">3. 赛道发的是室外机，你们是不是在做接不到设备的纯界面？</div><div class="a">不是。demo 默认 mock 且全程显著标注；live 模式在本机摄像头 / 麦克风上跑<b>真实取流与真实信号（帧间运动量、VAD）</b>；S350 / E21 的 SDK 接入位预留。室外机的机位差距在报告与设置页明示，不回避。</div></div>
+<div class="qa"><div class="q">4.（会走）凭一条胶带就能测跳多远？</div><div class="a">我们不做精确深度测距，只用已知宽度物体做像素标定，且临床结论只用月龄里程碑“<b>能不能双脚向前跳</b>”；距离只用于同一个孩子的纵向 Δ，不做横向比较。</div></div>
+<div class="qa"><div class="q">5.（会走）没拍到跳，会不会误报“发育落后”？</div><div class="a">永远不会。遮挡 / 扶走片段丢弃；无样本时成长册显示“本周未获得可判断样本”，并固定披露有效观察天数与清晰片段数；<b>没拍到 ≠ 不会</b>。</div></div>
+<div class="qa"><div class="q">6.（会说）远场语音识别那么差，你们怎么保证可信？</div><div class="a">我们不依赖远场 ASR：只数对话回合（能量 / 停顿 + 说话人交替），词和句必须<b>家长确认 / 改正后</b>才入册；嘈杂多声源直接无法判断，不硬猜。</div></div>
+<div class="qa"><div class="q">7.（会说）会不会给孩子贴“语言迟缓”标签？</div><div class="a">不会。不输出词汇量、语言年龄、诊断标签；样本充足且持续偏低时，只建议借 30 月龄随访咨询医生。系统不做声纹、不识别是谁。</div></div>
+<div class="qa"><div class="q">8.（会吃）为什么不做营养识别？这不是家长刚需吗？</div><div class="a">中餐混合菜肴的视觉营养识别可靠性不足，错误结论有害。健康体重锚点用<b>喂养行为</b>承接（回应式、不看屏、约 20 分钟、不强迫），全部是指南原话、可视觉判定；食物只给候选、家长确认。</div></div>
+<div class="qa"><div class="q">9.（会吃）追喂判定错了怎么办？</div><div class="a">追喂只是<b>候选</b>，由家长三态确认；不入诊断、不评分。确认后的记录用于随访沟通与家庭喂养提示，家长可随时排除或删除。</div></div>
+<div class="qa"><div class="q">10. 孩子视频上云吗？会被拿去训练吗？</div><div class="a">默认端侧 / 本地、不上云、不用于训练（demo 中为不可关闭承诺）；训练授权单独勾选；未确认素材 7 天自动删，分享链接可过期撤回。</div></div>
+<div class="qa"><div class="q">11. 14 岁以下监护人同意怎么落实？</div><div class="a">按《儿童个人信息网络保护规定》，首次启用设置监护人同意流程与专门儿童信息处理规则；demo 隐私页展示告知口径，正式版做成可审计的同意记录。</div></div>
+<div class="qa"><div class="q">12. 下一步是什么？</div><div class="a">短期：补中国差评 / 帖子取证、接 S350 SDK 跑通常温真设备；中期：视力 / 口腔机位与户外多机位；全程坚持“行为记录 + 家长确认 + 医生沟通”的边界。</div></div>
+
+<h2 id="s14">14　下一代路线与来源索引</h2>
+<h3>14.1 下一代（诚实留白）</h3>
+<ul>
+  <li><b>视力健康</b>：需户外光照 / 近距离用眼机位，现有室内机位不可靠；</li>
+  <li><b>口腔健康</b>：刷牙动作 / 时长需专用近景机位或牙刷传感器联动；</li>
+  <li><b>户外多机位</b>：室外机 + 门铃 + 穿戴协同，把大运动观察从客厅延伸到户外（也是对赛道室外机的正向利用）。</li>
+</ul>
+<h3>14.2 来源索引（路演前复核）</h3>
+<ol>
+  <li>《加快建设育儿友好型社会 促进人口长期均衡发展的意见》部署“五健”（2026–2030），国卫妇幼发〔2025〕21 号，13 部门；含 0–6 心理行为发育筛查率 2030 达 90% 表述。</li>
+  <li>WS/T 580 卫生行业标准（0～6 岁儿童发育行为评估 / 大运动、语言、适应等能区月龄条目）。</li>
+  <li>WS/T 479 卫生行业标准（科学喂养 / 儿童健康管理相关规范）。</li>
+  <li>《婴幼儿早期发展服务指南（试行）》(2025)：语言月龄里程碑、回应式喂养、进餐不看屏、每餐约 20 分钟、不强迫进食。</li>
+  <li>国家基本公共卫生服务规范：0–6 岁儿童健康管理 3/6/8/12/18/24/30/36 月龄共 8 次随访；母子健康手册。</li>
+  <li>《中华人民共和国个人信息保护法》（含未成年人个人信息处理规则）；《儿童个人信息网络保护规定》（14 岁以下监护人同意）；《未成年人网络保护条例》。</li>
+  <li>英国 V2.1 报告（内部资产）：家用单摄遮挡识别率约 38.9% 的外部调研、Red Book 对照、诚实边界方法论。</li>
+  <li><b>待补</b>：小红书 / 抖音 / 京东 / 母婴社区追喂、边吃边看、哄喂相关差评与帖子（P0，路演前完成，不预造）。</li>
+</ol>
+
+<div class="footer-note">
+  eufy 成长同行 · 中国 0–6 主方案 V3-CN · 2026-09-21<br>
+  本报告含演示设定（虚构儿童“小满”、确定性脚本数据），非临床试验、非实测模型结果；政策表述以正式文件原文为准。
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+*.local
+*.pem
+*.key
+secrets.*
+_smoke.mjs
+.DS_Store
