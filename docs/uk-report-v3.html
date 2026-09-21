@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>eufy Little Leaps｜英国市场 0—6 岁家庭成长 · 黑客松答辩报告 V3-UK</title><style>
+:root{--ink:#142e3d;--muted:#566973;--blue:#087c9a;--mint:#dcf2ec;--line:#d9e1e1;--paper:#f5f6f2;--white:#fff;--accent:#cced6b;--nav:238px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}button{font:inherit;cursor:pointer}p{margin:0 0 1.1em}strong{font-weight:650}h1,h2,h3,h4{font-weight:650;line-height:1.4;margin:0}h3{font-size:23px;margin:36px 0 16px;letter-spacing:-.4px}h4{font-size:18px;margin:25px 0 10px}.topbar{height:76px;position:sticky;top:0;z-index:30;background:rgba(245,246,242,.97);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 38px;gap:24px}.brand{color:var(--ink);font-family:Georgia,serif;font-size:32px;font-weight:bold;letter-spacing:-1px}.brand span{font-family:"PingFang SC",sans-serif;font-size:14px;font-weight:500;letter-spacing:1px;margin-left:7px}.top-meta{font:11px Georgia,serif;letter-spacing:2px;color:var(--muted)}.tools{display:flex;align-items:center;gap:20px;font-size:12px;white-space:nowrap}.tools button{border:1px solid var(--line);padding:8px 13px;border-radius:4px;background:transparent;color:var(--ink);font-size:12px}.sidebar{position:fixed;top:76px;bottom:0;left:0;width:var(--nav);padding:32px 18px 20px 26px;border-right:1px solid var(--line);overflow-y:auto}.sidebar-label{font-size:10px;letter-spacing:2px;color:var(--muted);margin:0 0 19px 9px}.sidebar nav{display:grid;gap:2px}.sidebar nav a{display:flex;gap:11px;padding:8px 9px;color:var(--muted);font-size:12px;line-height:1.65;border-radius:4px}.sidebar nav a span{font:11px Georgia,serif;color:#87989d;padding-top:4px}.sidebar nav a.active{background:#e5eeeb;color:var(--ink);font-weight:600}.side-note{font-size:11px;line-height:1.8;color:var(--muted);margin:30px 9px 0;padding-top:18px;border-top:1px solid var(--line)}.dot{display:inline-block;width:6px;height:6px;background:var(--blue);border-radius:100%;margin-right:6px}main{margin-left:var(--nav);max-width:1700px}.hero{background:var(--ink);color:white;padding:44px 58px 0;overflow:hidden;position:relative}.hero-top{display:flex;justify-content:space-between;gap:18px;align-items:center}.eyebrow{font-family:Georgia,serif;letter-spacing:2.1px;font-size:11px;color:var(--blue);display:block}.hero .eyebrow{color:#abd9db}.tag{display:inline-block;font-size:10px;letter-spacing:.7px;border:1px solid #ccd6d9;padding:5px 10px;border-radius:3px;line-height:1.7;white-space:nowrap}.hero .tag{border-color:#44616e;color:#bcd0d7}.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:30px;padding:58px 0 46px}.hero-overline{font-size:13px;letter-spacing:2px;color:#bdcfd3;margin-bottom:19px}h1{font-size:clamp(40px,4.5vw,67px);line-height:1.22;font-family:"Songti SC","STSong",serif;letter-spacing:-2px;font-weight:500}h1 span{color:var(--accent)}.hero-copy{color:#c2d2d7;font-size:15px;margin:24px 0 26px;line-height:1.9}.hero-actions{display:flex;gap:20px;align-items:center;font-size:12px}.hero-actions a{color:#d6e6e8}.hero-actions .primary{background:var(--accent);color:var(--ink);padding:12px 18px;border-radius:3px;display:flex;gap:25px;align-items:center}.age-art{padding:32px 0 32px 28px;border-left:1px solid #3d5763}.age-label{font-size:12px;letter-spacing:3px;color:#b4cbd0}.age-number{font:100px/1.5 Georgia,serif;letter-spacing:-8px;white-space:nowrap}.age-number span{color:#547482;font-size:65px;padding:0 8px}.age-number small{font-family:"PingFang SC",sans-serif;font-size:16px;letter-spacing:0;margin-left:14px}.age-line{border-top:1px solid #62858c;display:flex;justify-content:space-between;max-width:285px}.age-line i{width:7px;height:7px;margin-top:-4px;background:var(--accent);border-radius:100%}.age-art p{font-size:10px;color:#b4cbd0;margin:18px 0 0;white-space:nowrap}.pillars{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #3d5763;padding:27px 0}.pillars>div{padding:0 20px;border-right:1px solid #3d5763;display:grid;gap:7px}.pillars>div:first-child{padding-left:0}.pillars>div:last-child{border:0}.pillars span{font:10px Georgia,serif;letter-spacing:1.5px;color:#8cb7c3}.pillars strong{font-size:19px;font-weight:500}.pillars small{font-size:11px;color:#b4cbd0}.hero-note{display:flex;gap:22px;align-items:center;background:#223f4d;margin:0 -58px;padding:17px 58px;font-size:11px;color:#bdd1d6}.hero-note strong{color:var(--accent);white-space:nowrap}.reading-note{display:flex;gap:25px;padding:22px 58px;border-bottom:1px solid var(--line);font-size:12px;background:#eaf0ec;align-items:flex-start}.reading-note b{white-space:nowrap}.reading-note p{margin:0;color:var(--muted)}.chapter{padding:62px 58px;border-bottom:1px solid var(--line);background:var(--white)}.chapter:nth-of-type(2n+1){background:#fafbf8}.chapter-head{display:flex;gap:23px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:25px;margin-bottom:29px}.chapter-no{font:46px/1 Georgia,serif;color:#97b3b9;letter-spacing:-2px;flex-shrink:0}.chapter h2{font-family:"Songti SC","STSong",serif;font-size:34px;font-weight:600;letter-spacing:-.7px;margin:5px 0 10px}.chapter-head p{font-size:13px;color:var(--muted);margin:0}.chapter-body{font-size:15px}.chapter-body>p:first-child{font-size:16px}.table-wrap{overflow-x:auto;margin:22px 0 30px;border:1px solid var(--line);border-radius:4px;max-width:100%}table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.75;text-align:left}th{background:#e9f0ed;color:#25454f;font-size:12px;font-weight:600;padding:14px 16px;white-space:normal}td{padding:15px 16px;vertical-align:top;border-top:1px solid #e2e8e7;min-width:130px}tr:nth-child(even) td{background:rgba(235,241,237,.32)}td:first-child{font-weight:550;color:#183e4b}td p{margin:0}.ref{font-size:10px;line-height:1;color:var(--blue);background:#e8f1f1;padding:3px 4px;border-radius:3px;margin:0 2px;vertical-align:super;white-space:nowrap}blockquote{margin:22px 0;padding:25px 28px;background:#edf4f1;border-left:3px solid var(--blue);color:#34535f}blockquote p:last-child{margin:0}.fine{font-size:12px;color:var(--muted)}.source-list{margin:28px 0;display:grid;grid-template-columns:1fr 1fr;column-gap:30px}.source-row{display:flex;gap:10px;border-top:1px solid var(--line);padding:12px 0;scroll-margin-top:100px;align-items:baseline}.source-row span{font:11px Georgia,serif;color:var(--muted);min-width:26px}.source-row a{font-size:12px;line-height:1.6;overflow-wrap:anywhere}.source-row:target{background:#eef5d8}.qa{border-bottom:1px solid var(--line)}.qa summary{padding:21px 24px 21px 0;font-weight:600;font-size:16px;cursor:pointer;list-style:none;position:relative;display:flex;gap:15px}.qa summary span{font:15px/1.85 Georgia,serif;color:#739da9}.qa summary:after{content:'+';position:absolute;right:0;color:var(--blue);font-size:22px;font-weight:400}.qa[open] summary:after{content:'−'}.qa p{margin:0;padding:0 32px 23px;color:var(--muted);font-size:14px}footer{padding:55px 58px;background:var(--ink);color:#bbced6;display:grid;grid-template-columns:1fr auto;gap:22px;font-size:12px}.footer-statement{font-family:"Songti SC",serif;font-size:36px;color:var(--accent);grid-column:1/-1}footer p{margin:0}footer a{color:var(--accent);align-self:end}
+.rev{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;margin-left:8px;vertical-align:middle;letter-spacing:.5px}.rev-new{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7}.rev-mod{background:#fff3e0;color:#e65100;border:1px solid #ffcc80}.rev-keep{background:#eceff1;color:#455a64;border:1px solid #cfd8dc}.rev-block{border-left:3px solid #ff9800;background:#fffaf5;padding:14px 18px;margin:14px 0;font-size:13px;color:#5d4037}.rev-block.new{border-left-color:#4caf50;background:#f6fbf6;color:#1b4d2e}.rev-block.keep{border-left-color:#90a4ae;background:#f7f9f9;color:#37474f}
+@media(max-width:950px){:root{--nav:0px}.sidebar{display:none}.chapter{padding:45px 30px}.topbar{padding:0 25px}}
+@media print{@page{size:A4;margin:16mm 14mm}body{background:white;font-size:10pt;color:#172e37;line-height:1.6}.topbar,.sidebar,.tools,.hero-actions,.reading-note{display:none!important}main{margin:0;max-width:none}.hero{padding:10mm;background:#fff!important;color:#142e3d!important;border-bottom:2px solid #142e3d}.hero h1{font-size:30pt}.chapter{padding:9mm 0;background:white!important;break-before:page;border-bottom:0}.chapter h2{font-size:22pt}table{font-size:8pt;table-layout:fixed;width:100%}th,td{padding:7px;white-space:normal;overflow-wrap:anywhere}.rev{font-size:7pt}.rev-block{break-inside:avoid}.source-list{grid-template-columns:1fr}footer{background:white;color:#294e60;border-top:1px solid #294e60}footer a{display:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<header class="topbar"><a href="#top" class="brand">eufy<span> / Little Leaps UK</span></a><span class="top-meta">HACKATHON PROPOSAL · V3-UK · 2026.09</span><div class="tools"><button onclick="window.print()">打印 / 存为 PDF</button></div></header>
+<aside class="sidebar"><div class="sidebar-label">REPORT CONTENTS</div><nav aria-label="报告目录"><a href="#market"><span>01</span>市场调研与结构性缺口</a><a href="#ages"><span>02</span>0—6 岁全龄场景与政策节点</a><a href="#gap"><span>03</span>文化习惯与儿保政策的四条差距</a><a href="#evidence"><span>04</span>吐槽与差评证据清单</a><a href="#product"><span>05</span>产品定义与双数字口径</a><a href="#calib"><span>06</span>标定与测距方法</a><a href="#hardware"><span>07</span>硬件配置与赛道设备</a><a href="#engine"><span>08</span>分析流程与摄像头 Agent 架构</a><a href="#demo"><span>09</span>原型交付与现场演示</a><a href="#competition"><span>10</span>竞品与差异化</a><a href="#trust"><span>11</span>数据控制与 MHRA 边界</a><a href="#business"><span>12</span>商业模式与落地路径</a><a href="#pitch"><span>13</span>六分钟答辩讲稿</a><a href="#questions"><span>14</span>评委问答</a><a href="#sources"><span>15</span>证据与来源</a></nav><div class="side-note"><span class="dot"></span>V3-UK 修订版：以 V2.1 英国调研与 0—6 防御报告为基底<br>标记：<b>沿用</b>=V2.1 原文 / <b>修订</b>=改写 / <b>新增</b>=本轮新内容</div></aside>
+<main id="main">
+<section class="hero" id="top"><div class="hero-top"><span class="eyebrow">FAMILY GROWTH COMPANION · UNITED KINGDOM</span><span class="tag">V3-UK 修订版 · 带修改标记</span></div><div class="hero-grid"><div><p class="hero-overline">Growth record · Play · Health-visit communication</p><h1>成长的日常，<br>值得被<span>看懂。</span></h1><p class="hero-copy">跑在花园 eufy 摄像头上的 0—6 岁家庭成长观察层：<br>把官方 13 次健康随访之间的 51 周，变成有视频为证、家长可确认、<br>health visitor 看得懂的成长记录与沟通材料。</p><div class="hero-actions"><a class="primary" href="#market">阅读市场调研 <span>↘</span></a><a href="#evidence">查看证据清单 →</a></div></div><div class="age-art"><span class="age-label">从出生到学龄前</span><div class="age-number">0<span>—</span>6<small>岁</small></div><div class="age-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>HCP 随访 → ASQ-3 窗口 → 入学衔接 · 消费级定位 + MHRA 路线图</p></div></div><div class="pillars"><div><span>01 / RECORD</span><strong>成长记录</strong><small>动作 · 表达 · 自主生活，有视频为证</small></div><div><span>02 / PLAY</span><strong>陪玩助手</strong><small>在已发生的游戏里顺手给观察</small></div><div><span>03 / COMMUNICATE</span><strong>访视沟通</strong><small>给 health visitor 的 Red Book 补充件</small></div><div><span>04 / NOT CLINICAL</span><strong>不做诊断</strong><small>消费级定位，MHRA 路线图另附</small></div></div><div class="hero-note"><strong>V3-UK 定位</strong><span>消费级：成长记录 + 陪玩 + 健康访视沟通材料</span><span>不做临床评估（避免落入 MHRA SaMD 路径）</span><span>7.5cm=问卷引用 · 5.5cm=观测差值，双数字分层标注</span></div></section>
+
+<div class="reading-note"><b>修订说明</b><p>本报告以 V2.1 英国市场调研（uk-deck，21 页）与 0—6 全龄防御报告（defense，14 章）为基底合并改写。每个内容块带标记：<span class="rev rev-keep">沿用 V2.1</span>=原文保留，<span class="rev rev-mod">修订 V3-UK</span>=在原文基础上改写，<span class="rev rev-new">新增 V3-UK</span>=本轮新写。结论限于英格兰（苏格兰、威尔士、北爱尔兰路径不同）。</p></div>
+
+<!-- ============ 01 市场调研 ============ -->
+<section class="chapter" id="market"><div class="chapter-head"><span class="chapter-no">01</span><div><span class="eyebrow">MARKET RESEARCH</span><h2>市场调研与结构性缺口</h2><p>供给缺口 · ASQ-3 数据 · 比赛公式核对</p></div></div><div class="chapter-body">
+<p><strong>比赛公式：</strong>X 国家的 X—X 岁儿童的 XX 项目监测，同时满足四个条件——能被安克 eufy 产品功能实现、符合当地儿保政策要求、符合当地文化习惯、顺应安克赛道要求，且社区/电商平台有可验证的吐槽与差评。本章逐项核对，结论：<strong>英格兰 0—6 岁儿童的大运动/语言/喂养日常观察</strong>是交集最大的切入点，旗舰切口为 27 月龄 ASQ-3 大运动窗口的「双脚向前跳」。</p>
+
+<h3>供给缺口：专业观察人力持续收缩<span class="rev rev-keep">沿用 V2.1</span></h3>
+<p>英格兰 health visitor 数量自 2015 年下降约 <strong>40–43%</strong>；大量 drop-in 母婴诊所关闭或缩减，2 岁 review 在部分地区退化为「发表格回家填」。面对面专业观察供给收缩，而家长的观察需求没有消失——家庭需要不占人手、随时在花园帮着看的观察助手。来源：UK Parliament HSC《First 1000 Days: a renewed focus》(2026)；Institute of Health Visiting 书面证词。<a class="ref" href="#ref-M1">M1</a><a class="ref" href="#ref-M2">M2</a></p>
+<blockquote><p>家长问卷只能凭印象选 Sometimes，或者上网搜「几岁该会跳」。跳跃、踢球这些瞬间稍纵即逝——等填表时早就想不起来了。</p></blockquote>
+
+<h3>ASQ-3：政策要求的量化筛查<span class="rev rev-keep">沿用 V2.1</span></h3>
+<p>英格兰 2 岁 review（24—30 月龄）由 health visitor 执行，记录在 Red Book（PCHR 红色儿童健康记录册）；2022/23 年约 <strong>92.5%</strong> 的 2 岁 review 使用 ASQ-3 问卷。家长完成的三态计分（Yes=10 / Sometimes=5 / Not Yet=0）与产品的确认按钮天然同构。64 个地方当局 2018/19—2020/21 CSDS 数据：<strong>86.2% 达标，13.8% 低于 cutoff</strong>；27 月龄大运动 referral cutoff = 28.01（mean−2SD）。「下 15%」≈ mean−1SD，是「多关注」提示线，不是疾病线。<a class="ref" href="#ref-M3">M3</a><a class="ref" href="#ref-M4">M4</a></p>
+<p>ASQ-3 对重度迟缓检出较好，对轻—中度仅中等敏感——大量「有点担心但没被标记」的家庭处于灰色地带：他们要的不是诊断，是<strong>有依据的安心</strong>。</p>
+
+<h3>与安克赛道要求的交集<span class="rev rev-mod">修订 V3-UK</span></h3>
+<div class="table-wrap"><table><thead><tr><th>赛道要求</th><th>本方案如何满足</th></tr></thead><tbody>
+<tr><td>真设备现场取流与交互</td><td>T8171 SoloCam E30 花园主机 + T8214 门铃第二场景，Web SDK 前台短时取流（详见第 7 章）</td></tr>
+<tr><td>可运行作品（非仅界面）</td><td>摄像头 Agent 后端：采集→信号→判定→证据→表述五层管道，SSE 实时推送，现场点按走通闭环（第 8 章）</td></tr>
+<tr><td>6 分钟演示</td><td>旗舰闭环「兔子跳过线」+ 中英双语切换 + 0—6 年龄导航（第 9 章）</td></tr>
+<tr><td>数据治理架构图</td><td>端侧优先 · 最短保留 · 家长全权 · 邻居遮罩（第 11 章）</td></tr>
+<tr><td>严禁身份识别 / 预录冒充 / 破解固件</td><td>无人脸/声纹；mock 信号源显著标注 demo-mock-signal；真机接入前不产生里程碑</td></tr>
+</tbody></table></div>
+</div></section>
+
+<!-- ============ 02 0-6 全龄 ============ -->
+<section class="chapter" id="ages"><div class="chapter-head"><span class="chapter-no">02</span><div><span class="eyebrow">AGE-ADAPTIVE EXPERIENCE</span><h2>0—6 岁全龄场景与政策节点</h2><p>HCP 随访时间轴映射十个年龄阶段<span class="rev rev-mod">修订 V3-UK</span></p></div></div><div class="chapter-body">
+<p>覆盖出生至满 6 岁前（0—71 月），满 6 岁生成阶段汇总与入学衔接记录。年龄段为产品分组，不是必须完成的指标。以下把 V2.1 的 27 月锚点扩展为全龄框架：每个阶段对应 Healthy Child Programme 的政策节点与产品观察场景。<span class="rev rev-new">新增 V3-UK：全龄 HCP 映射</span></p>
+<div class="table-wrap"><table><thead><tr><th>年龄</th><th>HCP / 政策节点</th><th>可选观察场景（摄像头+音频）</th><th>周报应回答的问题</th></tr></thead><tbody>
+<tr><td>0—3 个月</td><td>新生儿检查（72h）· 6—8 周 review</td><td>面对面回应、发声、清醒照护时的头部与肢体活动（E21 类婴儿看护设备场景）</td><td>这周留下哪些互动？照护者需要交接什么？</td></tr>
+<tr><td>3—6 个月</td><td>6 周审查后续 · 疫苗节点</td><td>伸手、抓握、清醒游戏中的动作与声音回应</td><td>孩子对什么有回应？成人怎样接续？</td></tr>
+<tr><td>6—9 个月</td><td>辅食引入窗口（NHS 建议 6 月左右）</td><td>取物、坐姿活动、咿呀与手势；已开始辅食者记录提供与尝试</td><td>提供过什么、确认尝试过什么？</td></tr>
+<tr><td>9—12 个月</td><td>1 岁 review 准备</td><td>捏取、移动尝试、手势与共同游戏</td><td>哪些是独立尝试，哪些有人帮助？</td></tr>
+<tr><td>12—18 个月</td><td>1 岁 review · ASQ-3 16 月窗口</td><td>行走与操作、词语候选、指物沟通</td><td>孩子如何表达需要？家长确认了哪些新词？</td></tr>
+<tr><td>18—24 个月</td><td>ASQ-3 24 月窗口</td><td>动作模仿、简单表达、假扮与操作；双脚同时离地原地跳（24 月第 3 题）</td><td>哪些活动和食物愿意再次尝试？</td></tr>
+<tr><td>24—30 个月</td><td><strong>2 岁 integrated review（ASQ-3 27 月，旗舰窗口）</strong></td><td><strong>双脚向前跳过线（第 5 题）· 摆腿踢球（第 4 题）· 跑稳停下（第 2 题）· 短句（语言卷）</strong></td><td>体检问起跳，我不再凭印象猜——我有视频、我知道他会了</td></tr>
+<tr><td>30—36 个月</td><td>ASQ-3 33 月窗口</td><td>上手举到肩高向前扔球（33 月第 6 题，看动作模式不看距离）；对话回合</td><td>动作模式有没有变化？</td></tr>
+<tr><td>3—4 岁</td><td>政府家庭在线行为指南（2026.3）适用期</td><td>花园自由游戏、骑行、平衡类活动；屏幕相关习惯观察</td><td>户外有效观察量够不够？</td></tr>
+<tr><td>4—6 岁</td><td>入学衔接 · 学校入场健康检查</td><td>花园游戏与运动技能延续；入学衔接记录汇总</td><td>入学材料里成长档案怎么带？</td></tr>
+</tbody></table></div>
+<p class="fine">低月龄段（0—12 月）以婴儿看护设备与家长日志为主，摄像头自动观察集中在 18—36 月大运动窗口——这是设备能力与政策节点的交集区间。0—1 岁不做视频自动分析，避免婴儿床私密场景。</p>
+</div></section>
+
+<!-- ============ 03 文化差距 ============ -->
+<section class="chapter" id="gap"><div class="chapter-head"><span class="chapter-no">03</span><div><span class="eyebrow">POLICY vs CULTURE</span><h2>文化习惯与儿保政策的四条差距</h2><p>官方推荐 vs 真实行为——每条差距都是产品机会<span class="rev rev-new">新增 V3-UK</span></p></div></div><div class="chapter-body">
+<p>方法论：像「中国膳食宝塔没人真按着吃」一样，找到英国官方儿保建议与家庭真实行为之间的落差。落差意味着：家长<strong>知道</strong>指南、也<strong>想做好</strong>，但缺少顺手的观察与反馈工具——这正是消费级摄像头的位置。以下四条均有可验证数据源（第 15 章证据清单）。</p>
+
+<h3>差距一：进餐屏幕——政府指南 vs 98% 的现实<span class="rev rev-new">新增 V3-UK</span></h3>
+<p>2026 年 3 月 27 日英国政府发布家庭在线行为指南（迄今对幼儿数字习惯最明确的官方干预）：<strong>2 岁以下不接触屏幕；2—5 岁每日不超过 1 小时；用餐与就寝时间不接触屏幕</strong>。现实是：约 <strong>98%</strong> 的儿童在 2 岁时已每天接触屏幕；有 3—5 岁子女的家庭中<strong>四分之一</strong>家长表示难以管控屏幕时间。<a class="ref" href="#ref-G1">G1</a></p>
+<blockquote><p>「用餐时不看屏幕」写在指南里，但晚餐时家长自己的手机就在餐桌上。产品的位置：不是替家长管孩子，而是让「餐桌无屏的一餐」被看见、被记下来、被庆祝——正向反馈代替说教。</p></blockquote>
+
+<h3>差距二：花园文化 vs 实际户外量<span class="rev rev-new">新增 V3-UK</span></h3>
+<p>英国是花园文化国家，理论上幼儿拥有天然户外活动条件。但 University of Exeter 研究（Wellbeing, Space and Society, 2025）基于 Born in Bradford 队列 2,568 名儿童：<strong>34% 的工作日完全不户外游戏，20% 周末不户外</strong>（7—12 岁数据，0—6 岁趋势一致，诚实标注）。家长「觉得孩子在花园玩够了」与实际观察量之间存在认知差。<a class="ref" href="#ref-G2">G2</a></p>
+<blockquote><p>产品位置：花园摄像头天然在户外场景里。每周报一次「本周花园有效观察天数/片段数」——不是监控孩子，是帮家长看见自己以为的户外时间到底有多少。</p></blockquote>
+
+<h3>差距三：共读建议 vs 实际频率<span class="rev rev-new">新增 V3-UK</span></h3>
+<p>BookTrust（向教育委员会提交的早期年份证据）：即使家长自己爱阅读，4—6 岁孩子被每日共读的比例也只有 <strong>68%</strong>；家长不爱阅读的家庭仅 <strong>52%</strong>。男孩被定期共读的可能性低于女孩——家长称儿子「太好动坐不下来听故事」。BookTrust 定位这为「代际循环」。<a class="ref" href="#ref-G3">G3</a></p>
+<blockquote><p>产品位置：共读不用坐着——花园里、餐桌上、游戏间都算。摄像头记录的对话回合让「好动的孩子也在交流」被看见，打破「共读=坐着看书」的文化预设。</p></blockquote>
+
+<h3>差距四：反量化童年 vs 量化筛查<span class="rev rev-keep">沿用 V2.1</span></h3>
+<p>英国文化反量化童年（anti-measurement parenting culture），但 ASQ-3 偏偏是 10/5/0 三态量化问卷，HV 还会因「不会双脚跳」定期回电追问（Mumsnet 真实实例）。家长夹在「不想给孩子打分」与「系统要求填表」之间，转向论坛求「有依据的安心」。</p>
+<blockquote><p>产品气质必须是「轻松的花园亲子游戏 + 安心确认」，而非考试打分。四铁律第一条：庆祝 &gt; 监视。</p></blockquote>
+
+<div class="rev-block new"><strong>四条差距的共同结构：</strong>政策/指南把标准定得很清楚 → 家庭行为达不到不是因为不认同，而是缺少反馈回路 → 摄像头补的不是「更多要求」，是「让已经发生的努力被看见」。这决定了产品是<strong>正向记录</strong>而非<strong>合规监控</strong>——也是与「parenting surveillance」类产品的本质区别。</div>
+</div></section>
+
+<!-- ============ 04 差评证据 ============ -->
+<section class="chapter" id="evidence"><div class="chapter-head"><span class="chapter-no">04</span><div><span class="eyebrow">VOICE OF CUSTOMER</span><h2>吐槽与差评证据清单</h2><p>社区论坛 + 电商平台，逐条可验证<span class="rev rev-mod">修订 V3-UK（扩充证据表）</span></p></div></div><div class="chapter-body">
+<p>比赛要求社区/电商平台有可验证的吐槽与差评照片。以下按「验证痛点存在」与「验证产品机会」两类整理，原始链接见第 15 章。</p>
+<h3>A 类：家长需求未被满足（机会证据）</h3>
+<div class="table-wrap"><table><thead><tr><th>平台</th><th>内容</th><th>验证什么</th></tr></thead><tbody>
+<tr><td>Mumsnet</td><td>《When did your child jump both feet off ground?》等帖：孩子两岁还不会双脚跳，HV 在 2 岁体检后定期回电追问，家长持续焦虑</td><td>大运动观察的真实焦虑与「有依据的安心」需求</td></tr>
+<tr><td>Mumsnet / Netmums</td><td>大量「not jumping / gross motor delay / 2 year check」求助帖与搜索热词</td><td>两次 Review 之间的观察真空</td></tr>
+<tr><td>Google Trends（UK）</td><td>「child not jumping 2 years」「ASQ-3 27 months」等检索持续存在</td><td>需求非个案</td></tr>
+</tbody></table></div>
+<h3>B 类：安防摄像头现有痛点（产品改造空间）</h3>
+<div class="table-wrap"><table><thead><tr><th>平台</th><th>差评内容</th><th>对产品的启示</th></tr></thead><tbody>
+<tr><td>Woot / Amazon（eufy 评论区）</td><td>「False motion and cry alerts interrupt sleep and create alarm fatigue」——误报把洗碗机提示音、狗叫、脚步声判为哭声</td><td>家长要的不是更多事件推送，是「我该不该担心」的回答</td></tr>
+<tr><td>Amazon / 评测站</td><td>电池摄像头「随机离线、20 英尺外检测不到」</td><td>采集会话制 + 有效观察量诚实计数</td></tr>
+<tr><td>媒体 / 法律记录</td><td>2022 年本地上传云端事件后与纽约州总检察长和解</td><td>「默认本地、短期保留、可见删除」重建信任</td></tr>
+</tbody></table></div>
+<p class="fine">差评引用原文为英文缩译；比赛现场可出示平台截图作为佐证材料。所有引用截至 2026.09，来源明细见第 15 章。</p>
+</div></section>
+
+<!-- ============ 05 产品定义 ============ -->
+<section class="chapter" id="product"><div class="chapter-head"><span class="chapter-no">05</span><div><span class="eyebrow">PRODUCT DEFINITION</span><h2>产品定义与双数字口径</h2><p>eufy Little Leaps · 消费级定位 + MHRA 路线图</p></div></div><div class="chapter-body">
+<h3>一句话定位<span class="rev rev-keep">沿用 V2.1</span></h3>
+<p>跑在花园 eufy 摄像头上的「幼儿成长观察助手」：家人像平时一样陪孩子学小兔跳、踢球，它自动把体检会问的那几个动作录成可回看小片段，体检前一键整理成给 health visitor 的 Red Book 补充材料。<strong>产品只承诺三件事：这段拍清了、这个动作家长确认过、这份材料可以带去 Review。</strong></p>
+
+<h3>定位边界：消费级，不碰临床<span class="rev rev-mod">修订 V3-UK（用户拍板）</span></h3>
+<div class="rev-block"><strong>V3-UK 决策记录：</strong>产品定位为「成长记录 + 陪玩 + 健康访视沟通材料」，消费级。刻意保持与临床评估的距离——一旦宣称诊断/筛查发育障碍，即落入 MHRA 软件医疗器械（SaMD）监管路径，需要预期用途声明、临床评价、ISO 14971、UKCA/CE 与上市后监督，成本和时间与消费级完全不同。MHRA 四阶段路线图作为长期叙事保留（第 11 章），比赛 demo 与全部文案严守消费级。</div>
+
+<h3>双数字分层标注：7.5cm 与 5.5cm<span class="rev rev-new">新增 V3-UK（用户拍板）</span></h3>
+<div class="table-wrap"><table><thead><tr><th>数字</th><th>它是什么</th><th>它不是什么</th><th>展示规则</th></tr></thead><tbody>
+<tr><td><strong>7.5cm</strong></td><td>ASQ-3 27 月龄大运动第 5 题的问卷原文标准：「双脚同时离地、向前跳至少 7.5 厘米（约一只小脚的长度）」<a class="ref" href="#ref-M3">M3</a></td><td>不是本产品的达标线、不是临床阈值、不是本系统测出的数</td><td>仅作为问卷事实引用出现，永远标注「ASQ-3 问卷原文」；产品输出的是「画面可见的过线/未过线」</td></tr>
+<tr><td><strong>5.5cm</strong></td><td>本系统两次单次观测的差值示例（23.5cm − 18.0cm），同一孩子同一任务同口径</td><td>不是标准阈值、不是已验证的临床改善、不能跨孩子比较</td><td>永远标注「个体观测差值，非标准阈值」；不出现「超过 X% 同龄」</td></tr>
+</tbody></table></div>
+<blockquote><p>防误读双保险：两个数字永远不同时出现在同一句结论里；任何含数字的句子必须带来源标签（问卷引用 / 系统观测）。</p></blockquote>
+
+<h3>三级可采地图<span class="rev rev-keep">沿用 V2.1</span></h3>
+<p>可自动判：双脚离地跳（题3）/ 过线与否（题5，画面可见）/ 摆腿踢球（题4）/ 跑稳停下（题2）。候选须家长三态确认（Yes / Sometimes / Not yet 一键入册，可纠正可删除）。首版不做：投球距离量化（33 月第 6 题看动作模式不看距离）、楼梯类（安全与遮挡）。每个结论标注「近 N 天有效观察天数/候选片段数」；<strong>没拍到 ≠ 孩子不会</strong>；单摄对部分动作识别率可低至约 38.9%，故不吹全自动。</p>
+</div></section>
+
+<!-- ============ 06 标定 ============ -->
+<section class="chapter" id="calib"><div class="chapter-head"><span class="chapter-no">06</span><div><span class="eyebrow">CALIBRATION</span><h2>标定与测距方法</h2><p>胶带线为主，已知物体相对距离<span class="rev rev-mod">修订 V3-UK（用户拍板）</span></p></div></div><div class="chapter-body">
+<h3>V3-UK 决策：胶带线主标定 + 相对距离</h3>
+<div class="rev-block"><strong>口径：</strong>用已知物体标定做<strong>相对距离</strong>判断。主标定物为<strong>胶带线</strong>（已知宽度、贴在地面、与跳跃动作同一平面）；门框/铺路板只作为「画面里有没有这个参照物」的粗判辅助，<strong>不做 cm 换算</strong>——门框宽度通常不在地面平面，直接用一个 cm/px 比例推算任意地面动作会产生系统性误差（V2.1 技术方案已论证）。</div>
+<div class="table-wrap"><table><thead><tr><th>标定方式</th><th>用途</th><th>输出</th><th>失效条件</th></tr></thead><tbody>
+<tr><td>胶带线（宽 5cm，地面）</td><td>过线判断 + 局部尺度</td><td>过线/未过线（画面可见）+ 同任务前后差值（如 +5.5cm）</td><td>机位/云台/变焦/地面变化即失效；标定失败只存视频不出结论</td></tr>
+<tr><td>门框 / 铺路板（画面参照）</td><td>粗判：参照物是否在画面内</td><td>仅辅助人工复核，不输出 cm</td><td>—</td></tr>
+<tr><td>地面平面单应标定（四角点选）</td><td>测距模式（二期）</td><td>地面点前向距离</td><td>需额外验证误差；本期不做</td></tr>
+</tbody></table></div>
+<p>跳跃协议定义：起跳前足尖地面位置至首次稳定落地时较近脚跟的前向距离。该定义为拟议工程协议，待专业确认，不声称等同任何临床量表。单应变换只适用于地面点，不能把腾空脚点当作真实地面坐标。</p>
+</div></section>
+
+<!-- ============ 07 硬件 ============ -->
+<section class="chapter" id="hardware"><div class="chapter-head"><span class="chapter-no">07</span><div><span class="eyebrow">HARDWARE & AUDIO</span><h2>硬件配置与赛道设备</h2><p>T8171 花园主机 + T8214 前庭第二场景<span class="rev rev-keep">沿用 V2.1</span></p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>设备</th><th>能力</th><th>在本方案中的角色</th></tr></thead><tbody>
+<tr><td>T8171 · SoloCam E30</td><td>一体式 360° 全景室外机；2K、f/1.6、日夜成像、AI 检测；太阳能+电池免布线；microSD 本地存储无月费</td><td>花园主机：俯角 20—30° 壁装覆盖整个花园活动区；跳跃/踢球/跑动主采集</td></tr>
+<tr><td>T8214 · Video Doorbell E340</td><td>双摄可视门铃（来访者+包裹双视角）</td><td>前庭/车道第二场景：短距离跑踢观察；双视角对「全身+落脚细节」互补，不为凑双机强行加入</td></tr>
+</tbody></table></div>
+<p>SDK 接入验收清单（未验证前不产生真实里程碑，不发明 API 名称）：登录与设备列表；前台短时取流稳定（不承诺电池设备全天采集）；视频帧可绘入 canvas；音轨可访问、时间戳、有效帧率；事件主动拉取（无 push 配置）。0—1 岁婴儿段不做视频自动分析（私密场景），如需要由婴儿看护类设备承接，另行验证。</p>
+</div></section>
+
+<!-- ============ 08 架构 ============ -->
+<section class="chapter" id="engine"><div class="chapter-head"><span class="chapter-no">08</span><div><span class="eyebrow">ANALYSIS PIPELINE</span><h2>分析流程与摄像头 Agent 架构</h2><p>五层管道 · 判定永远不经 LLM<span class="rev rev-new">新增 V3-UK（对应已实现代码）</span></p></div></div><div class="chapter-body">
+<p>本架构已在 eufy-growth-next 仓库实现并端到端验证（mock 信号源全链路可运行）。设计原则借鉴获奖作品：Night Watch 的「信号→置信度→决策，全程留痕」、FinSight 的「确定性计算交给代码，LLM 只负责解释」、冰箱精灵的双端实时同步。</p>
+<div class="table-wrap"><table><thead><tr><th>层</th><th>职责</th><th>关键约束</th></tr></thead><tbody>
+<tr><td>采集层 adapters</td><td>信号源适配：mock 确定性信号 / eufy Web SDK（预留）/ RTSP（预留）</td><td>信号是唯一契约；换真实 SDK 只改本层，管道零改动</td></tr>
+<tr><td>信号层</td><td>帧间运动量 / VAD 语音活动段 / 餐具运动周期</td><td>原始信号带时间戳，可回放测试</td></tr>
+<tr><td>判定层（纯代码）</td><td>状态机：walk 跳跃（standing→takeoff→airborne→landing + 胶带线换算）；talk 回合计数（多声源→unjudgeable）；eat 举勺周期+屏幕+时长</td><td><strong>永远不经 LLM</strong>；无法测量保留原因，不写零分</td></tr>
+<tr><td>证据层</td><td>candidate 登记 + 审计日志 + SSE 实时推送</td><td>会话制（家长显式开启，同意优先）；候选不自动入册</td></tr>
+<tr><td>表述层</td><td>PHRASE 确定性文案函数 + LLM 网关（可选）</td><td>LLM 只收已确认记录做解释/文案；无 key 降级本地模板</td></tr>
+</tbody></table></div>
+<p>表述纪律：禁词表（发育商/百分位/人生第一次/落后/达标……）构建期 grep 校验，出现即构建失败。四色来源标签（画面可见/家长确认/建议/无法判断）全站强制。<strong>同条件才比较</strong>：同一孩子+相同任务协议+有效标定+相近条件；条件不同并列显示两条记录，不计算趋势。</p>
+</div></section>
+
+<!-- ============ 09 demo ============ -->
+<section class="chapter" id="demo"><div class="chapter-head"><span class="chapter-no">09</span><div><span class="eyebrow">PROTOTYPE & DEMO</span><h2>原型交付与现场演示</h2><p>中英双语切换 · 0—6 年龄导航 + 旗舰闭环<span class="rev rev-new">新增 V3-UK（用户拍板）</span></p></div></div><div class="chapter-body">
+<h3>Demo 形态</h3>
+<p>手机 App 演示（390×844 单文件 + React 版），带 <strong>中/EN 一键切换</strong>（i18n 字典）。英国版内容包：ASQ-3 27 月对照、health visitor 沟通包、花园机位文案、Red Book 补充材料导出口径。0—6 铺开采用<strong>年龄分段导航 + 旗舰闭环</strong>：主导演 26 月龄小满（旗舰跳跃闭环，现场点按走通「开启会话→信号流→状态机→候选→三态确认→入册」全链），其余年龄阶段做成卡片与场景入口（0—3 月喂养回应、9 月手抓食物、18 月自主用勺、24 月跳/短句、33 月投球、4—6 岁入学衔接），可点开查看，不逐龄做完整交互。</p>
+<h3>6 分钟演示动线</h3>
+<div class="table-wrap"><table><thead><tr><th>时间</th><th>动作</th><th>讲什么</th></tr></thead><tbody>
+<tr><td>0:00—0:40</td><td>开场页（反直觉叙事）</td><td>「国家安排了 13 次随访，36 月到 4 岁隔 12 个月——而成长以周为单位发生」</td></tr>
+<tr><td>0:40—2:00</td><td>旗舰闭环：花园跳跃会话</td><td>Agent 事件流实时滚动，判定纯代码；第三次落地帧糊→置信度自动降级</td></tr>
+<tr><td>2:00—3:00</td><td>三态确认 + 双视频并列</td><td>7.5cm=问卷引用 / +5.5cm=个体差值，双数字分层标注展示</td></tr>
+<tr><td>3:00—4:00</td><td>周报 + health visitor 沟通包</td><td>Red Book 补充材料；没拍到≠不会；覆盖天数永远显示</td></tr>
+<tr><td>4:00—5:00</td><td>年龄导航 + EN 切换</td><td>0—6 全龄入口；一键切英文给国际评委</td></tr>
+<tr><td>5:00—6:00</td><td>数据治理 + MHRA 路线图</td><td>端侧优先·7 天删·邻居遮罩；消费级定位与四阶段路线图</td></tr>
+</tbody></table></div>
+</div></section>
+
+<!-- ============ 10 竞品 ============ -->
+<section class="chapter" id="competition"><div class="chapter-head"><span class="chapter-no">10</span><div><span class="eyebrow">COMPETITIVE LANDSCAPE</span><h2>竞品与差异化</h2><p>行业都在堆「检测到什么」，没人回答「意味着什么」<span class="rev rev-keep">沿用 V2.1</span></p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>竞品</th><th>已确认能力</th><th>未证实覆盖（本次检索范围）</th></tr></thead><tbody>
+<tr><td>Nanit</td><td>床内动作里程碑捕捉（Developmental Milestones，订阅制）、睡眠/回忆</td><td>3—6 岁花园/共读场景、家长可纠错的教学复盘</td></tr>
+<tr><td>CuboAi Monitor 3</td><td>遮脸/翻身、哭声、睡眠报告、床尺寸校准的身高辅助记录</td><td>离开床区后的动作+语言联合解释</td></tr>
+<tr><td>Owlet</td><td>Dream Sight 2K 摄像头 + Dream Sock 生理监测组合</td><td>白天清醒互动、3—6 岁场景</td></tr>
+<tr><td>LENA</td><td>穿戴录音的对话轮次分析（Grow/SP 项目线）</td><td>家庭自助、视频语境、原声回放（其项目有意不做）</td></tr>
+<tr><td>普通摄像头+手机</td><td>最便宜的替代品：录像+云相册+家长记忆</td><td>自动整理、体检口径对齐、沟通材料生成</td></tr>
+</tbody></table></div>
+<p>差异化主张：不与婴儿监护竞品比卧室（那是它们的主场），进入<strong>白天的花园与活动区</strong>——两次 Review 之间、专业观察真空期。用户已有 Nanit 时作为白天功能补充，不强迫换夜间设备。不要以「自动发现里程碑」作唯一差异——Nanit 已有类似能力；持续价值来自更少整理负担、体检口径对齐与可解释的安心。诚实标注：完整年龄算法未验证，demo 用旗舰场景，不宣称全龄已实现。</p>
+</div></section>
+
+<!-- ============ 11 数据与 MHRA ============ -->
+<section class="chapter" id="trust"><div class="chapter-head"><span class="chapter-no">11</span><div><span class="eyebrow">DATA GOVERNANCE & MHRA</span><h2>数据控制与 MHRA 边界</h2><p>消费级红线 + 四阶段路线图<span class="rev rev-mod">修订 V3-UK</span></p></div></div><div class="chapter-body">
+<h3>四铁律<span class="rev rev-keep">沿用 V2.1</span></h3>
+<p>庆祝 &gt; 监视 ｜ 只记录不诊断 ｜ 被动发现 + 家长确认 + 可复核 ｜ 不碰生命体征、不做人脸识别。</p>
+<h3>UK GDPR / DPA 合规（花园场景特有）</h3>
+<p>尽量只覆盖自家 property；拍到邻舍/公共区域即受 UK GDPR/DPA 约束：最小化采集、提示标识、安全存储、定期删除、可响应访问与删除请求，建议 privacy blocker 遮罩。<strong>「录到别人孩子」最敏感</strong>：默认按更严格口径实现，内置「邻居孩子入镜自动遮罩 / 一键停采」反证动作。端侧优先 · 最短保留（未确认 7 天自动删）· 家长全权（导出/删除/分享过期撤回）· 敏感场景遮罩。2022 年云端事件教训：用「默认本地、短期保留、可见删除」重建信任。</p>
+<h3>MHRA 四阶段路线图<span class="rev rev-mod">修订 V3-UK（定位降为长期叙事）</span></h3>
+<div class="table-wrap"><table><thead><tr><th>阶段</th><th>内容</th><th>触发条件</th></tr></thead><tbody>
+<tr><td>① 消费级（当前）</td><td>成长记录+陪玩+沟通材料，无诊断宣称</td><td>—（比赛 demo 全部在此层）</td></tr>
+<tr><td>② 专业共创</td><td>与 NHS trust / 儿科物理治疗师共创标准化机位、参照物、口令</td><td>试点数据 + 合作意向</td></tr>
+<tr><td>③ 信效度研究</td><td>观察协议的信度/效度研究、伦理审批</td><td>② 完成后</td></tr>
+<tr><td>④ SaMD 评估（可选）</td><td>MHRA 预期用途声明、临床评价、ISO 14971、UKCA/CE、上市后监督</td><td>商业决策——成本与时间与消费级完全不同，默认不进入</td></tr>
+</tbody></table></div>
+<p>分界逻辑：ASQ-3 本身是家长问卷；帮家长更好地观察、记录并把家庭观察材料带给专业人员，与 MHRA「一般健康产品 vs SaMD（取决于预期用途）」的分界一致——<strong>一旦宣称诊断/筛查发育障碍即落入器械监管</strong>。V3-UK 决策：长期保留路线图作为叙事，产品与文案严守 ①。</p>
+</div></section>
+
+<!-- ============ 12 商业 ============ -->
+<section class="chapter" id="business"><div class="chapter-head"><span class="chapter-no">12</span><div><span class="eyebrow">BUSINESS</span><h2>商业模式与落地路径</h2><p>硬件复用 + 无月费信任叙事<span class="rev rev-mod">修订 V3-UK</span></p></div></div><div class="chapter-body">
+<p>价值假设：英国住宅花园渗透率高（约 87% 家庭带花园/户外空间），eufy 室外机存量基础好；本方案把安防摄像头的用途从「看家」延展到「看孩子成长」，延长设备生命周期、增加持续使用理由。英国首发验证，商业主战场看美国（人口基数+儿保文化相近），此为参赛验证路径。<span class="rev rev-keep">沿用 V2.1</span></p>
+<p>收入结构假设（待验证）：硬件销售（T8171/T8214 已有）+ 免费基础功能（本地处理，无月费——与 2022 信任事件后的「无月费」叙事一致）+ 可选付费（Red Book 级沟通材料导出、多孩子档案、家庭分享）。不靠数据变现，不用儿童数据训练模型——写进产品原则而非隐私政策角落。</p>
+<p class="fine">以上为参赛假设，留存/付费/增购数据需试点验证；不宣称「只有安克能做」，优势来自设备存量+无月费信任+本地处理组合。</p>
+</div></section>
+
+<!-- ============ 13 讲稿 ============ -->
+<section class="chapter" id="pitch"><div class="chapter-head"><span class="chapter-no">13</span><div><span class="eyebrow">PITCH</span><h2>六分钟答辩讲稿</h2><p><span class="rev rev-new">新增 V3-UK</span></p></div></div><div class="chapter-body">
+<p><strong>[0:00 开场·反直觉]</strong>各位评委，英格兰为 0—6 岁孩子安排了 13 次健康随访。但 36 月龄到 4 岁之间，隔了整整 12 个月——而会走、会说的变化，是以「周」为单位发生的。两次 Review 之间的 51 周，只有一样东西每周都在场：家里花园的摄像头。</p>
+<p><strong>[1:00 痛点·证据]</strong>health visitor 十年少了四成，2 岁 review 在部分地区退化成发表格。ASQ-3 问「孩子能双脚向前跳吗」——家长凭印象选 Sometimes，或者深夜搜「child not jumping」。Mumsnet 上，因为孩子不会双脚跳被 HV 定期回电的家长，要的不是诊断，是有依据的安心。</p>
+<p><strong>[2:00 产品·演示]</strong>这是跑在 T8171 上的 Little Leaps。（切 demo）家长像平时一样陪小满玩兔子跳过线——看 Agent 事件流：运动信号、状态机迁移、候选片段。判定是纯代码状态机，不经过任何大模型。第三次落地帧糊了，置信度自动降级——宁可少报，不可错报。</p>
+<p><strong>[3:00 确认·双数字]</strong>家长三态确认：做到了/有时会/还不会——和 ASQ-3 的 Yes/Sometimes/Not yet 天然同构。两个数字分清楚：7.5cm 是问卷原文引用；+5.5cm 是我们两次观测的个体差值。不排名、不达标、不跨孩子比较。</p>
+<p><strong>[4:00 材料·0-6]</strong>体检前一键整理成 Red Book 补充材料——health visitor 五分钟能看懂的东西。0—6 全龄导航：三个月前看喂养回应，现在看跳跃，明年看投球动作模式，入学时生成衔接档案。（切英文版）One tap, bilingual。</p>
+<p><strong>[5:00 边界·收尾]</strong>消费级定位：记录、陪玩、沟通材料——不诊断，所以不进 MHRA 器械路径，路线图另附。端侧处理、未确认 7 天删、邻居孩子自动遮罩。行业都在推送「检测到了什么」，我们回答的是家长真正的问题：「我该不该担心」。这次，答案是带着视频来的。</p>
+</div></section>
+
+<!-- ============ 14 QA ============ -->
+<section class="chapter" id="questions"><div class="chapter-head"><span class="chapter-no">14</span><div><span class="eyebrow">Q&A</span><h2>评委问答</h2><p><span class="rev rev-new">新增 V3-UK</span></p></div></div><div class="chapter-body">
+<div class="qa"><details open><summary><span>Q1</span>为什么是英国而不是美国或中国？</summary><p>英国是制度参照系：ASQ-3 覆盖 92.5% 的 2 岁 review、HCP 节点公开可查、单一支付方体系下政策口径统一，验证成本低。美国是更大的商业市场但儿保碎片化；中国是另一套体系（WS/T 580+五健），内容配置不同、产品框架可复用。比赛公式四要素（政策/文化/eufy 能力/赛道）在英国交集最大。</p></details></div>
+<div class="qa"><details><summary><span>Q2</span>怎么保证不变成「家长监控焦虑机」？</summary><p>三重设计：① 会话制采集，家长显式开启，不后台常开；② 候选不自动入册，三态确认人在环；③ 四色标签里「无法判断」是合法输出——多声源、遮挡直接标 unjudgeable 并保留原因，不硬给结论。叙事上「庆祝 &gt; 监视」是第一铁律。</p></details></div>
+<div class="qa"><details><summary><span>Q3</span>单摄识别率 38.9% 那个数据，是不是说明技术不可行？</summary><p>那是特定动作+特定条件的下界，用于反对「全自动」宣称而非反对可行性。我们的对策：三级可采地图（只采高置信动作）、有效观察天数诚实计数、家长确认兜底。而且 T8214 双视角对落脚细节互补——不承诺全能，承诺「已确认的都可信」。</p></details></div>
+<div class="qa"><details><summary><span>Q4</span>为什么判定不用大模型？</summary><p>两个原因：监管与可靠。监管上，LLM 判定发育能力几乎必然落入 SaMD 叙事；可靠性上，跳跃是物理事件，状态机+标定换算是确定性计算，可审计、可复现。LLM 只在表述层做文案润色，且只接触已确认的结构化记录——「代码计算，AI 解释」。</p></details></div>
+<div class="qa"><details><summary><span>Q5</span>和 Nanit 的里程碑功能有什么区别？</summary><p>Nanit 在婴儿床内、订阅制、睡眠主线。我们在白天的花园、无月费、体检沟通主线。已有 Nanit 的家庭不需要拆掉夜间设备——我们补的是白天和「Review 之间」的真空。差异不在「能不能发现里程碑」，在材料是否对齐 ASQ-3 口径、能否进 Red Book。</p></details></div>
+<div class="qa"><details><summary><span>Q6</span>邻居孩子入镜怎么办？</summary><p>花园场景最敏感的问题。默认按 UK GDPR 更严格口径：机位尽量只覆盖自家 property；「邻居孩子入镜自动遮罩 / 一键停采」做成现场可演示的反证动作；导出材料默认打码。这写进产品原则，不是合规补丁。</p></details></div>
+</div></section>
+
+<!-- ============ 15 来源 ============ -->
+<section class="chapter" id="sources"><div class="chapter-head"><span class="chapter-no">15</span><div><span class="eyebrow">SOURCES</span><h2>证据与来源</h2><p>本轮全部引用，逐条可验证<span class="rev rev-mod">修订 V3-UK（扩充）</span></p></div></div><div class="chapter-body">
+<div class="source-list">
+<div class="source-row" id="ref-M1"><span>M1</span><a href="https://committees.parliament.uk/publications/..." >UK Parliament HSC《First 1000 Days: a renewed focus》(2026)</a></div>
+<div class="source-row" id="ref-M2"><span>M2</span><a href="https://ihv.org.uk/">Institute of Health Visiting 书面证词（HV 数量 −40–43%）</a></div>
+<div class="source-row" id="ref-M3"><span>M3</span><a href="https://www.nhs.uk/conditions/baby/baby-development/">NHS《Your baby's health and development reviews》；ASQ-3 问卷（Brookes Publishing）</a></div>
+<div class="source-row" id="ref-M4"><span>M4</span><a href="https://pmc.ncbi.nlm.nih.gov/">PMC11934300（64 地方当局 ASQ-3 CSDS 数据 2018/19–2020/21；86.2%/13.8%）</a></div>
+<div class="source-row" id="ref-G1"><span>G1</span><a href="https://www.gov.uk/government/publications/family-online-behaviour-guidance">英国政府家庭在线行为指南（2026.3.27）：2 岁以下无屏幕、2—5 岁每日≤1 小时、用餐就寝无屏幕；背景数据 98% 两岁前每日用屏、1/4 家长管控困难</a></div>
+<div class="source-row" id="ref-G2"><span>G2</span><a href="https://www.exeter.ac.uk/">University of Exeter（Wellbeing, Space and Society, 2025）Born in Bradford 队列：34% 工作日不户外、20% 周末不户外（7—12 岁）</a></div>
+<div class="source-row" id="ref-G3"><span>G3</span><a href="https://www.booktrust.org.uk/resources/find-resources/reading-in-the-early-years-supporting-generational-cycles-of-readers/">BookTrust《Reading in the Early Years》：每日共读 68%（家长爱阅读）vs 52%（不爱）；男孩共读率低于女孩</a></div>
+<div class="source-row" id="ref-E1"><span>E1</span><a href="https://www.mumsnet.com/talk/">Mumsnet《When did your child jump both feet off ground?》等 2 岁 check 求助帖（HV 定期回电实例）</a></div>
+<div class="source-row" id="ref-E2"><span>E2</span><a href="https://www.woot.com/">Woot/Amazon eufy 评论区：「False motion and cry alerts interrupt sleep and create alarm fatigue」；电池机「随机离线、20 英尺外检测不到」</a></div>
+<div class="source-row" id="ref-E3"><span>E3</span><a href="https://ag.ny.gov/">纽约州总检察长与安克 2022 和解（云端事件，本地化信任叙事依据）</a></div>
+<div class="source-row" id="ref-E4"><span>E4</span><a href="https://www.healthiertogether.nhs.uk/child-under-5-years/when-should-i-worry-about-my-childs-movements">Healthier Together NHS《When Should I Worry About My Child's Movements?》（大运动担心分级）</a></div>
+<div class="source-row" id="ref-E5"><span>E5</span><a href="https://www.data.gov.uk/collections/early-years/early-years-development-review">National Data Library：Early years development review 数据集</a></div>
+</div>
+<p class="fine">声明：演示数据为虚构示例，非临床试验、非模型实测结果；政策表述以正式文件原文为准；部分引用为平台检索路径（平台反爬限制原文直链），现场答辩可出示截图佐证。V3-UK 修订记录：定位=消费级+MHRA 路线图；7.5/5.5 双数字分层；胶带线主标定；四条文化差距全部新增证据；0—6 全龄映射；demo 中英切换+年龄导航。</p>
+</div></section>
+</main>
+<footer><p class="footer-statement">这段拍清了，这个动作你确认过，<br>这份材料可以带去 Review。</p><p>eufy Little Leaps · V3-UK · 2026.09 · 消费级定位 · 限英格兰</p><a href="#top">回到顶部 ↑</a></footer>
+</body></html>

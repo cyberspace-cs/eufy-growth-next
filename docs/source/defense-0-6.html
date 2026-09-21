@@ -1,0 +1,752 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>eufy 成长同行｜0—6 岁家庭成长 · 黑客松答辩报告</title><style>:root{--ink:#142e3d;--muted:#566973;--blue:#087c9a;--mint:#dcf2ec;--line:#d9e1e1;--paper:#f5f6f2;--white:#fff;--accent:#cced6b;--nav:238px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,.table-wrap:focus-visible{outline:3px solid #1294b5;outline-offset:4px}p{margin:0 0 1.1em}strong{font-weight:650}h1,h2,h3,h4{font-weight:650;line-height:1.4;margin:0}h3{font-size:23px;margin:36px 0 16px;letter-spacing:-.4px}h4{font-size:18px;margin:25px 0 10px}.progress{position:fixed;inset:0 0 auto;height:3px;z-index:50}.progress i{display:block;height:100%;background:var(--blue);width:0}.topbar{height:76px;position:sticky;top:0;z-index:30;background:rgba(245,246,242,.97);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 38px;gap:24px}.brand{color:var(--ink);font-family:Georgia,serif;font-size:32px;font-weight:bold;letter-spacing:-1px}.brand span{font-family:"PingFang SC",sans-serif;font-size:14px;font-weight:500;letter-spacing:1px;margin-left:7px}.top-meta{font:11px Georgia,serif;letter-spacing:2px;color:var(--muted)}.tools{display:flex;align-items:center;gap:20px;font-size:12px;white-space:nowrap}.tools button{border:1px solid var(--line);padding:8px 13px;border-radius:4px;background:transparent;color:var(--ink);font-size:12px}.sidebar{position:fixed;top:76px;bottom:0;left:0;width:var(--nav);padding:32px 18px 20px 26px;border-right:1px solid var(--line);overflow-y:auto}.sidebar-label{font-size:10px;letter-spacing:2px;color:var(--muted);margin:0 0 19px 9px}.sidebar nav{display:grid;gap:2px}.sidebar nav a{display:flex;gap:11px;padding:8px 9px;color:var(--muted);font-size:12px;line-height:1.65;border-radius:4px}.sidebar nav a span{font:11px Georgia,serif;color:#87989d;padding-top:4px}.sidebar nav a.active{background:#e5eeeb;color:var(--ink);font-weight:600}.side-note{font-size:11px;line-height:1.8;color:var(--muted);margin:30px 9px 0;padding-top:18px;border-top:1px solid var(--line)}.dot{display:inline-block;width:6px;height:6px;background:var(--blue);border-radius:100%;margin-right:6px}main{margin-left:var(--nav);max-width:1700px}.hero{background:var(--ink);color:white;padding:44px 58px 0;overflow:hidden;position:relative}.hero-top{display:flex;justify-content:space-between;gap:18px;align-items:center}.eyebrow{font-family:Georgia,serif;letter-spacing:2.1px;font-size:11px;color:var(--blue);display:block}.hero .eyebrow{color:#abd9db}.tag{display:inline-block;font-size:10px;letter-spacing:.7px;border:1px solid #ccd6d9;padding:5px 10px;border-radius:3px;line-height:1.7;white-space:nowrap}.hero .tag{border-color:#44616e;color:#bcd0d7}.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:30px;padding:58px 0 46px}.hero-overline{font-size:13px;letter-spacing:2px;color:#bdcfd3;margin-bottom:19px}h1{font-size:clamp(40px,4.5vw,67px);line-height:1.22;font-family:"Songti SC","STSong",serif;letter-spacing:-2px;font-weight:500}h1 span{color:var(--accent)}.hero-copy{color:#c2d2d7;font-size:15px;margin:24px 0 26px;line-height:1.9}.hero-actions{display:flex;gap:20px;align-items:center;font-size:12px}.hero-actions a{color:#d6e6e8}.hero-actions .primary{background:var(--accent);color:var(--ink);padding:12px 18px;border-radius:3px;display:flex;gap:25px;align-items:center}.age-art{padding:32px 0 32px 28px;border-left:1px solid #3d5763}.age-label{font-size:12px;letter-spacing:3px;color:#b4cbd0}.age-number{font:100px/1.5 Georgia,serif;letter-spacing:-8px;white-space:nowrap}.age-number span{color:#547482;font-size:65px;padding:0 8px}.age-number small{font-family:"PingFang SC",sans-serif;font-size:16px;letter-spacing:0;margin-left:14px}.age-line{border-top:1px solid #62858c;display:flex;justify-content:space-between;max-width:285px}.age-line i{width:7px;height:7px;margin-top:-4px;background:var(--accent);border-radius:100%}.age-art p{font-size:10px;color:#b4cbd0;margin:18px 0 0;white-space:nowrap}.pillars{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #3d5763;padding:27px 0}.pillars>div{padding:0 20px;border-right:1px solid #3d5763;display:grid;gap:7px}.pillars>div:first-child{padding-left:0}.pillars>div:last-child{border:0}.pillars span{font:10px Georgia,serif;letter-spacing:1.5px;color:#8cb7c3}.pillars strong{font-size:19px;font-weight:500}.pillars small{font-size:11px;color:#b4cbd0}.hero-note{display:flex;gap:22px;align-items:center;background:#223f4d;margin:0 -58px;padding:17px 58px;font-size:11px;color:#bdd1d6}.hero-note strong{color:var(--accent);white-space:nowrap}.reading-note{display:flex;gap:25px;padding:22px 58px;border-bottom:1px solid var(--line);font-size:12px;background:#eaf0ec;align-items:flex-start}.reading-note b{white-space:nowrap}.reading-note p{margin:0;color:var(--muted)}.chapter{padding:62px 58px;border-bottom:1px solid var(--line);background:var(--white)}.chapter:nth-of-type(2n+1){background:#fafbf8}.chapter-head{display:flex;gap:23px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:25px;margin-bottom:29px}.chapter-no{font:46px/1 Georgia,serif;color:#97b3b9;letter-spacing:-2px;flex-shrink:0}.chapter h2{font-family:"Songti SC","STSong",serif;font-size:34px;font-weight:600;letter-spacing:-.7px;margin:5px 0 10px}.chapter-head p{font-size:13px;color:var(--muted);margin:0}.chapter-body{font-size:15px}.chapter-body>p:first-child{font-size:16px}.chapter-body>h3:first-child{margin-top:0}.chapter-body li{padding-left:4px;margin:8px 0}.chapter-body ol,.chapter-body ul{padding-left:24px;margin:14px 0 24px}.table-wrap{overflow-x:auto;margin:22px 0 30px;border:1px solid var(--line);border-radius:4px;max-width:100%}table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.75;text-align:left}th{background:#e9f0ed;color:#25454f;font-size:12px;font-weight:600;padding:14px 16px;white-space:normal}td{padding:15px 16px;vertical-align:top;border-top:1px solid #e2e8e7;min-width:130px}tr:nth-child(even) td{background:rgba(235,241,237,.32)}td:first-child{font-weight:550;color:#183e4b}td p{margin:0}#ages td:first-child{min-width:96px;white-space:nowrap}#ages table{min-width:810px}.ref{font-size:10px;line-height:1;color:var(--blue);background:#e8f1f1;padding:3px 4px;border-radius:3px;margin:0 2px;vertical-align:super;white-space:nowrap}blockquote{margin:22px 0;padding:25px 28px;background:#edf4f1;border-left:3px solid var(--blue);color:#34535f}blockquote p:last-child{margin:0}.report-switch{display:flex;gap:8px;margin-bottom:15px;flex-wrap:wrap}.report-switch button{border:1px solid var(--line);background:#fff;padding:11px 17px;color:var(--muted);font-size:13px;border-radius:4px}.report-switch button.active{background:var(--ink);border-color:var(--ink);color:white}.sample-report{background:#fff;border:1px solid #b9d1cf;border-radius:6px;padding:28px;margin-bottom:35px;box-shadow:0 12px 28px #142e3d07}.sample-report[hidden]{display:none}.sample-heading{display:flex;justify-content:space-between;gap:16px;align-items:center}.sample-heading h3{margin:6px 0 0;font-family:"Songti SC",serif;font-size:26px}.sample-heading .tag{white-space:normal;flex-shrink:0;max-width:170px;color:#59746f;border-color:#c9dcd3}.coverage{font-size:12px;padding:12px 14px;background:#edf4ef;margin:21px 0;color:#426358}.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}.sample-grid>div{padding:22px 22px 22px 0;border-top:1px solid var(--line)}.sample-grid>div:nth-child(even){padding-left:22px;border-left:1px solid var(--line)}.mini-label{font-size:10px;letter-spacing:1px;color:var(--blue)}.sample-grid h4{font-size:18px;margin:8px 0}.sample-grid p{font-size:13px;color:var(--muted)}.status{font-size:10px;color:#557c64;background:#eef4e7;padding:4px 6px}.sample-foot{font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:17px;margin:6px 0 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:25px 0 36px}.flow>div{background:var(--ink);color:#fff;padding:20px 13px;border-radius:3px;display:flex;flex-direction:column;gap:13px}.flow b{font:22px Georgia,serif;color:var(--accent)}.flow strong{font-size:13px}.flow small{font-size:11px;line-height:1.7;color:#b9d0d7}.qa{border-bottom:1px solid var(--line)}.qa summary{padding:21px 24px 21px 0;font-weight:600;font-size:16px;cursor:pointer;list-style:none;position:relative;display:flex;gap:15px}.qa summary span{font:15px/1.85 Georgia,serif;color:#739da9}.qa summary:after{content:'+';position:absolute;right:0;color:var(--blue);font-size:22px;font-weight:400}.qa[open] summary:after{content:'−'}.qa p{margin:0;padding:0 32px 23px;color:var(--muted);font-size:14px}.source-note{border-left:3px solid var(--blue);padding-left:22px;color:var(--muted);font-size:13px}.source-list{margin:28px 0;display:grid;grid-template-columns:1fr 1fr;column-gap:30px}.source-row{display:flex;gap:10px;border-top:1px solid var(--line);padding:12px 0;scroll-margin-top:100px;align-items:baseline}.source-row span{font:11px Georgia,serif;color:var(--muted);min-width:26px}.source-row a{font-size:12px;line-height:1.6;overflow-wrap:anywhere}.source-row:target{background:#eef5d8}.fine{font-size:12px;color:var(--muted)}footer{padding:55px 58px;background:var(--ink);color:#bbced6;display:grid;grid-template-columns:1fr auto;gap:22px;font-size:12px}.footer-statement{font-family:"Songti SC",serif;font-size:36px;color:var(--accent);grid-column:1/-1}footer p{margin:0}footer a{color:var(--accent);align-self:end}.skip{position:absolute;top:-80px;left:20px;z-index:100;background:white;padding:10px}.skip:focus{top:10px}
+@media(min-width:1700px){main{margin-right:auto}.hero-grid{gap:70px}.age-number{font-size:130px}}@media(max-width:1200px){:root{--nav:198px}.topbar{padding:0 25px}.top-meta{display:none}.sidebar{padding-left:15px;padding-right:12px}.hero,.chapter{padding-left:35px;padding-right:35px}.hero-note{margin:0 -35px;padding-left:35px;padding-right:35px;gap:15px}.reading-note,footer{padding-left:35px;padding-right:35px}.hero-grid{gap:20px}.age-number{font-size:85px}.age-art{padding-left:22px}.age-art p{white-space:normal}.flow{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:950px){:root{--nav:0px}.sidebar{display:none}.hero{padding-top:30px}.hero-grid{padding-top:40px}.chapter{padding-top:45px;padding-bottom:45px}.topbar{height:65px}.hero-grid{grid-template-columns:1.1fr .9fr}h1{font-size:52px}.age-number{font-size:95px}.flow{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:640px){body{font-size:15px}.topbar{padding:0 18px;gap:8px}.brand{font-size:26px}.brand span{font-size:11px;letter-spacing:0}.tools{gap:10px}.tools>a{display:none}.tools button{font-size:10px;padding:7px 8px}.hero,.chapter{padding-left:22px;padding-right:22px}.hero{padding-top:25px}.hero-top{align-items:flex-start;gap:15px}.hero-top .eyebrow{font-size:8px;letter-spacing:1.5px}.hero-top .tag{font-size:8px;padding:3px 6px;white-space:normal;text-align:right;max-width:117px}.hero-grid{display:block;padding:33px 0 24px}.hero-overline{font-size:11px;letter-spacing:1px}h1{font-size:45px;letter-spacing:-1px}.hero-copy{font-size:13px;margin:20px 0}.hero-actions{gap:17px;font-size:11px}.hero-actions .primary{padding:10px 13px;gap:16px}.age-art{border-left:0;border-top:1px solid #3d5763;margin-top:29px;padding:20px 0 0;position:relative}.age-label{font-size:10px}.age-number{font-size:68px;line-height:1.35;letter-spacing:-5px}.age-number span{font-size:43px}.age-number small{font-size:13px}.age-line{position:absolute;left:57%;right:0;top:73px}.age-art p{margin-top:8px;font-size:9px}.pillars{grid-template-columns:1fr 1fr;padding:0 0 12px;border-top:0}.pillars>div{padding:16px 0!important;border-right:0;border-top:1px solid #3d5763!important}.pillars>div:nth-child(even){padding-left:20px!important}.pillars span{font-size:8px}.pillars strong{font-size:17px}.pillars small{font-size:10px}.hero-note{margin:0 -22px;padding:15px 22px;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:10px}.reading-note{padding:19px 22px;gap:16px;font-size:11px}.chapter{padding-top:38px;padding-bottom:38px}.chapter-head{gap:14px;padding-bottom:20px;margin-bottom:22px}.chapter-no{font-size:34px}.chapter h2{font-size:27px;letter-spacing:0}.chapter-head .eyebrow{font-size:9px;letter-spacing:1.5px}.chapter-head p{font-size:12px}.chapter-body{font-size:14px}.chapter-body>p:first-child{font-size:14px}h3{font-size:20px;margin-top:29px}h4{font-size:16px}.table-wrap{margin:18px 0 24px}table{font-size:12px;min-width:610px}th,td{padding:12px;min-width:125px}blockquote{padding:18px}.sample-report{padding:18px}.sample-heading{display:block}.sample-heading .tag{margin-top:10px;max-width:none}.sample-heading h3{font-size:24px}.sample-grid{display:block}.sample-grid>div,.sample-grid>div:nth-child(even){border-left:0;padding:18px 0}.sample-grid h4{font-size:18px}.coverage{font-size:11px}.report-switch{gap:7px}.report-switch button{font-size:11px;padding:10px 11px}.flow{grid-template-columns:1fr 1fr}.flow>div:last-child{grid-column:1/-1}.flow>div{padding:18px}.source-list{grid-template-columns:1fr}.qa summary{font-size:14px;gap:10px}.qa p{font-size:13px;padding-left:24px;padding-right:12px}footer{padding:35px 22px;display:block}.footer-statement{font-size:29px;margin-bottom:17px}footer a{display:inline-block;margin-top:20px}.desktop{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{@page{size:A4;margin:16mm 14mm}body{background:white;font-size:10pt;color:#172e37;line-height:1.6}.topbar,.sidebar,.progress,.tools,.hero-actions,.reading-note,.skip,.report-switch{display:none!important}main{margin:0;max-width:none}.hero{padding:10mm;background:#fff!important;color:#142e3d!important;border-bottom:2px solid #142e3d}.hero-grid{padding:24px 0;gap:20px}.hero h1{font-size:37pt}.hero h1 span,.hero .eyebrow,.hero-copy,.hero-overline,.age-label,.age-art p,.pillars span,.pillars small{color:#294e60!important}.hero .tag{color:#294e60;border-color:#294e60}.hero .age-number{font-size:64pt}.hero .age-number span{font-size:42pt}.hero-note{background:#eef3eb;color:#142e3d;margin:0;padding:14px 0}.hero-note strong{color:#142e3d}.pillars strong{color:#142e3d}.chapter{padding:9mm 0;background:white!important;break-before:page;border-bottom:0}.chapter-head{margin-bottom:20px}.chapter h2{font-size:24pt}.chapter-no{font-size:30pt}.chapter-body,.chapter-body>p:first-child{font-size:10pt}.chapter-head p{font-size:9pt}.eyebrow{font-size:8pt}h3{font-size:15pt;margin:22px 0 12px}h4{font-size:12pt}h2,h3,h4,.chapter-head{break-after:avoid}p,li{orphans:3;widows:3}.table-wrap{overflow:visible;border-radius:0}table,#ages table{min-width:0!important;table-layout:fixed;font-size:8pt;width:100%}th,td{min-width:0!important;padding:7px;white-space:normal!important;overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}a{color:inherit}.ref{font-size:7pt;padding:0;background:none}.sample-report,.sample-report[hidden]{display:block!important;box-shadow:none;break-inside:auto}.sample-heading{display:block}.sample-heading .tag{margin-top:8px;max-width:none}.sample-grid{grid-template-columns:1fr 1fr}.sample-grid>div{break-inside:avoid}.flow{grid-template-columns:repeat(5,1fr)}.flow>div{background:#edf3ef;color:#142e3d;padding:10px}.flow small,.flow b{color:#294e60}.qa{break-inside:avoid}.qa>p{display:block!important}.qa summary{font-size:11pt;padding:14px 0}.qa p{font-size:10pt;padding:0 0 16px 25px}.qa summary:after{display:none}.source-list{grid-template-columns:1fr}.source-row{break-inside:avoid}footer{background:white;color:#294e60;border-top:1px solid #294e60;padding:20px 0}.footer-statement{color:#294e60;font-size:24pt}footer a{display:none}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<a class="skip" href="#main">跳到正文</a><div class="progress" aria-hidden="true"><i></i></div>
+<header class="topbar"><a href="#top" class="brand">eufy<span> / 成长同行</span></a><span class="top-meta">HACKATHON PROPOSAL · 2026.09</span><div class="tools"><a href="#pitch">答辩讲稿</a><button id="print">打印 / 存为 PDF</button></div></header>
+<aside class="sidebar"><div class="sidebar-label">REPORT CONTENTS</div><nav aria-label="报告目录"><a href="#opportunity"><span>01</span>产品定位与家庭价值</a><a href="#ages"><span>02</span>0—6 岁全龄场景</a><a href="#food"><span>03</span>喂养与食物分析</a><a href="#reports"><span>04</span>定期报告与样例</a><a href="#hardware"><span>05</span>摄像头与音频配置</a><a href="#engine"><span>06</span>分析流程与技术架构</a><a href="#competition"><span>07</span>竞品与差异化</a><a href="#mvp"><span>08</span>原型交付与现场演示</a><a href="#validation"><span>09</span>家庭验证计划</a><a href="#business"><span>10</span>商业模式与落地路径</a><a href="#trust"><span>11</span>数据控制与专业边界</a><a href="#pitch"><span>12</span>八分钟答辩讲稿</a><a href="#questions"><span>13</span>评委问答</a><a href="#sources"><span>14</span>证据与来源</a></nav><div class="side-note"><span class="dot"></span>参赛概念方案<br>现售能力与开发目标分列</div></aside>
+<main id="main"><section class="hero" id="top"><div class="hero-top"><span class="eyebrow">FAMILY GROWTH COMPANION</span><span class="tag">黑客松答辩报告 · 完整版</span></div><div class="hero-grid"><div><p class="hero-overline">从一次喂养，到一个完整的故事</p><h1>成长的日常，<br>值得被<span>看懂。</span></h1><p class="hero-copy">让摄像头连接画面、声音与饮食记录，<br class="desktop">为家庭生成有依据、可确认的成长报告。</p><div class="hero-actions"><a class="primary" href="#opportunity">阅读产品方案 <span>↘</span></a><a href="#reports">查看周报样例 →</a></div></div><div class="age-art"><span class="age-label">从出生到学龄前</span><div class="age-number">0<span>—</span>6<small>岁</small></div><div class="age-line"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>奶喂养 → 辅食与表达 → 自主生活 → 共同学习</p></div></div><div class="pillars"><div><span>01 / GROW</span><strong>儿童成长</strong><small>动作 · 表达 · 生活能力</small></div><div><span>02 / GUIDE</span><strong>家长带教</strong><small>提示 · 回应 · 示范与帮助</small></div><div><span>03 / CONNECT</span><strong>亲子教育</strong><small>共读 · 游戏 · 自然互动</small></div><div><span>04 / NOURISH</span><strong>喂养饮食</strong><small>食物 · 尝试 · 照护交接</small></div></div><div class="hero-note"><strong>核心交付</strong><span>一段可回放的依据</span><span>一个可确认的观察</span><span>一份随年龄变化的报告</span></div></section>
+<div class="reading-note"><b>阅读方式</b><p>按章节阅读完整方案；答辩可直接使用第 12 章讲稿与第 13 章问答。周报为虚构视觉样例，硬件集成与自动分析能力按待开发事项呈现。</p></div>
+<section class="chapter" id="opportunity"><div class="chapter-head"><span class="chapter-no">01</span><div><span class="eyebrow">THE OPPORTUNITY</span><h2>让日常照护，留下可用的成长记录</h2><p>产品定位与家庭价值</p></div></div><div class="chapter-body"><p><strong>项目名称：eufy 成长同行｜Family Growth Companion。</strong>本报告使用的名称为参赛概念名，尚未做商标核验，不代表安克已发布该产品。</p>
+<p>面向 0—6 岁儿童家庭，把摄像头的画面、声音与家长确认的喂养信息，整理为可回放、可纠错、随年龄变化的成长报告。它连接四件事：儿童怎样成长，成人怎样回应和带教，家庭怎样共同学习，以及孩子日常吃了什么、怎样进食。</p>
+<h3>解决三个具体问题</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>家庭问题</th>
+<th>产品如何介入</th>
+<th>家庭最终拿到什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>录像很多，但找不到有用片段</td>
+<td>按一次进餐、一次共读或游戏切分，提取候选事件</td>
+<td>一条观察能返回对应声音与画面</td>
+</tr>
+<tr>
+<td>父母、祖辈和其他照护者掌握的信息不一致</td>
+<td>把原话、动作、喂养日志与家长备注放在同一时间线</td>
+<td>可选择分享的照护交接卡与周报</td>
+</tr>
+<tr>
+<td>不同年龄需要不同内容，普通记录难以延续</td>
+<td>低月龄看喂养和回应，幼儿看表达与自主尝试，学龄前看共同学习</td>
+<td>同一个孩子持续积累的家庭成长档案</td>
+</tr>
+</tbody></table></div>
+<p>以上为待通过家庭研究验证的需求假设，不是已完成的用户调查结论。儿科检查与发展筛查仍承担专业评估；日常档案提供家庭生活的补充记录，不代替检查。</p>
+<h3>使用者与受益者</h3>
+<p><strong>父母</strong>查看趋势和安排下次活动；<strong>祖辈、保姆等获授权照护者</strong>补充当天事实并接收必要交接；<strong>儿童</strong>在正常生活中参与，不需要为了设备完成额外测试。家长可以自行导出给专业人员，不自动向医生、幼儿园或第三方发送。</p>
+<h3>与安克的契合点</h3>
+<p>eufy 提供家庭音视频设备入口；soundcore Work 提供可借鉴的成人录音整理能力。<a class="ref" href="#ref-H1" aria-label="来源 H1">H1</a><a class="ref" href="#ref-H4" aria-label="来源 H4">H4</a><a class="ref" href="#ref-H5" aria-label="来源 H5">H5</a> 本项目的新增工作是儿童场景适配、音画与食物日志对齐、家长确认和年龄化报告。<strong>优势来自可复用的产品基础，尚不能称为“只有安克能实现”。</strong></p>
+<p>商业价值假设：延长设备在不同成长阶段的用途、增加持续使用理由，并为可选服务创造需求。是否提高留存、带来付费或增购，必须通过试点验证。</p>
+</div></section><section class="chapter" id="ages"><div class="chapter-head"><span class="chapter-no">02</span><div><span class="eyebrow">AGE-ADAPTIVE EXPERIENCE</span><h2>一个完整的 0—6 岁产品范围</h2><p>十个年龄阶段，四条内容主线</p></div></div><div class="chapter-body"><p>以下覆盖出生至满 6 岁前，即 0—71 月，并在满 6 岁时生成阶段汇总与入学衔接记录。年龄段采用前闭后开口径，例如 6—9 个月指满 6 月至未满 9 月。它们是产品分组，不是儿童必须在组内完成的指标。婴儿阶段细分到月龄，避免用“0—1 岁”掩盖奶喂养与辅食的巨大差异。系统还需记录出生日期、早产与专业人员建议的年龄口径、家庭语言和既有饮食限制。</p>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>年龄</th>
+<th>儿童成长：可选观察场景</th>
+<th>家长带教与亲子教育</th>
+<th>喂养与食物内容</th>
+<th>周报应回答的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0—3 个月</td>
+<td>面对面回应、发声、清醒照护时的头部与肢体活动</td>
+<td>成人回应声音、轻声说话与安抚；不安排训练打卡</td>
+<td>母乳/配方奶/混合喂养记录，时间与人工填写量，照护交接</td>
+<td>这周留下哪些互动？喂养记录有哪些漏项？照护者需要交接什么？</td>
+</tr>
+<tr>
+<td>3—6 个月</td>
+<td>伸手、抓握、清醒游戏中的动作变化与声音回应</td>
+<td>拿安全玩具互动、等待回应、命名眼前物品</td>
+<td>继续奶喂养记录；接近辅食阶段提供供家长咨询的准备清单，不自动判定可以开辅食</td>
+<td>孩子对什么有回应？成人怎样接续？有哪些想问儿科的问题？</td>
+</tr>
+<tr>
+<td>6—9 个月</td>
+<td>取物、坐姿活动、咿呀与手势</td>
+<td>物体命名、模仿发声、回应兴趣；按个体能力安排</td>
+<td>已开始辅食者记录食材、质地、提供与尝试、新食物及奶喂养</td>
+<td>提供过什么、确认尝试过什么？哪些配料未确认？餐中有哪些互动？</td>
+</tr>
+<tr>
+<td>9—12 个月</td>
+<td>捏取、移动尝试、手势与共同游戏</td>
+<td>躲猫猫、指物、成人回应孩子的发声或指向</td>
+<td>按现有能力记录抓取食物、杯具尝试和质地变化；不以月龄自动升级食物</td>
+<td>哪些是独立尝试，哪些有人帮助？食物记录是否足够完整？</td>
+</tr>
+<tr>
+<td>12—18 个月</td>
+<td>行走与操作、词语候选、指物沟通</td>
+<td>生活中命名、简单示范、共同看图；保留非语言回应</td>
+<td>家庭食物过渡、自主用手或餐具尝试；记录家长确认的饮品与食材</td>
+<td>孩子如何表达需要？一餐中成人如何帮助？</td>
+</tr>
+<tr>
+<td>18—24 个月</td>
+<td>动作模仿、简单表达、假扮与操作</td>
+<td>跟随孩子兴趣玩，示范后留出尝试空间</td>
+<td>餐点记录、用勺与杯、偏好变化；记录拒绝或接受的具体情境</td>
+<td>哪些活动和食物愿意再次尝试？家长确认了哪些新表达？</td>
+</tr>
+<tr>
+<td>2—3 岁</td>
+<td>短句交流、简单指令、游戏与日常自理</td>
+<td>共读问答、扮演游戏、轮流和收拾；不把不配合当作不会</td>
+<td>家庭同餐、尝试多样食物、自主进食；食物命名与选择表达</td>
+<td>孩子说了什么、做了什么？哪些提示有效？这周确认记录了哪些餐？</td>
+</tr>
+<tr>
+<td>3—4 岁</td>
+<td>讲日常经历、搭建、运动游戏</td>
+<td>绘本对话、解释选择、帮助说出需求</td>
+<td>餐点与零食记录、可接受食物的变化、参与简单备餐</td>
+<td>能留下哪段有来回的交流？怎样让下一次活动继续？</td>
+</tr>
+<tr>
+<td>4—5 岁</td>
+<td>讲故事、解释选择、角色游戏与运动</td>
+<td>复述、追问、合作游戏与日常自理</td>
+<td>描述食物偏好、参与简单备餐与摆餐；记录家庭餐点</td>
+<td>孩子怎样解释自己的想法？参与了哪些步骤？饮食偏好有哪些记录？</td>
+</tr>
+<tr>
+<td>5—6 岁</td>
+<td>说明规则、讲述经历、整理和多步骤活动</td>
+<td>共同解决小问题、表达求助、入学衔接</td>
+<td>讲述简单备餐步骤、参与家庭食物选择；餐点与饮品记录</td>
+<td>孩子能自主做什么、需要什么提示？下一周怎样继续？</td>
+</tr>
+</tbody></table></div>
+<p><strong>4—5 岁与 5—6 岁不是合用一个模板。</strong>4—5 岁重点保存叙述、提问和角色游戏；5—6 岁增加说明规则、复述过程、整理物品、表达求助与入学衔接。餐桌上前者可以描述食物和偏好，后者可以讲述简单备餐步骤。二者都不生成“入学合格证”，也不以食物识字、知识问答替代自然用餐。</p>
+<p>CDC 的月龄资料可用于配置家长观察主题，例如 6 月、12 月、18 月、24 月和 30 月；不能用一个宽年龄段的所有例子给每个孩子判定达标。<a class="ref" href="#ref-S8" aria-label="来源 S8">S8</a><a class="ref" href="#ref-S9" aria-label="来源 S9">S9</a><a class="ref" href="#ref-S10" aria-label="来源 S10">S10</a><a class="ref" href="#ref-S11" aria-label="来源 S11">S11</a><a class="ref" href="#ref-S12" aria-label="来源 S12">S12</a> 0—3 月的观察和互动另参考 2 月资料。<a class="ref" href="#ref-S13" aria-label="来源 S13">S13</a> 各条目须由内容团队逐项关联准确年龄与原始出处，不能将本表直接当作医疗量表。</p>
+<h3>0—3 岁必须交付的五类具体体验</h3>
+<p><strong>A. 奶喂养与照护交接，0—6 个月尤其重要。</strong>家长点击或口述“开始喂奶”，填写母乳亲喂、瓶喂母乳、配方奶或混合方式。亲喂记录时段和家长备注，不从时长换算毫升；瓶喂由家长确认准备量、剩余量和明显洒漏。影像完全可选，亲喂默认只做无影像日志。交接卡写“最近一次已记录的喂养”，不会把漏记误判成孩子长时间没吃。它减少重复询问和零散记录，不判断奶够不够。</p>
+<p><strong>B. 发声—成人回应，0—12 个月。</strong>保留清醒互动时婴儿发声与成人回应的短片；咿呀不强行转写成单词，哭声不自动解释成饿、痛或某种疾病。报告可以写“在这个片段里，成人回应后孩子再次发声”，不能写“亲子关系提升 20%”。记录成人等待与回应的例子，建议针对下一次相似互动，不给祖辈排名。</p>
+<p><strong>C. 日常动作尝试，0—24 个月。</strong>在安全、有人陪同的清醒游戏中保留伸手、取物、坐、移动或行走的候选片段；每条标注有无支撑、是否成人协助、视角是否完整。系统写“本周第一次记录到”，不擅自写“人生第一次”；缺片段时写“未获得可判断样本”，不写“没有掌握”。不为了拍摄诱导孩子完成超出现有能力的动作。</p>
+<p><strong>D. 辅食与自主进食，约 6—36 个月。</strong>餐前确认食材，餐中保留可选择的互动片段，餐后由家长确认是否尝试、是否吞咽可判断、剩余和洒落情况。报告把新食物、重复提供、质地记录、用手或餐具尝试、成人帮助统一展示。辅食通常约 6 月龄引入，具体还需发育准备情况；产品不能仅看年龄或坐姿画面自行批准开始。<a class="ref" href="#ref-N1" aria-label="来源 N1">N1</a></p>
+<p><strong>E. 学说话与生活带教，12—36 个月。</strong>在取玩具、穿衣准备、看图、收拾和进餐时，记录“成人原话—孩子声音/手势—实际动作”。例如成人问“还要吗”，孩子指碗或说“还要”，二者都可以成为交流记录。区分自主说出、跟读、提示后表达、无法判断。成人纠正发音的次数不等于教育效果，孩子沉默也不能直接等同于理解不足。</p>
+<p>这些体验都有独立价值；不是每个家庭每天都做五项。用户选当前最需要的 1—2 项，报告呈现真实采集覆盖。</p>
+<p>CDC 的 3、4、5 岁资料涵盖对话、讲述及运动；ASHA 的 3—4、4—5 岁资料进一步说明语言活动。ASHA 的 kindergarten 页面描述的是该学年结束时的沟通任务，不能直接变成“满 5 岁当天”的门槛。<a class="ref" href="#ref-S1" aria-label="来源 S1">S1</a><a class="ref" href="#ref-S2" aria-label="来源 S2">S2</a><a class="ref" href="#ref-S3" aria-label="来源 S3">S3</a><a class="ref" href="#ref-S4" aria-label="来源 S4">S4</a><a class="ref" href="#ref-S5" aria-label="来源 S5">S5</a><a class="ref" href="#ref-S6" aria-label="来源 S6">S6</a></p>
+<p>中国端的 3—6 岁还应参照教育部《3—6岁儿童学习与发展指南》，与健康管理规范分列：教育目标、健康观察、临床施测不是同一种依据。不能把中国目标与 CDC 年龄节点混合算成一个全球分数。<a class="ref" href="#ref-S7" aria-label="来源 S7">S7</a></p>
+<h3>3—6 岁的四个具体场景</h3>
+<p><strong>场景一：亲子绘本共读，作为学龄前原型。</strong></p>
+<p>家长选一本书并开启约 10 分钟活动，设备记录双方声音和画面。结束后家长看到儿童原句、一个有来回回应的片段、一个下次可继续问的问题。视频帮助判断讨论的对象，音频保留表达。产品不要求儿童盯屏幕，也不在共读时不断插话。</p>
+<p>能做的观察：在本次可听清片段中有哪些儿童提问；家长哪些问题获得了回应；儿童是否主动继续讲。需要家长确认说话人及关键原句。不能把成人语言时长占比直接当作教学质量，也不能认定开放式问题越多越好。</p>
+<p><strong>场景二：孩子讲今天发生的事。</strong></p>
+<p>家长问一次即可，孩子可以用熟悉的语言表达。系统保留声音、表情及手势，整理人物与事件候选；鼓励下次继续聊孩子在意的内容。其用途是家庭回忆和交流，不能仅凭录音推断孩子是否在幼儿园遭遇某事，或将叙述不连贯等同于语言障碍。</p>
+<p><strong>场景三：搭积木、角色游戏与家长教学。</strong></p>
+<p>核心观察单位应是“成人提示—儿童回应—实际操作”。例如成人说“把红色积木放在桥下面”，视频记录孩子的操作，音频保留原指令。可标注“成人示范后完成”“有额外提示”“无法判断”。单次未完成不能解释为没听懂，也可能是拒绝、分心、玩具遮挡或收音不清。</p>
+<p><strong>场景四：短时运动游戏。</strong></p>
+<p>家长陪同做适合孩子现有能力的跳跃、接球或平衡游戏。固定视角保留全身与地面；音频识别任务指令及提示；家长确认成功片段。第一版记录发生与持续时间，不做复杂关节角度、姿势优劣或医学步态结论。一次 5—10 分钟为试点安排，不是运动处方，更不是全天活动量建议。</p>
+<h3>不该直接生成的“漂亮指标”</h3>
+<p>不输出未经验证的语言年龄、发育商、同龄百分位、智商、专注力分数、家长教学分数。词汇候选只是本次样本，不是儿童全部词汇量；对话轮次只是互动线索，不是亲子关系质量。只对同一孩子、类似任务、清晰样本做前后展示，仍不宣称产品导致了能力提升。</p>
+<p>多语言家庭需允许逐段标注语言、切换语言及保留原句，不把双语混用当作错误。ASHA 明确说明同一交流中混用不同语言可以是多语言成长的正常现象。<a class="ref" href="#ref-S4" aria-label="来源 S4">S4</a></p>
+</div></section><section class="chapter" id="food"><div class="chapter-head"><span class="chapter-no">03</span><div><span class="eyebrow">FEEDING & FOOD</span><h2>把「吃什么」与「怎样吃」一起记录</h2><p>奶喂养、辅食、自主进食与家庭餐桌</p></div></div><div class="chapter-body"><p><strong>推荐路线是摄像头＋家长轻量确认＋可追溯的食品资料，而不是纯视觉营养师。</strong>另外两条路线各有不足：纯手工日志容易开始但录入负担较大，需作为对照；全自动估算营养看似省事，却依赖现阶段未验证的食材、分量与摄入推断。新产品先做协助记录，待证实省事、可靠之后才增加估算。</p>
+<h4>四层数据，不能跳级</h4>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>层级</th>
+<th>可以做什么</th>
+<th>必须补充的信息</th>
+<th>不应输出什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>食物候选</td>
+<td>从清楚的餐前画面提出香蕉、燕麦、蔬菜等候选</td>
+<td>家长确认；混合泥/汤/酱汁补配方或包装</td>
+<td>仅凭颜色断言成分、隐藏过敏原、盐糖含量</td>
+</tr>
+<tr>
+<td>提供与尝试</td>
+<td>记录提供过、触碰过、放入口中、家长确认吃下</td>
+<td>遮挡、吐出、洒落、成人代吃和画面外加餐</td>
+<td>将“餐盘少了”全部算成儿童摄入</td>
+</tr>
+<tr>
+<td>食物组合</td>
+<td>汇总已确认食材、食物类别、质地与提供次数</td>
+<td>分类版本、重复食材去重、全周记录覆盖</td>
+<td>以种类少直接诊断营养不良，或发起吃够若干种挑战</td>
+</tr>
+<tr>
+<td>营养估算（后续可选）</td>
+<td>在有份量、配方、标签且来源可靠时计算估算区间</td>
+<td>实际食用量、食品数据库、加工信息、专业审核</td>
+<td>从远景照片输出精确热量、缺铁缺钙、营养吸收率</td>
+</tr>
+</tbody></table></div>
+<p><strong>优先展示食物多样性的记录，不给儿童做热量控制或体重排名。</strong>后续即使有营养估算，也要注明“记录内估算”，不能推断全天或一周总摄入。体重和身长来自正规测量或家长录入并标注来源，摄像头食物分析不能替代生长评估。</p>
+<h4>婴幼儿阶段需要的内容模块</h4>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容模块</th>
+<th>摄像头/音频的作用</th>
+<th>家长确认与报告形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0—6 月</td>
+<td>奶喂养方式、时段、交接</td>
+<td>可选时间线辅助，语音快捷记录；亲喂无需影像</td>
+<td>亲喂时长不转奶量；瓶喂填写量；输出已记录事件及缺项</td>
+</tr>
+<tr>
+<td>约 6—12 月</td>
+<td>辅食食材、质地、含铁食物来源记录、奶与辅食并存</td>
+<td>餐前食物候选、进餐动作与互动片段</td>
+<td>家长确认是否尝试、配方和质地；含铁食物出现不等于铁摄入达标 <a class="ref" href="#ref-N2" aria-label="来源 N2">N2</a></td>
+</tr>
+<tr>
+<td>12—24 月</td>
+<td>家庭食物过渡、食物多样性、用勺用杯、表达饥饱</td>
+<td>记录自主尝试、成人帮助及可见回应</td>
+<td>把“转头/推开”记为观察，不能自动断定吃饱 <a class="ref" href="#ref-N3" aria-label="来源 N3">N3</a></td>
+</tr>
+<tr>
+<td>24—36 月</td>
+<td>日常餐点、偏好变化、同餐互动、进餐自主性</td>
+<td>原话与动作配对，记录尝试条件</td>
+<td>不贴“挑食儿童”标签；提供同类场景回顾，避免强迫和奖惩式提示 <a class="ref" href="#ref-N3" aria-label="来源 N3">N3</a></td>
+</tr>
+<tr>
+<td>3—6 岁</td>
+<td>餐点和零食、饮品、简单备餐、食物语言与家庭参与</td>
+<td>记录孩子描述食物、选择和操作</td>
+<td>以家庭可执行的小安排为主，不把吃饭变成答题考试；饮食内容由专业人员审阅 <a class="ref" href="#ref-N4" aria-label="来源 N4">N4</a></td>
+</tr>
+</tbody></table></div>
+<p>一般辅食内容应覆盖多种食物和适合进食能力的形态，12 月前不把牛奶饮品当作母乳或配方奶的替代主饮；蜂蜜等年龄限制应由家长确认的食材触发内容提醒。不能靠视觉宣布一盘食物“安全、无过敏原”。<a class="ref" href="#ref-N1" aria-label="来源 N1">N1</a><a class="ref" href="#ref-N5" aria-label="来源 N5">N5</a><a class="ref" href="#ref-N6" aria-label="来源 N6">N6</a></p>
+<p>过敏记录模块只做“家长确认接触时间、食物/配方、家长报告的反应、既有专业建议”的时间线。一次没反应不能标为排除过敏，也不自动发起食物激发试验；已有过敏、严重湿疹或特殊喂养情况按专业方案处理。摄像头不能承担呛噎或过敏急救监测，吃饭时仍需要成人在场直接观察。<a class="ref" href="#ref-N1" aria-label="来源 N1">N1</a><a class="ref" href="#ref-N7" aria-label="来源 N7">N7</a></p>
+<h4>餐前—餐中—餐后的一次完整流程</h4>
+<ol>
+<li><strong>餐前</strong>：家长选孩子与餐次，确认镜头里的食物候选；也可拍一张手机近照或说一句“燕麦里加了香蕉”。音频内容只是待确认文本，不能直接当成已核实配方。保存常用餐食以减少重复填写。</li>
+<li><strong>餐中</strong>：可选开启短时餐桌记录，关注成人提示、孩子回应、自主进食动作；镜头覆盖桌面和上半身，避免自动追踪转走后仍声称完整记录。亲喂只保留无影像日志选项。</li>
+<li><strong>餐后</strong>：家长确认“仅提供／尝试过／确认吃下／无法判断”，补明显洒落、剩余和画面外事项。不把每一口都变成必填项。</li>
+<li><strong>自动汇总</strong>：保存食物记录和 0—1 段家庭选择的片段，周报汇总已确认数据。没有音视频也能生成日志，缺声音时不做对话分析。</li>
+</ol>
+<p>设计目标是常用一餐确认可在约 30 秒内完成，这是需要试测的目标，不是现成性能。若重复纠错反而比手工记录更慢，应减少识别字段，而非要求家庭更频繁打卡。</p>
+<h4>餐桌也连接成长、带教与语言</h4>
+<p>一餐可以同时产生四种记录：孩子是否尝试拿勺或杯（动作与自理）、怎样表达还要或不要（沟通）、成人怎样回应（带教）、提供了什么食物（饮食）。但一条证据只能支持它直接呈现的事实。</p>
+<p>例如“孩子说不要，成人暂停递勺并询问是否结束”可以成为照护协作的回顾；不能从一个片段给照护者下“强迫喂养”或“科学育儿”的整体判决。报告给下一次可尝试的具体方式，让祖辈与父母共同确认，不产生长辈排行榜。</p>
+</div></section><section class="chapter" id="reports"><div class="chapter-head"><span class="chapter-no">04</span><div><span class="eyebrow">THE CORE OUTPUT</span><h2>一次确认，持续生成家庭成长报告</h2><p>日报便于交接，周报用于复盘，月报保留变化</p></div></div><div class="chapter-body"><div class="report-switch" role="group" aria-label="选择周报样例"><button class="active" data-report="baby" aria-pressed="true">10 个月 · 辅食与交流</button><button data-report="child" aria-pressed="false">4 岁 · 亲子学习</button></div>
+<div class="sample-report" data-sample="baby"><div class="sample-heading"><div><span class="eyebrow">WEEKLY FAMILY REVIEW</span><h3>这一周，餐桌上的小尝试</h3></div><span class="tag">虚构示例 · 非实测结果</span></div><p class="coverage">记录覆盖：5 / 7 天 · 8 次辅食餐 · 6 次有影像 · 5 次音频可用</p><div class="sample-grid"><div><span class="mini-label">成长观察</span><h4>尝试自己抓取食物</h4><p>周四 12:18 的画面可见拿起动作。是否吞咽无法确认，由家长补充。</p><span class="status">画面可见 / 部分无法判断</span></div><div><span class="mini-label">饮食记录</span><h4>确认提供过 5 种食物</h4><p>燕麦、香蕉、西兰花、鸡肉、鸡蛋；2 餐混合泥的配料待补充。</p><span class="status">家长确认 / 配料待补充</span></div><div><span class="mini-label">亲子互动</span><h4>一段指向碗的回应</h4><p>成人询问“还要吗”，孩子指碗并发声，成人随后回应；不把咿呀强行转成词语。</p><span class="status">声音与手势线索</span></div><div><span class="mini-label">下一次可选安排</span><h4>继续记录原本计划的一餐</h4><p>优先补齐常用混合食物的配料；在自然互动中回应孩子的声音和手势。</p><span class="status">建议 · 家庭自主选择</span></div></div><p class="sample-foot">奶喂养和外出进餐未完整记录，因此不评估全天奶量、能量或营养是否足够。此处无真实音视频文件。</p></div>
+<div class="sample-report" data-sample="child" hidden><div class="sample-heading"><div><span class="eyebrow">WEEKLY FAMILY REVIEW</span><h3>这一周，讲出来，也动手做</h3></div><span class="tag">虚构示例 · 非实测结果</span></div><p class="coverage">记录覆盖：2 次共读 · 1 次搭建 · 4 次家庭晚餐</p><div class="sample-grid"><div><span class="mini-label">语言与学习</span><h4>为故事人物解释理由</h4><p>共读片段 04:12，孩子讲出人物想回家的理由；原句由家长确认。</p><span class="status">主动表达 / 家长确认</span></div><div><span class="mini-label">带教与动作</span><h4>示范后完成积木底座</h4><p>保留成人示范与儿童操作的完整关系，不写成完全独立完成。</p><span class="status">示范后完成</span></div><div><span class="mini-label">饮食与生活</span><h4>参与摆餐，描述先后顺序</h4><p>4 次晚餐均确认提供蔬菜，2 次确认尝试；另 2 次未确认，不推断拒绝。</p><span class="status">家长确认 / 部分未确认</span></div><div><span class="mini-label">下一次可选安排</span><h4>接着兴趣，共读与摆餐</h4><p>继续读孩子感兴趣的一页，自选一次适合其能力的摆餐任务。</p><span class="status">建议 · 家庭自主选择</span></div></div><p class="sample-foot">午餐与多数零食未记录，不能代表全周饮食。不生成语言、营养或家长得分。此处无真实音视频文件。</p></div><p><strong>统一报告骨架：数据覆盖 → 成长观察 → 家长回应与亲子教育 → 喂养饮食 → 下一次可选安排 → 原始证据与纠错。</strong>不同年龄改变重点，不改证据规则。</p>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>周期</th>
+<th>面向谁、解决什么</th>
+<th>应包含什么</th>
+<th>输出控制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单次记录</td>
+<td>当次照护者，确认事实</td>
+<td>一餐/一次活动、待确认项、可选择保留片段</td>
+<td>可以只存日志，不强制推送</td>
+</tr>
+<tr>
+<td>每日简报</td>
+<td>父母与获授权照护者，便于交接</td>
+<td>最近已记录喂养、食物与活动摘要、缺项、需交接备注</td>
+<td>默认简短，可关闭；不承诺全天完整监测</td>
+</tr>
+<tr>
+<td>每周报告</td>
+<td>全家庭，决定下周怎么继续</td>
+<td>四大模块、样本覆盖、1—3 个片段、最多 2 个具体建议</td>
+<td>固定用户选定日期；建议数量是设计选择</td>
+</tr>
+<tr>
+<td>每月回顾</td>
+<td>家庭阶段记录或就诊前整理</td>
+<td>相似活动前后片段、确认的食物与互动记录、家长关切</td>
+<td>样本不相当时不画趋势线，不判发育快慢</td>
+</tr>
+<tr>
+<td>用户主动导出</td>
+<td>指定照护者或专业人员</td>
+<td>日期、年龄口径、已确认事实、片段链接、遗漏说明</td>
+<td>用户选择范围后导出；不自动发给医生或学校</td>
+</tr>
+</tbody></table></div>
+<p><strong>每份报告必须带四个数据标签：</strong>“画面/声音可见”“家长确认”“建议”“无法判断”。此外标明采集日期、有效片段长度、记录餐次与画面外缺口。生成时间不等于观察时间。</p>
+<p><strong>奶喂养专版，0—6 月。</strong>统计已记录的喂养事件和可确认瓶喂量，亲喂单独列，不与瓶喂相加成全天总奶量；家庭未确认完整记录时不算喂养间隔是否异常。展示 1 段可选亲子回应记录与家长问题清单。</p>
+<p><strong>辅食与交流专版，6—24 月。</strong>汇总家长确认的提供食物、尝试状态、质地、奶喂养补充信息、取食/餐具尝试以及手势和声音互动。强调哪些未记录，不能把记录里没有的食物写成孩子完全没吃过。</p>
+<p><strong>自主进食与学说话专版，2—3 岁。</strong>关联生活指令、孩子原话或手势、自主行为与同餐互动；回顾食物偏好在具体情境中的变化，而非生成稳定性格标签。</p>
+<p><strong>亲子学习与生活能力专版，3—6 岁。</strong>将共读、叙述、操作与运动活动和餐桌参与并列展示；教育建议从家庭已记录兴趣出发，不附加考试任务。</p>
+<p><strong>趋势规则：</strong>只能比较同一孩子、条件接近且覆盖明确的样本。拿“本周录了 10 段、上周录了 2 段”的词语数量直接说明进步，是采样错误。饮食种类增加也可能只是记录更完整。月报须先解释样本变化，再给原始片段与家长备注。</p>
+</div></section><section class="chapter" id="hardware"><div class="chapter-head"><span class="chapter-no">05</span><div><span class="eyebrow">HARDWARE & AUDIO</span><h2>摄像头与音频能力如何匹配</h2><p>S350 验证采集，E21 承接婴儿看护，Work 作为能力参照</p></div></div><div class="chapter-body"><p><strong>S350 可以作为采集与演示候选，但目前不是儿童语言分析产品。</strong>官方确认可录制带声音的视频；具有广角与长焦、云台、本地存储和 HomeBase 3 兼容能力。官方 FAQ 同时说明，AI 追踪或双画面模式下录像最高为 2K，不能按“4K＋双画面＋追踪同时运行”设计。<a class="ref" href="#ref-H1" aria-label="来源 H1">H1</a><a class="ref" href="#ref-H2" aria-label="来源 H2">H2</a><a class="ref" href="#ref-H3" aria-label="来源 H3">H3</a></p>
+<p>E21 适合婴儿床看护入口，官方资料包含录像、声音和温度提醒。本次不把“麦克风＋录像”自动写成已经验证的可导出连续音轨；作为算法输入之前仍需拿实际文件验证。也不默认 Baby、Security 与 soundcore 三套产品的数据互通。<a class="ref" href="#ref-H4" aria-label="来源 H4">H4</a></p>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>年龄/场景</th>
+<th>候选采集配置</th>
+<th>可以承担的角色</th>
+<th>需要补充和验证</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0—6 月卧室基础看护</td>
+<td>eufy Baby Monitor E21；已有合适设备也可保留</td>
+<td>按现售功能提供音视频看护；成长片段为后续方案</td>
+<td>文件音轨、导出方式和接入权限；喂奶日志不依赖拍摄私密过程</td>
+</tr>
+<tr>
+<td>约 6—36 月餐桌/活动区</td>
+<td>Indoor Cam S350 固定合适视角，家长手机补餐前近照</td>
+<td>带声记录进食动作、成人回应与可见食物</td>
+<td>餐盘遮挡、远场语音、食材识别；手机近照是可选补充，不强迫再买一台</td>
+</tr>
+<tr>
+<td>1—3 岁学说话/玩耍</td>
+<td>S350 活动区音视频</td>
+<td>对齐物体、提示、儿童声音/手势与动作</td>
+<td>幼儿语音和电视干扰的实测，成人/儿童说话人区分</td>
+</tr>
+<tr>
+<td>3—6 岁共读/教学/运动</td>
+<td>S350 阅读角或活动区</td>
+<td>保留完整活动与可回放依据</td>
+<td>读书区收音与运动全身视角需求不同；不假设同一机位同时最优</td>
+</tr>
+<tr>
+<td>收音不足的对照测试</td>
+<td>S350＋成人侧 soundcore Work</td>
+<td>比较近场与远场录音，不作为每个家庭的必买配置</td>
+<td>同步、授权及接口；不能凭品牌相同假定互通</td>
+</tr>
+</tbody></table></div>
+<p><strong>推荐从已有 S350 验证餐桌与活动区，保留 E21 的婴儿看护定位；统一成长档案是拟开发的软件层。</strong>没有证据证明某一款现售 eufy 摄像头已完整具备本文的食物、带教与定期报告分析。一机随场景调整或多设备组合都要测试，不能声称双摄就能同时看清卧室、餐桌和游戏区。</p>
+<p>餐桌机位需让成人确认餐盘、孩子上半身和照护动作可见，具体距离按现场试拍决定；设备与电源线按说明安装、远离儿童可触及范围。任何实时提醒都不替代成人对进餐的直接看护。</p>
+<p><strong>安克已经有可借鉴的录音分析产品：soundcore Work。</strong>公开能力包括转写、区分说话人和摘要，定位主要是会议与工作记录。<a class="ref" href="#ref-H5" aria-label="来源 H5">H5</a><a class="ref" href="#ref-H6" aria-label="来源 H6">H6</a></p>
+<p>关键限制：官方当前说明 AI Note Taker 只支持 soundcore Work 录音器，转写在 soundcore App 中完成。没有证据表明 eufy 摄像头音轨能直接接入这项消费服务，也没有确认内部 SDK 或授权接口。因此“整合”是研发提案，不能宣传成买两台设备即可自动互联。<a class="ref" href="#ref-H6" aria-label="来源 H6">H6</a></p>
+<h3>三条路线及取舍</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>路线</th>
+<th>怎么做</th>
+<th>好处</th>
+<th>主要限制</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A：S350 音视频＋独立分析原型</td>
+<td>经授权导出一段带声录像，做时间戳转写、事件切分、家长确认与片段回跳</td>
+<td>单一音视频时间轴；最快验证用户价值</td>
+<td>导出方式、音轨质量和开发接口要实测；不能冒充已嵌入 eufy App</td>
+<td><strong>黑客松首选</strong></td>
+</tr>
+<tr>
+<td>B：S350＋成人侧 Work 录音器</td>
+<td>摄像头留画面，成人佩戴或安全固定录音器；授权导出后做时间对齐</td>
+<td>可比较近距离录音是否改善可懂度</td>
+<td>两份文件同步、两套账号、多人远近差异；不能假定现成服务接受摄像头文件</td>
+<td><strong>对照测试或备用采集</strong></td>
+</tr>
+<tr>
+<td>C：成长摄像头集成语音分析能力</td>
+<td>内部整合音频采集、说话人区分、儿童语音模型、视频事件与家长报告</td>
+<td>统一体验、成本和权限可控</td>
+<td>麦克风阵列、儿童适配、算力、授权、数据链路均需工程验证</td>
+<td><strong>原型验证后的产品方向</strong></td>
+</tr>
+</tbody></table></div>
+<p>建议不是把录音豆硬件塞进摄像头外壳，而是复用适用的音频处理能力，并重新设计儿童场景。成人胸前的近讲录音与房间角落的远场录音条件不同；成人会议准确率不能外推到 3 岁儿童。<a class="ref" href="#ref-H5" aria-label="来源 H5">H5</a><a class="ref" href="#ref-H6" aria-label="来源 H6">H6</a><a class="ref" href="#ref-T1" aria-label="来源 T1">T1</a></p>
+<p>录音器仅由成人使用或固定在儿童够不到的位置，不给幼儿佩戴消费级挂绳或可拆卸小器件。具体安装遵循产品说明和实际安全条件。</p>
+</div></section><section class="chapter" id="engine"><div class="chapter-head"><span class="chapter-no">06</span><div><span class="eyebrow">THE ANALYSIS PIPELINE</span><h2>让每条观察，都能找到依据</h2><p>拟议技术架构与失败处理</p></div></div><div class="chapter-body"><div class="flow" aria-label="从采集到报告的拟议处理流程"><div><b>01</b><strong>家庭授权采集</strong><small>音视频 / 食物近照 / 喂养日志</small></div><div><b>02</b><strong>质量与事件判断</strong><small>看得清、听得清、时间能对齐</small></div><div><b>03</b><strong>多源记录关联</strong><small>成人提示 → 儿童回应 → 动作与食物</small></div><div><b>04</b><strong>家长确认与纠错</strong><small>说话人、原句、食材、尝试状态</small></div><div><b>05</b><strong>年龄化报告</strong><small>事实 + 依据 + 可选建议</small></div></div><h3>三条分析支路，共用一条时间线</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>支路</th>
+<th>拟开发能力</th>
+<th>输出到家庭档案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>画面</td>
+<td>活动切分、动作候选、物体/食物候选、成人协助关系</td>
+<td>带时间戳的候选事件；遮挡或不确定时保留未知</td>
+</tr>
+<tr>
+<td>声音</td>
+<td>成人/儿童/不确定说话人、儿童原样转写、非语言发声与重叠语音标记</td>
+<td>原句、声音片段与提示关系，不润色成成人表达</td>
+</tr>
+<tr>
+<td>结构化日志</td>
+<td>月龄、家庭语言、喂养方式、家长确认食材与用量、专业建议备注</td>
+<td>无需录像也能存在的照护记录</td>
+</tr>
+</tbody></table></div>
+<p>核心事件字段：孩子与活动、起止时间、来源类型、原始依据、候选结果、确认状态、采集质量、版本与可见权限。通过同一事件关联画面与声音，避免把不同孩子、不同餐次或不同时间拼成一条事实。</p>
+<h3>报告生成顺序</h3>
+<p>先建立事实清单，再按年龄组织报告，最后给可选活动建议。每条事实只能使用清楚的音视频或家长确认信息；每条建议标注建议性质，并关联经过专业审阅的内容。保留原始候选和纠错记录，重新生成时只使用最新已确认版本。</p>
+<h3>收音与儿童语言的关键处理</h3>
+<p>保留重复、不完整词语和停顿；电视里的声音不能计为儿童表达；成人提示后重复与自主表达分开；双语切换保留原句。先做活动内说话人标注，不依赖永久儿童声纹库。成人会议转写效果不能证明幼儿语音有效性。<a class="ref" href="#ref-T1" aria-label="来源 T1">T1</a><a class="ref" href="#ref-H6" aria-label="来源 H6">H6</a></p>
+<h3>出错时怎样退回</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>系统行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>声音不清或多人同时说话</td>
+<td>提供片段和不确定标记，不补造儿童原句</td>
+</tr>
+<tr>
+<td>看不清食物或混合配方</td>
+<td>请求家长补充；不从颜色猜配料</td>
+</tr>
+<tr>
+<td>只看见盘中食物减少</td>
+<td>保留“数量变化”线索，不自动写成吃下</td>
+</tr>
+<tr>
+<td>全身或成人支撑关系被遮挡</td>
+<td>不评价独立完成或运动质量</td>
+</tr>
+<tr>
+<td>记录不完整、没有样本</td>
+<td>报告明示缺失，不写“正常”或“没有问题”</td>
+</tr>
+<tr>
+<td>接口或网络不可用</td>
+<td>支持授权文件导入和本地日志；待恢复后按权限处理</td>
+</tr>
+</tbody></table></div>
+<h3>处理位置与工程依赖</h3>
+<p>原型可采用授权导出文件＋独立分析服务，明确与 eufy App 尚未打通。量产前再决定端侧/云侧分工：设备录像、事件筛选、转写与摘要分别核算。不能假定 HomeBase 3 能运行儿童语音模型，也不能把本地录像等同于本地 AI。原始文件、派生文本、确认事件及报告需要一致的删除机制。</p>
+</div></section><section class="chapter" id="competition"><div class="chapter-head"><span class="chapter-no">07</span><div><span class="eyebrow">COMPETITIVE LANDSCAPE</span><h2>竞争机会在「记录到反馈」之间</h2><p>八类产品与替代方案，明确优势也明确竞争</p></div></div><div class="chapter-body"><p>“未证实覆盖”指本次检索的公开产品与帮助资料没有建立完整对应能力，不等于证明全球所有版本都没有，也不预测对手未来不会推出。</p>
+<h3>Nanit：最直接的智能婴儿监护竞品</h3>
+<p><strong>已公开与适用场景。</strong>围绕睡眠、婴儿床看护、回忆与成长建立产品；Developmental Milestones 已提供床内动作里程碑捕捉，依赖相应订阅和安装条件。新版资料还有离床、提醒区域及成长回忆等，不能笼统说它“只监控睡觉”。<a class="ref" href="#ref-C1" aria-label="来源 C1">C1</a><a class="ref" href="#ref-C2" aria-label="来源 C2">C2</a></p>
+<p><strong>未证实覆盖。</strong>本次未确认完整的 3—6 岁亲子共读转写、提示与儿童操作对齐、家长可纠错的教学复盘。</p>
+<p><strong>安克进入方式。</strong>不要以“自动发现里程碑”作为唯一差异。争取白天、离开婴儿床后、成人与孩子共同活动的场景。用户已有 Nanit 时，可以先作为客厅活动功能补充，不强迫家庭更换可靠的夜间设备。</p>
+<p><strong>主要挑战。</strong>Nanit 已建立育儿品牌与订阅习惯，有能力向年龄和场景延展。若安克只是增加成长短片，容易被跟进；持续使用价值必须来自更少整理负担与更好的活动反馈。</p>
+<h3>CuboAi Monitor 3：视觉安全和成长功能不能被低估</h3>
+<p><strong>已公开与适用场景。</strong>有遮脸/翻身、哭声、睡眠报告、自动照片/视频等；睡眠分析依赖正对婴儿床向下的机位。其成长追踪还包含经床尺寸校准的身高辅助记录，不能把它描述为完全没有成长功能。<a class="ref" href="#ref-C3" aria-label="来源 C3">C3</a><a class="ref" href="#ref-C4" aria-label="来源 C4">C4</a><a class="ref" href="#ref-C5" aria-label="来源 C5">C5</a></p>
+<p><strong>未证实覆盖。</strong>本次未确认孩子离开床区后的 3—6 岁动作与语言联合解释、亲子教学互动复盘。身高辅助功能也不等同于医疗身高测量。</p>
+<p><strong>安克进入方式。</strong>从卧室以外的共读区、活动区进入；展示一句话与对应操作的关系，而非再次展示普通遮脸提醒。</p>
+<p><strong>主要挑战。</strong>其视觉识别、事件触发和成长记录都是可延展基础。双摄或更高像素本身不足以形成长期壁垒。</p>
+<h3>Owlet：生理监测与视频组合是不同竞争逻辑</h3>
+<p><strong>已公开与适用场景。</strong>Dream Sight 为带声音、哭声与动作提醒的 2K 摄像头，可与 Dream Sock 配合；Owlet360 提供额外睡眠与录像服务。Dream Sock 的监管状态不能移植为摄像头的认证。<a class="ref" href="#ref-C6" aria-label="来源 C6">C6</a></p>
+<p><strong>未证实覆盖。</strong>未确认 3—6 岁语言样本、共读教学回顾及运动游戏复盘的成套能力。</p>
+<p><strong>安克进入方式。</strong>主张孩子清醒时的日常互动价值，避免用普通摄像头与可穿戴生理监测比医学表现。已有 Owlet 的家庭，也可能需要孩子长大后的活动记录，但这是待验证的增购假设。</p>
+<p><strong>主要挑战。</strong>不能假定“孩子不穿袜子了就不会用 Owlet”；其摄像头和睡眠服务也可延续使用。安克仍要证明自己的额外用途值得购买。</p>
+<h3>LENA：语言分析方向必须加入的相邻竞品</h3>
+<p><strong>已公开与适用场景。</strong>LENA 使用穿戴录音设备分析成人词语、儿童发声和成人—儿童对话轮次；现行官网重点包含早教教师项目 LENA Grow、研究及临床工具 LENA SP。历史 LENA Start 为家庭路径提供参照，不能把历史项目一概当作目前零售套餐。<a class="ref" href="#ref-C7" aria-label="来源 C7">C7</a><a class="ref" href="#ref-C8" aria-label="来源 C8">C8</a></p>
+<p><strong>重要差别。</strong>其常见项目有意不识别词义、不提供原声回放，以保护隐私；SP/Pro 的音频保留规则不同。当前 Grow 面向婴幼儿到 pre-K，不能用某一旧研究年龄范围宣称它只覆盖 0—3 岁。<a class="ref" href="#ref-C7" aria-label="来源 C7">C7</a><a class="ref" href="#ref-C8" aria-label="来源 C8">C8</a></p>
+<p><strong>安克进入方式。</strong>做家庭自助的短活动复盘，让家长看到说话时的物体和操作，并听回自己选择保留的原句。需承认这是以更多敏感信息换取可解释性，不可称为隐私天然更优。</p>
+<p><strong>主要挑战。</strong>LENA 已有儿童语言数据及验证积累。摄像头远场音频比儿童近身录音更难，不能把通用转写当作已经超越 LENA 的证据。</p>
+<h3>Plaud NotePin／soundcore Work：音频分析能力与低价组合替代</h3>
+<p><strong>已公开与适用场景。</strong>录音、转写、说话人标签与摘要主要解决成人会议、访谈及笔记需求。<a class="ref" href="#ref-C9" aria-label="来源 C9">C9</a><a class="ref" href="#ref-H5" aria-label="来源 H5">H5</a><a class="ref" href="#ref-H6" aria-label="来源 H6">H6</a></p>
+<p><strong>未证实覆盖。</strong>没有在本次资料中确认针对儿童发音、双语切换、亲子提示关系和画面操作的有效性验证。说话人标签也不等于确认真实身份。</p>
+<p><strong>安克进入方式。</strong>录音设备的内容整理能力可借鉴，儿童原样转写、视频同步和低置信度处理需重新做。Work 是内部潜在能力来源，不是已经打通的 eufy 插件。</p>
+<p><strong>主要挑战。</strong>如果家长拿手机录像加通用转写就得到差不多的报告，专用硬件溢价很弱。必须证明省下了架机、找片段和整理的时间，或者提供明显更可靠的反馈。</p>
+<h3>普通摄像头＋手机／人工记录：最便宜的真实替代品</h3>
+<p>用户不是只能在三个母婴品牌之间选择。既有摄像头、手机支架、云相册和家长记忆本来就能保存素材。它们缺少的可能是自动整理，而不是录音录像本身。</p>
+<p>建议所有试点加入“手机拍摄＋同样的人工回顾模板”对照；如果安克原型不能明显减少操作时间，或家长不愿持续看结果，就不要急着做新硬件。也不应为了凸显差异而人为限制用户导出自己的数据。</p>
+<h3>Solid Starts：辅食知识与食物记录已有成熟竞争</h3>
+<p><strong>公开能力与场景。</strong>官网提供 First Foods 数据库、按年龄的食物准备信息、辅食引导、餐食建议，以及尝试食物、偏好和反应的记录与导出。<a class="ref" href="#ref-C10" aria-label="来源 C10">C10</a> 它直接满足约 6 月开始辅食家庭“今天怎么准备、吃过什么”的问题，也提供更大儿童年龄的食物信息，不能简单称为仅限婴儿的软件。</p>
+<p><strong>未证实覆盖。</strong>本次所读资料没有建立家庭固定摄像头对整段进餐的音视频捕捉、成人提示与儿童回应对齐的完整能力。它已有专业食物内容基础，安克不能凭一份自动摘要宣称指导更专业。</p>
+<p><strong>安克进入方式。</strong>验证从餐前确认、餐中片段到周报的一体化流程是否减少记录负担。食物知识可以考虑独立编制、授权或合作；当前没有合作事实，不能直接复制其数据库或暗示联名。</p>
+<p><strong>主要挑战。</strong>很多家庭用手机查资料和勾选记录已经够用。只有当实际互动过程是用户需要、且摄像头明显省事时，新增硬件才有价值。</p>
+<h3>Huckleberry：喂养日志、家庭协作与 AI 建议也是直接替代</h3>
+<p><strong>公开能力与场景。</strong>官网提供奶喂养、辅食、睡眠等记录与报告，支持多设备同步；付费层提供文字、语音或照片辅助记录，Berry 可基于既有记录提供个性化信息。<a class="ref" href="#ref-C11" aria-label="来源 C11">C11</a><a class="ref" href="#ref-C12" aria-label="来源 C12">C12</a> 因此不能把“一句话记喂养”“每周有报告”“AI 看历史记录”当成安克独有。</p>
+<p><strong>未证实覆盖。</strong>本次公开资料未确认持续的家庭摄像头互动片段、成人示范与儿童操作的视频证据链。它的优势是无需另买摄像机、已经承接高频照护日志。</p>
+<p><strong>安克进入方式。</strong>把一次已确认的饮食记录与同一餐的声音、动作和照护反馈连接，允许无影像记录，减少切换多个工具。需提供有用的导出，避免把家庭数据锁在单一硬件中。</p>
+<p><strong>主要挑战。</strong>如果一个便宜的手机 App 已能满足奶喂养阶段，0—6 月的增量价值可能主要来自现有看护设备，而非额外 AI 收费。新增付费价值要逐年龄段验证。</p>
+<h3>扩展后的竞品与机会矩阵</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>主要替代/竞品</th>
+<th>安克可验证的机会</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>婴儿床看护和睡眠</td>
+<td>Nanit、CuboAi、Owlet</td>
+<td>eufy 现有看护入口与使用体验</td>
+<td>竞争拥挤，不宣称空白</td>
+</tr>
+<tr>
+<td>奶喂养记录和照护交接</td>
+<td>Huckleberry、手机日志</td>
+<td>与已授权片段和家庭档案衔接，减少重复记录</td>
+<td>不一定需要摄像头，不应强行视觉化</td>
+</tr>
+<tr>
+<td>辅食知识、食物记录</td>
+<td>Solid Starts、Huckleberry</td>
+<td>家长确认的食物＋真实进餐过程＋周期复盘</td>
+<td>有差异化假设，但记录本身已存在</td>
+</tr>
+<tr>
+<td>成人—儿童语言环境</td>
+<td>LENA</td>
+<td>家庭短活动中带视频语境的原句与回应</td>
+<td>需儿童语音验证，不能声称比既有方法更准确</td>
+</tr>
+<tr>
+<td>3—6 岁共读、带教和生活自理</td>
+<td>手机录像、录音 AI、部分成长服务</td>
+<td>提示—回应—操作的可回放记录</td>
+<td>值得与手机方案做直接对照</td>
+</tr>
+<tr>
+<td>从 0—6 岁贯通四类内容</td>
+<td>多个 App＋不同设备组合</td>
+<td>同一家庭档案、低负担记录、年龄切换后的持续用途</td>
+<td>是拟议产品定位，不是已证明的独占赛道</td>
+</tr>
+</tbody></table></div>
+</div></section><section class="chapter" id="mvp"><div class="chapter-head"><span class="chapter-no">08</span><div><span class="eyebrow">MVP & LIVE DEMO</span><h2>黑客松交付一个能走通的闭环</h2><p>完整年龄框架，两个代表场景，透明展示实现状态</p></div></div><div class="chapter-body"><p><strong>原型目标：</strong>从一段获授权的输入，生成家长能纠错、能回到原片段的年龄化报告。完整 0—6 岁模板必须呈现；演示用辅食场景和学龄前共读，不能以两个样本宣称所有年龄算法已验证。</p>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>交付物</th>
+<th>首版验收条件</th>
+<th>状态口径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全龄家庭档案</td>
+<td>十个年龄段、语言、喂养与已知限制字段；可选无影像记录</td>
+<td>拟开发</td>
+</tr>
+<tr>
+<td>授权文件导入</td>
+<td>能识别音轨、展示时长、关联同一活动</td>
+<td>拟开发；设备导出待实测</td>
+</tr>
+<tr>
+<td>辅食场景</td>
+<td>提出食物候选；家长改配料；区分提供/尝试/确认吃下</td>
+<td>拟开发，不承诺精确营养摄入</td>
+</tr>
+<tr>
+<td>共读场景</td>
+<td>原句、说话人候选与操作对齐；点击事实回到片段</td>
+<td>拟开发，儿童识别效果待测试</td>
+</tr>
+<tr>
+<td>周报与年龄切换</td>
+<td>四大模块、覆盖范围、来源标签、确认与缺失状态</td>
+<td>本报告提供虚构视觉样例；尚非真实分析系统</td>
+</tr>
+<tr>
+<td>数据控制</td>
+<td>可停止、删除与选择导出范围；状态有反馈</td>
+<td>拟开发，需实际验收</td>
+</tr>
+</tbody></table></div>
+<h3>48 小时组织示例</h3>
+<p>以下是具备可用模型服务、授权素材和工程环境时的工作分解示例，不是赛事规则或无条件工期承诺。角色可合并，暂无实际团队名单。</p>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>时段</th>
+<th>产品与内容</th>
+<th>工程与验证</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0—6 小时</td>
+<td>确定两段演示素材、全龄字段、同意范围</td>
+<td>核对音轨/导出；连通文件播放与时间戳</td>
+<td>输入可用；若失败，明确改为授权离线样本</td>
+</tr>
+<tr>
+<td>6—18 小时</td>
+<td>写人工参考记录和报告模板</td>
+<td>活动切分、转写候选、食物候选及结构化输出</td>
+<td>保留未知，输入与结果可对应</td>
+</tr>
+<tr>
+<td>18—30 小时</td>
+<td>检查措辞与年龄适配</td>
+<td>纠错、确认、片段回跳、周报生成</td>
+<td>修改一项后，报告同步更新</td>
+</tr>
+<tr>
+<td>30—40 小时</td>
+<td>审核两条完整家庭流程</td>
+<td>测试遮挡、无音轨、错说话人、混合食材、删除</td>
+<td>失败有明确退回路径</td>
+</tr>
+<tr>
+<td>40—48 小时</td>
+<td>演练答辩与评委问答</td>
+<td>固定版本、准备离线备份、列实测和未完成项</td>
+<td>不把预制结果讲成现场实时生成</td>
+</tr>
+</tbody></table></div>
+<h3>现场演示：约 3 分钟</h3>
+<ol>
+<li><strong>20 秒</strong>：展示全龄范围与低月龄无影像喂养日志。</li>
+<li><strong>60 秒</strong>：婴幼儿一餐，纠正混合食材、确认尝试状态，进入周报。</li>
+<li><strong>60 秒</strong>：学龄前共读，纠正说话人或词语，从一句观察返回原片段。</li>
+<li><strong>25 秒</strong>：切换年龄化周报，展示样本覆盖、下一次建议与缺失信息。</li>
+<li><strong>15 秒</strong>：展示删除或导出选择；说明运行方式和人工辅助环节。</li>
+</ol>
+<p>基础看护沿用现售能力；医疗评估、精确营养计算、实时呛噎识别、家校平台和全天语义分析均不进入本次 MVP。</p>
+</div></section><section class="chapter" id="validation"><div class="chapter-head"><span class="chapter-no">09</span><div><span class="eyebrow">VALIDATION PLAN</span><h2>用省事、可信和持续使用判断价值</h2><p>按年龄验证，不用演示效果替代家庭测试</p></div></div><div class="chapter-body"><p><strong>第一轮：约 20 个家庭的可用性测试。</strong>十个月龄/年龄组各约 2 家，优先发现阶段性问题，不估算人口效果。低月龄验证日志与照护交接，辅食组验证食材确认和餐桌视角，幼儿及学龄前组验证原声、手势和带教片段；需要时比较 S350、手机及成人侧录音。先判断是否听得清、导得出、对得齐、纠错是否省事，多语样本不足时只报探索结果。</p>
+<p><strong>第二轮：约 80 个家庭、4 周的产品试点。</strong>0—6 月、6—12 月、1—2 岁、2—3 岁、3—4 岁、4—5 岁、5—6 岁分别约 10、15、15、10、10、10、10 家。各组比较合适的现有记录方法与自动辅助流程，按家庭随机先后使用或延迟开放功能。婴儿组主要看照护交接与记录负担，辅食组看食物确认，3—6 岁看互动回顾；不能用一个年龄组的成功外推全部年龄。此规模只验证流程与初步留存，不证明发育或营养改善。</p>
+<p>算法测试按家庭与儿童划分训练/测试，避免同一个孩子跨集合。记录儿童语音字词错误、成人/儿童混淆、重叠说话、电视误计、时间戳误差、结论有无证据、无用报告及处理时间。音频质量差时允许退回“只有片段、没有解释”。</p>
+<p>饮食测试增加：食物候选经确认的比例、混合食物误猜、提供与吃下混淆、洒落误计、待确认项是否被错误写成事实、家长每餐纠错时间。基准是家长确认日志和必要的研究观察，不让另一套图像 AI 充当真值。所有事实指标分别报告确认前与确认后结果，避免依赖人工修正却宣传全自动准确率。</p>
+<p>下面为试点前可讨论的内部继续/停止门槛，不是行业标准或已实现性能：</p>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>候选门槛</th>
+<th>未满足时怎么做</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可用活动比例</td>
+<td>至少 80% 的活动形成可回放、可确认的结果</td>
+<td>先改机位、收音和活动引导，不扩大功能</td>
+</tr>
+<tr>
+<td>可核实性</td>
+<td>对展示给用户的事实抽检，至少 95% 有对应证据且表述相符</td>
+<td>停止自动解释，退回片段整理与人工确认</td>
+</tr>
+<tr>
+<td>整理时间</td>
+<td>相比手机/手工对照，家长中位整理时间减少至少 30%</td>
+<td>重做流程，判断硬件增益是否成立</td>
+</tr>
+<tr>
+<td>第 4 周使用</td>
+<td>各组至少 50% 家庭一周有两次有意义使用；婴儿组可为日志交接，其余为餐次或活动确认，并记录是否阅读周报</td>
+<td>分年龄解释，不把一次开 App 算一次有效使用</td>
+</tr>
+<tr>
+<td>数据控制</td>
+<td>家庭能完成停止、删除、选择分享；发生实质性越权泄露立即暂停</td>
+<td>修复权限和数据链，不先扩大营销</td>
+</tr>
+</tbody></table></div>
+<p>报告同时公开分母、退出人数、失败场景与置信区间；不同年龄和语言分组不因样本小而伪装出精确排名。</p>
+</div></section><section class="chapter" id="business"><div class="chapter-head"><span class="chapter-no">10</span><div><span class="eyebrow">BUSINESS & ROADMAP</span><h2>从家庭价值，走向可持续服务</h2><p>产品商业假设与阶段决策，不预报销量</p></div></div><div class="chapter-body"><h3>产品与服务的组合</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>层次</th>
+<th>家庭获得的价值</th>
+<th>商业判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>现有硬件入口</td>
+<td>卧室看护、活动区带声录像，按真实现售能力提供</td>
+<td>不要求家庭为了每个年龄重新购买</td>
+</tr>
+<tr>
+<td>基础成长记录</td>
+<td>家长确认日志、选定片段、简单汇总与导出</td>
+<td>需提供足够免费价值，服务范围待内部确定</td>
+</tr>
+<tr>
+<td>可选分析服务</td>
+<td>更多音视频分析、跨周整理、存储和年龄化报告</td>
+<td>是否付费取决于省时、可靠与持续使用，不是已经发布的订阅权益</td>
+</tr>
+</tbody></table></div>
+<h3>三阶段落地</h3>
+<p><strong>阶段一：黑客松。</strong>完整 0—6 岁记录与报告框架，跑通一餐和一次共读，明确离线输入、人工辅助与未验证部分。</p>
+<p><strong>阶段二：家庭试点。</strong>先约 20 户测试可用性，再按第 09 章分组进行约 80 户、4 周试点，分别验证奶喂养、辅食、幼儿表达与学龄前学习。</p>
+<p><strong>阶段三：产品整合。</strong>在有效性和使用价值成立后，推进设备接入、账号权限、儿童语音适配、内容审阅与服务成本优化；再决定是否需要新硬件或收音配件。是否进入这一阶段由结果决定。</p>
+<h3>推理与存储成本需要按场景核算</h3>
+<p>每天 10 分钟活动，每月约 300 分钟；若每天再录一餐 20 分钟，每月约 900 分钟。每天分析 8 小时则约 14,400 分钟。以上为输入量情景，20 分钟不是建议用餐时长，处理费用也不一定与时长成正比。</p>
+<p>成本拆分为设备/售后、视频存储、音频转写、图像分析、报告生成、内容审阅和客服。食物照片与奶喂养日志不必走完整视频链路；只处理家庭选择的活动，避免将保存录像与全部分析绑定。</p>
+<p><strong>单位服务贡献 = 实际服务收入 − 音视频处理、存储、内容与支持等变动成本。</strong>没有内部成本和用户价格测试，不能给出可信毛利、市场规模或收入预测。</p>
+<h3>最重要的商业验证</h3>
+<p>与“手机拍摄＋现有育儿 App＋同样回顾模板”比较，确认家长是否少做操作、是否愿意持续阅读报告、是否接受真实功能与价格。家庭同意试用不等于愿意付费；孩子年龄跨度长也不等于能留存六年。</p>
+</div></section><section class="chapter" id="trust"><div class="chapter-head"><span class="chapter-no">11</span><div><span class="eyebrow">TRUST BY DESIGN</span><h2>让家庭掌握记录与解释的权利</h2><p>数据控制、专业边界与年龄适配</p></div></div><div class="chapter-body"><h3>采集、分析与分享分别选择</h3>
+<p>新增成长分析只处理家长选择的活动和餐次；摄像头基础监护设置另行说明。亲喂默认无影像，照护日志可以独立使用。共享者只接收必要交接，原始音视频、食物记录、已知过敏与家庭备注不默认对外开放。用于模型训练需单独处理授权。</p>
+<p>设备状态清楚可见，家庭可以关镜头、关麦克风、停止或删除。儿童能表达不愿被记录时，可以立即停止。来访者与其他照护者的告知和许可需按实际使用场景处理。</p>
+<h3>所有解释保留限度</h3>
+<div class="table-wrap" role="region" aria-label="数据表，可横向滚动" tabindex="0"><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>报告应如何表达</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>没有录到动作、没有听清表达</td>
+<td>未获得足够样本，不等同于不会</td>
+</tr>
+<tr>
+<td>系统首次记录</td>
+<td>本系统首次有记录，不等同于人生第一次</td>
+</tr>
+<tr>
+<td>成人示范后完成</td>
+<td>明确帮助条件，不改写成独立掌握</td>
+</tr>
+<tr>
+<td>拍到了食物</td>
+<td>先确认成分与尝试状态，不直接推断营养充足</td>
+</tr>
+<tr>
+<td>一次没有观察到反应</td>
+<td>不据此排除过敏或健康问题</td>
+</tr>
+</tbody></table></div>
+<p>不输出未经验证的发育商、语言年龄、智商、家长教学得分或营养缺乏诊断。一般指导来自 CDC、AAP、ASHA 等可追溯资料，具体健康担忧交由相应专业人员评估。<a class="ref" href="#ref-S1" aria-label="来源 S1">S1</a><a class="ref" href="#ref-S4" aria-label="来源 S4">S4</a><a class="ref" href="#ref-N1" aria-label="来源 N1">N1</a><a class="ref" href="#ref-N7" aria-label="来源 N7">N7</a></p>
+<h3>数据处理与地区适配</h3>
+<p>本地存储不等于本地 AI。若需上传音视频，应在处理前说明目的、位置、保留期限、第三方和删除方式。<a class="ref" href="#ref-H6" aria-label="来源 H6">H6</a> 原型可建议未确认素材 7 天自动删除，家庭自行选择已确认片段保留期限；这是拟议默认值，不是现有 eufy 政策。</p>
+<p>产品按北美家庭使用场景设计；美国儿童隐私规则及加拿大的同意要求需结合实际数据流核查。<a class="ref" href="#ref-R1" aria-label="来源 R1">R1</a><a class="ref" href="#ref-R2" aria-label="来源 R2">R2</a> 不因 App 面向父母就自动视为不涉及儿童数据规则。英语、西班牙语与双语需分别验证，加拿大法语及地区要求另行适配。中国教育与儿保资料可作对照，不包装成全球统一认证。<a class="ref" href="#ref-S7" aria-label="来源 S7">S7</a></p>
+</div></section><section class="chapter" id="pitch"><div class="chapter-head"><span class="chapter-no">12</span><div><span class="eyebrow">DEFENSE SCRIPT</span><h2>八分钟，把产品讲清楚</h2><p>建议讲述顺序与可直接使用的答辩表达</p></div></div><div class="chapter-body"><p>以下按 <strong>8 分钟含约 3 分钟演示</strong> 编排；实际以赛事时限调整。演讲稿描述产品方案，未完成的功能不得在现场改称已实现。</p>
+<h3>00:00—00:45 ｜ 开场：家庭真正需要保存什么</h3>
+<p>我们提出的项目叫 eufy 成长同行。孩子从出生到六岁，家长关心的事情一直在变：最初是喂养和回应，后来是辅食、学说话、自主进食，再后来是讲故事、一起游戏和学习生活技能。摄像头能留下很多画面，但家长还需要自己找片段、补信息、与其他照护者沟通。我们的目标，是把这些分散记录整理成一份有依据、能确认的家庭成长报告。</p>
+<h3>00:45—01:30 ｜ 定位：四条内容主线</h3>
+<p>产品覆盖儿童成长、家长带教、亲子教育和饮食喂养。我们把零到六岁拆成十个阶段：低月龄可以只记喂养，不必拍摄亲喂；辅食阶段连接食物记录与进餐互动；学龄前保留共读、表达和动手过程。每天帮助交接，每周帮助回顾，每月保存可比较的变化。</p>
+<h3>01:30—02:15 ｜ 差异：一条结论如何成立</h3>
+<p>核心单位不是一个自动分数，而是一条能返回依据的观察。比如孩子是在成人示范后完成，还是自主完成；食物是提供过、尝试过，还是家长确认吃下。声音提供原话，画面提供语境，家长补足摄像头不知道的信息。我们希望减少整理负担，同时让错误可以被看见和纠正。</p>
+<h3>02:15—05:15 ｜ 演示：一餐与一次共读</h3>
+<p>按第 08 章的三分钟流程进行。开头明确输入是现场、授权录像还是预制样例；若有人工处理，当场说明。展示一次食材纠错、一次说话人或原句纠错，以及修改后报告如何变化。没有真实音视频时，仅展示本报告中的界面样例，不模拟已跑通系统。</p>
+<h3>05:15—06:00 ｜ 为什么由安克来做</h3>
+<p>S350 已提供带声录像，E21 面向婴儿看护，soundcore Work 有成人录音整理能力。这些是可借鉴的基础，不代表三条产品线已经互通。我们的研发重点是儿童音频、家庭场景、统一事件记录和报告体验。第一步用授权文件验证；价值成立后，再推进正式接入。</p>
+<h3>06:00—06:45 ｜ 与竞品的区别</h3>
+<p>Nanit、CuboAi 和 Owlet 已深耕婴儿看护，Solid Starts 有辅食内容与记录，Huckleberry 有照护日志和 AI 辅助，LENA 有语言环境分析。我们争取的是把真实互动过程与饮食、成长记录连接起来，形成跨年龄的家庭回顾。这个机会存在竞争，必须与手机和现有 App 比较实际增益。</p>
+<h3>06:45—07:30 ｜ 怎么证明它值得继续做</h3>
+<p>我们首先验证是否省时、是否可信、是否愿意持续使用。通过按年龄分组的家庭试点，观察可用样本、纠错时间、报告事实与依据是否一致，以及第四周是否仍有有意义的使用。若食物或声音判断不可靠，就退回片段与人工确认，不用漂亮的摘要掩盖错误。</p>
+<h3>07:30—08:00 ｜ 收束：希望获得的支持</h3>
+<p>我们希望获得设备与接口支持、儿童语言和喂养内容审阅，以及合规的家庭试点资源。项目要交付的价值很具体：把一次喂养、一段对话、一个成长尝试，变成家庭能理解、能纠错、下周仍愿意使用的记录。</p>
+</div></section><section class="chapter" id="questions"><div class="chapter-head"><span class="chapter-no">13</span><div><span class="eyebrow">QUESTIONS & ANSWERS</span><h2>评委可能追问的十二个问题</h2><p>点击展开，可在答辩前逐项演练</p></div></div><div class="chapter-body"><details class="qa"><summary><span>01</span>这是不是普通摄像头加一个大模型？</summary><p>如果只有自动摘要，差异确实很弱。本方案需要把月龄、音画时间戳、成人提示与儿童回应、食物确认和数据覆盖组织成可核实事件，再生成报告。是否形成优势，要看家庭省时和持续使用，不能由技术组合名称证明。</p></details><details class="qa"><summary><span>02</span>为什么不直接用手机？</summary><p>手机是必须比较的基线。固定摄像头可能减少架机和拍摄分心，但也有机位与收音限制。若不能比手机加现有 App 更省事或提供更清楚的反馈，就不应推动新硬件。</p></details><details class="qa"><summary><span>03</span>零到六岁范围是否太大？</summary><p>完整产品范围采用分龄模板；黑客松只验证婴幼儿一餐和学龄前共读两个代表场景。奶喂养用结构化日志即可。后续逐年龄组验证，不能拿两个演示覆盖全部儿童。</p></details><details class="qa"><summary><span>04</span>摄像头能知道孩子吃得够不够吗？</summary><p>不能仅凭画面可靠判断。它可以提食物候选、记录可见尝试，家长确认配料和摄入线索。母乳亲喂时长不转奶量，餐盘变化不直接转摄入，报告不诊断缺营养。</p></details><details class="qa"><summary><span>05</span>儿童说话识别不准怎么办？</summary><p>保留原声和不确定标记，家长可改原句与说话人。电视、重叠语音和双语分别测；低月龄发声不强行转词。识别差时仅给片段，不生成语言能力结论。</p></details><details class="qa"><summary><span>06</span>会不会变成监督长辈的工具？</summary><p>默认反馈围绕一次互动与可继续的活动，不生成照护者排名。家长和照护者共同确认事实，分享必要交接信息，避免以一段画面给某个人整体定性。</p></details><details class="qa"><summary><span>07</span>能代替儿保、语言评估或营养师吗？</summary><p>不能。它是家庭日常记录与交流辅助，既没有临床验证，也不输出诊断。家庭有担忧时，可以自行选择导出真实记录供专业人员参考。</p></details><details class="qa"><summary><span>08</span>soundcore Work 能直接接入 eufy 吗？</summary><p>目前没有证据证明消费服务或内部接口已打通。Work 是能力参照；需验证授权、接口、音轨格式、同步和儿童适配。黑客松先用独立分析原型，不能宣传开箱互联。</p></details><details class="qa"><summary><span>09</span>竞争对手是否已经做了这些？</summary><p>部分已做：成长片段、食物日志、亲子语言分析和育儿报告都有竞争。本方案提出的机会是它们在家庭音视频过程中的连接与低负担体验，不宣称全球首创或无人覆盖。</p></details><details class="qa"><summary><span>10</span>怎样避免记录越多，家长越焦虑？</summary><p>默认只选当前需要的少数场景；报告展示采样范围，不与同龄人排名。一次回顾只保留少量片段和可选建议，不要求每天完成指标。是否增加负担纳入用户试验。</p></details><details class="qa"><summary><span>11</span>怎么赚钱，为什么能长期用？</summary><p>可基于现有设备提供基础记录，再测试可选分析与存储服务。各年龄的任务变化提供持续用途假设，但付费率、六年留存和毛利都尚未证实，需真实价格与成本测试。</p></details><details class="qa"><summary><span>12</span>现在已经完成了什么，接下来缺什么？</summary><p>本次交付完成产品方案、全龄场景、报告视觉样例、演示设计和验证计划。尚未完成设备实测、真实儿童分析系统与家庭试点。下一步需要设备导出/接口、获授权素材、内容审阅和工程实现。</p></details></div></section><section class="chapter" id="sources"><div class="chapter-head"><span class="chapter-no">14</span><div><span class="eyebrow">SOURCE NOTES</span><h2>证据与来源</h2><p>产品事实与一般发展指导的可追溯链接</p></div></div><div class="chapter-body"><div class="source-note"><p>资料核查时间：2026 年 9 月 20—21 日。产品结论来自官网公开资料，不等于本次设备实测；“未证实覆盖”不等于断言竞品没有该功能。官方儿童发展与饮食资料支持内容主题，不为本项目算法准确率背书。</p><p>现售能力、拟开发功能、虚构示例和待验证假设已分别标注。本报告为参赛方案，未进行家庭试验，不含已验证用户数据、效果或收入预测。</p></div><div class="source-list"><div id="ref-S1" class="source-row"><span>S1</span><a href="https://www.cdc.gov/act-early/milestones/3-years.html" target="_blank" rel="noopener noreferrer">CDC：3 岁发展里程碑 ↗</a></div><div id="ref-S2" class="source-row"><span>S2</span><a href="https://www.cdc.gov/act-early/milestones/4-years.html" target="_blank" rel="noopener noreferrer">CDC：4 岁发展里程碑 ↗</a></div><div id="ref-S3" class="source-row"><span>S3</span><a href="https://www.cdc.gov/act-early/milestones/5-years.html" target="_blank" rel="noopener noreferrer">CDC：5 岁发展里程碑 ↗</a></div><div id="ref-S4" class="source-row"><span>S4</span><a href="https://www.asha.org/public/developmental-milestones/communication-milestones-3-to-4-years/" target="_blank" rel="noopener noreferrer">ASHA：3—4 岁沟通发展 ↗</a></div><div id="ref-S5" class="source-row"><span>S5</span><a href="https://www.asha.org/public/developmental-milestones/communication-milestones-4-to-5-years/" target="_blank" rel="noopener noreferrer">ASHA：4—5 岁沟通发展 ↗</a></div><div id="ref-S6" class="source-row"><span>S6</span><a href="https://www.asha.org/public/speech/development/kindergarten/" target="_blank" rel="noopener noreferrer">ASHA：Kindergarten 沟通任务，学年结束口径 ↗</a></div><div id="ref-S7" class="source-row"><span>S7</span><a href="https://www.moe.gov.cn/srcsite/A06/s3327/201210/t20121009_143254.html" target="_blank" rel="noopener noreferrer">教育部：《3—6岁儿童学习与发展指南》发布通知 ↗</a></div><div id="ref-S8" class="source-row"><span>S8</span><a href="https://www.cdc.gov/act-early/milestones/6-months.html" target="_blank" rel="noopener noreferrer">CDC：6 月龄发展观察 ↗</a></div><div id="ref-S9" class="source-row"><span>S9</span><a href="https://www.cdc.gov/act-early/milestones/1-year.html" target="_blank" rel="noopener noreferrer">CDC：12 月龄发展观察 ↗</a></div><div id="ref-S10" class="source-row"><span>S10</span><a href="https://www.cdc.gov/act-early/milestones/18-months.html" target="_blank" rel="noopener noreferrer">CDC：18 月龄发展观察 ↗</a></div><div id="ref-S11" class="source-row"><span>S11</span><a href="https://www.cdc.gov/act-early/milestones/2-years.html" target="_blank" rel="noopener noreferrer">CDC：2 岁发展观察 ↗</a></div><div id="ref-S12" class="source-row"><span>S12</span><a href="https://www.cdc.gov/act-early/milestones/30-months.html" target="_blank" rel="noopener noreferrer">CDC：30 月龄发展观察 ↗</a></div><div id="ref-S13" class="source-row"><span>S13</span><a href="https://www.cdc.gov/act-early/milestones/2-months.html" target="_blank" rel="noopener noreferrer">CDC：2 月龄发展观察 ↗</a></div><div id="ref-N1" class="source-row"><span>N1</span><a href="https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/when-what-and-how-to-introduce-solid-foods.html" target="_blank" rel="noopener noreferrer">CDC：何时及如何开始辅食、准备情况和食物处理 ↗</a></div><div id="ref-N2" class="source-row"><span>N2</span><a href="https://www.healthychildren.org/English/ages-stages/baby/breastfeeding/Pages/Working-Together-Breastfeeding-and-Solid-Foods.aspx" target="_blank" rel="noopener noreferrer">美国儿科学会 HealthyChildren：母乳与辅食、含铁食物 ↗</a></div><div id="ref-N3" class="source-row"><span>N3</span><a href="https://www.cdc.gov/infant-toddler-nutrition/mealtime/signs-your-child-is-hungry-or-full.html" target="_blank" rel="noopener noreferrer">CDC：饥饿与饱足的行为线索、回应式喂养 ↗</a></div><div id="ref-N4" class="source-row"><span>N4</span><a href="https://www.healthychildren.org/English/healthy-living/growing-healthy/Pages/preschool-food-and-feeding.aspx" target="_blank" rel="noopener noreferrer">美国儿科学会 HealthyChildren：学龄前食物与喂养 ↗</a></div><div id="ref-N5" class="source-row"><span>N5</span><a href="https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/foods-and-drinks-to-encourage.html" target="_blank" rel="noopener noreferrer">CDC：婴幼儿可提供的食物与饮品 ↗</a></div><div id="ref-N6" class="source-row"><span>N6</span><a href="https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/foods-and-drinks-to-avoid-or-limit.html" target="_blank" rel="noopener noreferrer">CDC：需要避免或限制的食物与饮品 ↗</a></div><div id="ref-N7" class="source-row"><span>N7</span><a href="https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html" target="_blank" rel="noopener noreferrer">CDC：食物形态、进餐看护与呛噎风险 ↗</a></div><div id="ref-H1" class="source-row"><span>H1</span><a href="https://www.eufy.com/collections/security-cameras-with-audio" target="_blank" rel="noopener noreferrer">eufy：带录音摄像头，明确提及 S350 同步录音 ↗</a></div><div id="ref-H2" class="source-row"><span>H2</span><a href="https://www.eufy.com/products/T8416121" target="_blank" rel="noopener noreferrer">eufy：Indoor Cam S350 产品页 ↗</a></div><div id="ref-H3" class="source-row"><span>H3</span><a href="https://service.eufy.com/article-description/Indoor-Cam-S350-FAQ" target="_blank" rel="noopener noreferrer">eufy：S350 FAQ，录像模式、供电与存储条件 ↗</a></div><div id="ref-H4" class="source-row"><span>H4</span><a href="https://www.eufy.com/products/e8354121" target="_blank" rel="noopener noreferrer">eufy：Baby Monitor E21 美国商品页 ↗</a></div><div id="ref-H5" class="source-row"><span>H5</span><a href="https://www.soundcore.com/products/d3200-soundcore-work-ai-voice-recorder" target="_blank" rel="noopener noreferrer">soundcore Work：产品定位与转写配额 ↗</a></div><div id="ref-H6" class="source-row"><span>H6</span><a href="https://www.soundcore.com/soundcore-ai-note-taker-service-plan" target="_blank" rel="noopener noreferrer">soundcore AI Note Taker：支持设备、转写与数据说明 ↗</a></div><div id="ref-C1" class="source-row"><span>C1</span><a href="https://support.nanit.com/en_us/developmental-milestones-S1u1QhAKxg" target="_blank" rel="noopener noreferrer">Nanit：Developmental Milestones ↗</a></div><div id="ref-C2" class="source-row"><span>C2</span><a href="https://www.nanit.com/products/insights-plan" target="_blank" rel="noopener noreferrer">Nanit：Insights 计划与功能 ↗</a></div><div id="ref-C3" class="source-row"><span>C3</span><a href="https://help.getcubo.com/hc/en-us/categories/38889064064281-CuboAi-Smart-Baby-Monitor-3" target="_blank" rel="noopener noreferrer">CuboAi：Monitor 3 官方功能目录 ↗</a></div><div id="ref-C4" class="source-row"><span>C4</span><a href="https://help.getcubo.com/hc/en-us/articles/39503228100889-CuboAi-Monitor-3-Nighttime-Sleep-Report" target="_blank" rel="noopener noreferrer">CuboAi：夜间睡眠报告与安装要求 ↗</a></div><div id="ref-C5" class="source-row"><span>C5</span><a href="https://help.getcubo.com/hc/en-us/articles/40816487975449-CuboAi-Monitor-3-Growth-Tracking" target="_blank" rel="noopener noreferrer">CuboAi：Growth Tracking 与校准条件 ↗</a></div><div id="ref-C6" class="source-row"><span>C6</span><a href="https://owletcare.com/products/dream-sight" target="_blank" rel="noopener noreferrer">Owlet：Dream Sight 及与 Dream Sock 的产品关系 ↗</a></div><div id="ref-C7" class="source-row"><span>C7</span><a href="https://www.lena.org/frequently-asked-questions/" target="_blank" rel="noopener noreferrer">LENA：当前项目、语言环境、数据保留差异 ↗</a></div><div id="ref-C8" class="source-row"><span>C8</span><a href="https://www.lena.org/about/lena-technology/" target="_blank" rel="noopener noreferrer">LENA：技术、穿戴与早教使用方式 ↗</a></div><div id="ref-C9" class="source-row"><span>C9</span><a href="https://eu.plaud.ai/pages/plaud-notepin" target="_blank" rel="noopener noreferrer">Plaud：NotePin 产品与转写界面 ↗</a></div><div id="ref-C10" class="source-row"><span>C10</span><a href="https://solidstarts.com/app/" target="_blank" rel="noopener noreferrer">Solid Starts：辅食知识、食物日志与导出 ↗</a></div><div id="ref-C11" class="source-row"><span>C11</span><a href="https://huckleberrycare.com/product/tracking" target="_blank" rel="noopener noreferrer">Huckleberry：记录、报告与文字/语音/照片辅助 ↗</a></div><div id="ref-C12" class="source-row"><span>C12</span><a href="https://huckleberrycare.com/blog/berry" target="_blank" rel="noopener noreferrer">Huckleberry：Berry 与历史喂养等记录的关系 ↗</a></div><div id="ref-T1" class="source-row"><span>T1</span><a href="https://arxiv.org/abs/2410.11865" target="_blank" rel="noopener noreferrer">儿童自动语音识别与语言分析的挑战，研究综述/观点论文 ↗</a></div><div id="ref-R1" class="source-row"><span>R1</span><a href="https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data" target="_blank" rel="noopener noreferrer">FTC：儿童隐私规则更新说明 ↗</a></div><div id="ref-R2" class="source-row"><span>R2</span><a href="https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/p_principle/principles/p_consent/" target="_blank" rel="noopener noreferrer">加拿大 OPC：同意与儿童 ↗</a></div></div><p class="fine">背景资料另包括用户提供的《安克eufy与幼儿运动成长监测研究》与《安克eufy摄像头与中国儿保耦合调研》。对外产品判断以以上原始来源及后续实际验证为准。部分官网页面使用官方可检索文本与支持资料交叉核对，尚无账户内功能实测。</p></div></section>
+<footer><div class="footer-statement">让记录服务于陪伴。</div><p>eufy 成长同行 · 0—6 岁家庭成长方案<br>2026 年 9 月 21 日 · 参赛概念报告，非安克官方产品发布</p><a href="#top">返回封面 ↑</a></footer></main>
+<script>
+document.querySelector('#print').addEventListener('click',()=>window.print());
+document.querySelectorAll('[data-report]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-report]').forEach(b=>{const on=b===btn;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});document.querySelectorAll('[data-sample]').forEach(p=>p.hidden=p.dataset.sample!==btn.dataset.report);}));
+const links=[...document.querySelectorAll('nav a')];
+const chapters=[...document.querySelectorAll('.chapter')];let queued=false;
+function updateReading(){const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.progress i').style.width=(max>0?scrollY/max*100:0)+'%';let current='';chapters.forEach(s=>{if(s.getBoundingClientRect().top<=160)current=s.id;});links.forEach(a=>{const on=a.hash==='#'+current;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});queued=false;}
+addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(updateReading);}},{passive:true});updateReading();
+let printClosed=[];addEventListener('beforeprint',()=>{printClosed=[...document.querySelectorAll('details:not([open])')];printClosed.forEach(d=>d.open=true);});addEventListener('afterprint',()=>printClosed.forEach(d=>d.open=false));
+</script></body></html>
