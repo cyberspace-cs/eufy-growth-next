@@ -4,6 +4,7 @@
 #
 #   bash deploy-server/push-all.sh              # 推全部
 #   bash deploy-server/push-all.sh next         # 只推某一个
+#   bash deploy-server/push-all.sh --force next # 历史被重写过时用（--force-with-lease）
 #
 # 每个仓库会：确保有 demo remote → 推当前 HEAD 到远端 main
 # 推送输出里会直接带回来服务器的构建日志。
@@ -16,9 +17,14 @@
 # ============================================================
 set -uo pipefail
 
+# 某些受限环境（容器 / CI）不导出 HOME，这里兜底取 passwd 里的家目录
+if [ -z "${HOME:-}" ]; then HOME="$(getent passwd "$(id -u)" | cut -d: -f6)"; export HOME; fi
+
 SERVER="${EUFY_DEMO_SERVER:-ubuntu@43.143.231.106}"
 REPOS="${EUFY_DEMO_REPOS:-/home/ubuntu/eufy-demo/repos}"
 KEY="${EUFY_DEMO_KEY:-$HOME/.ssh/id_ed25519}"
+KNOWN_HOSTS="${EUFY_DEMO_KNOWN_HOSTS:-$HOME/.ssh/known_hosts}"
+[ -f "$KNOWN_HOSTS" ] || KNOWN_HOSTS=/dev/null
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
 GUESS_ROOT="$(cd "$HERE/../.." && pwd)"          # 本脚本所在仓库的父目录
@@ -26,7 +32,7 @@ NEXT_DIR="${EUFY_NEXT_DIR:-$HERE/..}"
 CN_DIR="${EUFY_CN_DIR:-$GUESS_ROOT/eufy-growth-cn}"
 REACT_DIR="${EUFY_REACT_DIR:-$GUESS_ROOT/eufy-growth}"
 
-export GIT_SSH_COMMAND="ssh -i $KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
+export GIT_SSH_COMMAND="ssh -i $KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=$KNOWN_HOSTS"
 
 declare -a FAILED=()
 
@@ -60,7 +66,12 @@ push_one() {
   echo "  分支 $branch @ $head  $subject"
   [ "$dirty" != "0" ] && echo "  ⚠ 有 $dirty 处未提交改动，本次只推已提交内容"
 
-  if ! git push demo HEAD:main; then
+  if ! git push $PF demo HEAD:main 2>/tmp/eufy-push-err; then
+    if grep -q 'non-fast-forward\|fetch first' /tmp/eufy-push-err; then
+      echo "  ⚠ 远端历史与本地分叉（多为本地 rebase/reset 过）"
+      echo "    确认要以本地为准，就加 --force 再跑一次：bash $0 --force $name"
+    fi
+    sed 's/^/    /' /tmp/eufy-push-err | tail -6
     echo "  ✘ $name 推送失败"
     FAILED+=("$name")
     return 1
@@ -68,7 +79,14 @@ push_one() {
   echo "  ✔ $name 已推送"
 }
 
-targets=("$@")
+targets=()
+PF=""
+for a in "$@"; do
+  case "$a" in
+    -f|--force) PF="--force-with-lease" ;;
+    *) targets+=("$a") ;;
+  esac
+done
 [ "${#targets[@]}" -eq 0 ] && targets=(cn next react)
 
 echo "部署目标 $SERVER$REPOS"
