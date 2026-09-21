@@ -99,6 +99,33 @@ python3 deploy-server/tools/verify-demo.py --base http://127.0.0.1:8111    # 后
 
 ---
 
+## 部署 fail-safe（不变量校验）
+
+`post-receive` 的两道保险，保证「坏提交不会打挂线上」：
+
+1. **调用约定**：函数 `run()` 一律用 `set +e; ( run ) >"$out" 2>&1; rc=$?; set -e`
+   在**子 shell** 里调用。
+   - 早期版本写成 `if out="$(run 2>&1)"; then` —— bash 在条件上下文里整体关闭
+     函数体内的 `set -e`，结果构建失败被无视、残留的旧 dist 被当成新产物同步上线、
+     还打印「✔ 部署成功」。线上 `/eufy-demo/next/` 直接 404。
+   - 只改成裸调 `run >"$out"` 也不够：`run` 内部的 `set -e` 会「泄漏」到调用点，
+     脚本当场退出 → 失败提示和日志一行都打印不出来。必须套子 shell 隔离。
+2. **产物不变量校验**（`verify_artifact`）：上线前先检查 `dist/index.html`——
+   - 必须引用子路径 `base`（根路径 build 直接判死）；
+   - 它引用到的 `assets/*` 必须真实落盘（防 404）。
+   校验不过就退出，线上保持原版本——宁可不发版。
+
+验证这套行为有回归测试，改了 hook 调用约定就跑一遍：
+
+```bash
+bash deploy-server/tools/test-post-receive.sh
+```
+
+三个用例：原始 `if` 写法（假成功+已上线）、半步裸调（失败但不解释）、
+正确子 shell 写法（失败+线上未受影响+有诊断），期望全过。
+
+---
+
 ## 子路径挂载要点
 
 `next` 是唯一有构建步骤的：`vite.config.ts` 读环境变量 `EUFY_BASE` 决定 `base`，

@@ -1,17 +1,50 @@
 #!/usr/bin/env bash
 # ============================================================
 # eufy demo · post-receive 自动部署 hook
-# 由裸仓库触发：把 main 检出到 apps/<name>，构建后同步到 webroot
-# 用同一份脚本服务三个仓库，按仓库名分发。
+# 由裸仓库触发：把 main 检出到 apps/<name>，构建后同步到 webroot。
+# 同一份脚本服务三个仓库，按仓库名分发。
+# ------------------------------------------------------------
+# 设计要点（这些都是踩过的坑，改之前先读一遍）
+#
+#  1) 【最重要】绝不要把函数放在 if / && / || / ! 等「条件上下文」里调用。
+#     bash 在条件上下文中会整体关闭函数体内的 set -e —— 函数里任何一条
+#     命令失败都不会中断，函数最后还是返回最后一条命令的状态。
+#     曾经写成 `if out="$(run 2>&1)"; then`，结果：构建报 TS 错误 →
+#     被无视 → 把仓库里残留的「根路径旧 dist」当成新产物同步上线 →
+#     还打印「✔ 部署成功」。线上 /eufy-demo/next/ 直接 404。
+#
+#  2) 但只改成 `run >"$out" 2>&1; rc=$?` 还不够！run() 内部的 `set -e`
+#     是全局开关，会「泄漏」到调用点：函数里第一条失败命令触发 errexit，
+#     整个脚本当场退出 —— 后面的 rc 判断、失败提示、日志回显全都不会执行，
+#     推的人只会看到一个毫无解释的失败。
+#     正确写法是让 run 跑在子 shell 里（见文件末尾）：
+#         set +e; ( run ) >"$out" 2>&1; rc=$?; set -e
+#     子 shell 的 errexit 泄漏只杀死自己，父 shell 干净，rc 正常拿到。
+#
+#  3) 因此 `run()` 内部每一步都靠 set -e 兜底，不需要逐个 must() 包装。
+#     只有「想自定义报错话术」的地方才用 `|| { echo ...; return 1; }`，
+#     以及需要「失败后回滚」的地方显式写 if。
+#
+#  4) shell 脚本自身的行为有回归测试：tools/test-post-receive.sh
+#     改了调用约定就跑一遍，别凭感觉。
+#
+#  5) 上线前必须做「产物不变量校验」：dist/index.html 得引用子路径 base，
+#     且它引用到的 assets 文件必须真实存在。校验不过就退出，
+#     线上保持原版本 —— 宁可不发版，也不能发一半。
+#
+#  6) 顶层不要写 `[ a = b ] && X=1` 这种裸的 && 语句：条件为假时整个
+#     语句返回非 0，在 set -e 下脚本会直接退出。一律用 if 写。
 # ============================================================
-set -uo pipefail
+set -euo pipefail
 
 # post-receive 的 cwd 就是裸仓库根目录；但 GIT_DIR 在不同 git 版本下
 # 可能是 "." 或绝对路径，统一归一化成绝对路径再取仓库名。
 GITD="$(cd "${GIT_DIR:-.}" && pwd)"
-REPO="$(basename "$GITD" .git)"      # eufy-growth-next / eufy-growth-cn / eufy-growth
-NAME="${REPO#eufy-growth-}"          # next / cn / eufy-growth
-[ "$NAME" = "$REPO" ] && NAME="react" # eufy-growth → react
+REPO="$(basename "$GITD" .git)"        # eufy-growth-next / eufy-growth-cn / eufy-growth
+NAME="${REPO#eufy-growth-}"            # next / cn / eufy-growth
+if [ "$NAME" = "$REPO" ]; then
+  NAME="react"                         # eufy-growth → react
+fi
 
 ROOT="$HOME/eufy-demo"
 APP="$ROOT/apps/$NAME"
@@ -20,57 +53,158 @@ NODE_BIN="$HOME/node22/bin"
 BASE="/eufy-demo/$NAME/"
 URL="https://taoxie.vip$BASE"
 LOG="$ROOT/logs/deploy-$NAME.log"
+OUT="$ROOT/logs/.deploy-$NAME.out"
 
 mkdir -p "$ROOT/logs" "$APP"
 
+# 日志单文件超过 1MiB 就滚一次，避免无限增长
+if [ -f "$LOG" ] && [ "$(stat -c %s "$LOG" 2>/dev/null || echo 0)" -gt 1048576 ]; then
+  mv -f "$LOG" "$LOG.1"
+fi
+
+step() { printf '\n==> %s\n' "$*"; }
+
+# 产物不变量校验：dist 里引用到的东西必须真的存在
+# $1 = 构建产物目录
+verify_artifact() {
+  local dist="$1" f rel refs bad=0
+
+  if [ ! -f "$dist/index.html" ]; then
+    echo "!! 构建产物缺失：$dist/index.html 不存在"
+    return 1
+  fi
+
+  # 1) 入口必须引用子路径 base（根路径 build 直接判死）
+  if ! grep -q -- "$BASE" "$dist/index.html"; then
+    echo "!! $dist/index.html 未引用 base=$BASE"
+    echo "   常见原因：构建失败后残留了「根路径」旧产物（或仓库里提交了本地 build 的 dist）。"
+    echo "   拒绝上线，线上保持原版本。"
+    return 1
+  fi
+
+  # 2) index.html 里引用的所有 assets 必须落盘（幂等地防 404）
+  refs="$(grep -oE '(src|href)="[^"]*/assets/[^"]+"' "$dist/index.html" \
+          | sed -E 's/^(src|href)="//; s/"$//' | sort -u || true)"
+  for f in $refs; do
+    rel="${f#"$BASE"}"
+    rel="${rel#/}"
+    if [ ! -e "$dist/$rel" ]; then
+      echo "!! index.html 引用了不存在的产物：$f"
+      bad=1
+    fi
+  done
+  if [ "$bad" -ne 0 ]; then
+    echo "   拒绝上线，线上保持原版本。"
+    return 1
+  fi
+
+  echo "   ✔ 产物校验通过（base=$BASE，引用 ${refs:-0} 个 assets 全部存在）"
+  return 0
+}
+
+# 给线上打一个「这是哪次提交」的指纹，方便事后对账
+write_stamp() {
+  local sha msg
+  sha="$(git --git-dir="$GITD" rev-parse --short main 2>/dev/null || echo unknown)"
+  msg="$(git --git-dir="$GITD" log -1 --pretty=%s main 2>/dev/null || echo '')"
+  cat > "$WEB/deploy.json" <<EOF
+{
+  "repo": "$REPO",
+  "name": "$NAME",
+  "branch": "main",
+  "commit": "$sha",
+  "subject": $(printf '%s' "$msg" | sed 's/\\/\\\\/g; s/"/\\"/g; s/^/"/; s/$/"/'),
+  "base": "$BASE",
+  "deployed_at": "$(date '+%F %T %z')"
+}
+EOF
+}
+
 run() {
-  set -e
-  echo "[$(date '+%F %T')] push 触发 → $REPO (name=$NAME)"
+  # 走到这里时函数体不在条件上下文中，set -e 是真的生效的。
+  step "push 触发 → $REPO (name=$NAME)"
   git --git-dir="$GITD" --work-tree="$APP" checkout -f main
   cd "$APP"
+  # 清掉上一次失败留下的旧产物备份（正常情况下它们已被消费掉）
+  rm -rf ./.dist.prev.* 2>/dev/null || true
 
   case "$NAME" in
     next)
       export PATH="$NODE_BIN:$PATH"
       export TMPDIR="$APP/.tmp"; mkdir -p "$TMPDIR"
       export MALLOC_ARENA_MAX=1
-      echo "→ npm ci"
+
+      step "npm ci"
       npm ci --no-audit --no-fund --loglevel=error
-      echo "→ 表述纪律校验"
-      node scripts/check-discipline.mjs
-      echo "→ 构建（base=$BASE）"
-      EUFY_BASE="$BASE" NODE_OPTIONS="--max-old-space-size=768" npm run build
-      echo "→ 同步前端到 $WEB"
+
+      if [ -f scripts/check-discipline.mjs ]; then
+        step "表述纪律校验"
+        node scripts/check-discipline.mjs
+      fi
+
+      step "构建（base=$BASE）"
+      # 先移走旧产物：免得构建失败时被后面的校验「误认成有效产物」，
+      # 也避免旧 assets 残留堆积。失败时靠校验兜底，不靠残留 dist。
+      if [ -d dist ]; then mv -f dist ".dist.prev.$$"; fi
+      if ! EUFY_BASE="$BASE" NODE_OPTIONS="--max-old-space-size=768" npm run build; then
+        echo "!! 构建失败，线上保持原版本未受影响"
+        rm -rf dist
+        if [ -d ".dist.prev.$$" ]; then mv -f ".dist.prev.$$" dist; fi
+        return 1
+      fi
+
+      step "上线前产物校验"
+      verify_artifact "$APP/dist"
+
+      step "同步前端到 $WEB"
       mkdir -p "$WEB"
-      rsync -a --delete "$APP/dist/" "$WEB/"
-      echo "→ 同步 dist 给 Node 服务自持"
-      rsync -a --delete "$WEB/" "$APP/dist/"
-      echo "→ 重启 Agent 服务"
+      rsync -a --delete --delay-updates "$APP/dist/" "$WEB/"
+
+      # 让 Node 服务自己也持有一份静态产物（Agent 服务直接读 $APP/dist）
+      rsync -a --delete --delay-updates "$WEB/" "$APP/dist/"
+
+      step "重启 Agent 服务"
       sudo systemctl restart eufy-next.service
+
+      rm -rf ".dist.prev."$$ 2>/dev/null || true
       ;;
+
     cn)
-      echo "→ 纯静态：直接同步到 $WEB"
+      step "纯静态：同步到 $WEB"
       mkdir -p "$WEB"
-      rsync -a --delete --exclude '.git*' --exclude '*.md' --exclude '*.zip' "$APP/" "$WEB/"
+      rsync -a --delete --delay-updates \
+        --exclude '.git*' --exclude '*.md' --exclude '*.zip' \
+        "$APP/" "$WEB/"
       ;;
+
     react)
       export PATH="$NODE_BIN:$PATH"
       export TMPDIR="$APP/.tmp"; mkdir -p "$TMPDIR"
       export MALLOC_ARENA_MAX=1
       if [ -f package-lock.json ]; then
-        echo "→ npm ci"
+        step "npm ci"
         npm ci --no-audit --no-fund --loglevel=error
-        echo "→ 构建（base=./ 相对路径，子路径可直接挂）"
-        NODE_OPTIONS="--max-old-space-size=768" npm run build
-        SRC="$APP/dist"
+        step "构建（相对路径 base，子路径可直接挂）"
+        if [ -d dist ]; then mv -f dist ".dist.prev.$$"; fi
+        if ! npm run build; then
+          echo "!! 构建失败，线上保持原版本未受影响"
+          rm -rf dist
+          if [ -d ".dist.prev.$$" ]; then mv -f ".dist.prev.$$" dist; fi
+          return 1
+        fi
       else
-        echo "→ 无 lockfile，回退使用仓库内已提交的 dist/"
-        SRC="$APP/dist"
+        step "无 lockfile，回退使用仓库内已提交的 dist/"
       fi
-      echo "→ 同步到 $WEB"
+      if [ ! -f "$APP/dist/index.html" ]; then
+        echo "!! 构建产物缺失：dist/index.html 不存在，拒绝上线"
+        return 1
+      fi
+      step "同步到 $WEB"
       mkdir -p "$WEB"
-      rsync -a --delete "$SRC/" "$WEB/"
+      rsync -a --delete --delay-updates "$APP/dist/" "$WEB/"
+      rm -rf ".dist.prev.$$" 2>/dev/null || true
       ;;
+
     *)
       echo "!! 未知仓库 $REPO，跳过" >&2
       return 1
@@ -78,15 +212,32 @@ run() {
   esac
 
   chmod -R a+rX "$WEB"
-  echo "✔ 部署完成：$URL"
+  write_stamp
+  step "部署完成：$URL"
 }
 
-if out="$(run 2>&1)"; then
-  printf '%s\n' "$out" | tee -a "$LOG"
+# ------------------------------------------------------------
+# 调用点：必须 set +e / 子 shell / 显式取 rc，
+# 既不能写进 if 条件里，也不能裸调（见文件头第 1、2 条）
+# ------------------------------------------------------------
+set +e
+( run ) >"$OUT" 2>&1
+rc=$?
+set -e
+
+# hook 的 stdout/stderr 会以 remote: 前缀回显给 push 端。
+# 分两步做：先落盘，再打印。不要写成 `cat | tee` —— 在 pipefail 下
+# tee 出任何问题（比如磁盘满）都会让脚本在打印之前就退出。
+cat "$OUT" >>"$LOG" 2>/dev/null || true
+cat "$OUT"
+
+if [ "$rc" -eq 0 ]; then
+  echo ""
   echo "✔ $NAME 部署成功"
   echo "   → $URL"
 else
-  printf '%s\n' "$out" | tee -a "$LOG"
-  echo "✘ $NAME 部署失败，日志：$LOG"
+  echo ""
+  echo "✘ $NAME 部署失败（线上保持原版本未受影响）"
+  echo "   日志：$LOG"
   exit 1
 fi
