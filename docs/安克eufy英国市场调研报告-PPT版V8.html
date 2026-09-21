@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>安克 eufy 英国市场调研报告 · PPT 版 V8（可编辑）</title>
+<style>
+/* ============ 幻灯片壳：16:9 · 模板语法 = 两份研究 PDF 的纸面语言 ============ */
+:root{
+  --ink:#111; --ink2:#3d3d3d; --mut:#6b6b6b; --line:#d8d8d4; --paper:#fbfbf9;
+  --accent:#1f7a5c; --accent-weak:#e6f2ec;
+  --amber:#a8760d; --amber-weak:#fbf1dd;
+  --red:#b23b3b; --red-weak:#fbe9e7;
+  --blue:#087c9a; --blue-weak:#e3f1f6;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#1a1a18;font-family:var(--sans);color:var(--ink);overflow:hidden}
+.slide{position:absolute;inset:0;display:none;background:var(--paper);padding:4.5vh 5vw 3vh;flex-direction:column;overflow:hidden}
+.slide.on{display:flex}
+.ph{font-family:var(--mono);font-size:clamp(9px,1.1vh,12px);letter-spacing:2px;color:var(--mut);margin-bottom:2.6vh;flex:0 0 auto}
+.pf{font-family:var(--mono);font-size:clamp(8px,1vh,11px);color:var(--mut);border-top:1px solid var(--line);margin-top:auto;padding-top:1vh;display:flex;justify-content:space-between;flex:0 0 auto}
+.body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+/* 封面 */
+.cover-title{font-size:clamp(28px,6vh,54px);line-height:1.25;font-weight:700;letter-spacing:-1px;margin:1vh 0}
+.cover-meta{font-size:clamp(11px,1.7vh,15px);color:var(--ink2)}
+.cover-disc{font-size:clamp(10px,1.5vh,13px);color:var(--mut);margin:1.2vh 0 2vh;max-width:80ch}
+.judge{border-left:3px solid var(--accent);background:var(--accent-weak);padding:1.6vh 2vw;font-size:clamp(11px,1.8vh,15px)}
+.judge b{display:block;font-size:clamp(9px,1.2vh,11px);letter-spacing:2px;color:var(--accent);margin-bottom:.6vh;font-family:var(--mono)}
+/* 章节标题 */
+h2.sec{font-size:clamp(18px,3.6vh,30px);font-weight:700;margin:0 0 1.8vh;letter-spacing:-.3px}
+h2.sec .no{font-family:var(--mono);font-weight:400;color:var(--mut);margin-right:.8vw}
+.lead-p{font-size:clamp(11px,1.9vh,15px);margin:0 0 1.6vh;max-width:90ch}
+/* 表格：强制关键边界列 */
+table{width:100%;border-collapse:collapse;font-size:clamp(9px,1.55vh,13px);margin:0 0 1.4vh}
+th{background:#efefeb;text-align:left;padding:.9vh 1vw;font-size:clamp(8px,1.35vh,11px);font-weight:700;border-bottom:2px solid var(--ink);vertical-align:top}
+td{padding:.8vh 1vw;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55}
+td.bnd{color:var(--ink2);background:#f6f6f2}
+.k{font-family:var(--mono);font-size:clamp(8px,1.2vh,10px);color:var(--blue);white-space:nowrap}
+.cf{font-family:var(--mono);font-size:clamp(8px,1.15vh,10px);padding:0 .6vw;border:1px solid currentColor;white-space:nowrap;margin-left:.4vw}
+.cf.strong{color:var(--accent)} .cf.directional{color:var(--blue)} .cf.emerging{color:var(--amber)} .cf.pending{color:var(--red)}
+/* 发现四元组 */
+.finding{border:1px solid var(--line);border-left:3px solid var(--ink);padding:1.2vh 1.4vw;margin:0 0 1.2vh;background:#fff}
+.finding h4{margin:0 0 .5vh;font-size:clamp(11px,1.8vh,14px)}
+.finding .q{font-size:clamp(9px,1.5vh,12px);color:var(--ink2);margin:.2vh 0}
+.finding .q b{font-family:var(--mono);font-size:clamp(8px,1.1vh,9px);letter-spacing:1px;color:var(--mut);margin-right:.5vw}
+/* 修订标记 */
+.rev{font-family:var(--mono);font-size:clamp(8px,1.15vh,10px);font-weight:700;padding:0 .6vw;border-radius:2px;margin:0 .25vw;white-space:nowrap}
+.rev-new{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7}
+.rev-mod{background:var(--amber-weak);color:var(--amber);border:1px solid #ecd9ae}
+.rev-wd{background:var(--red-weak);color:var(--red);border:1px solid #eccac7;text-decoration:line-through}
+.rev-todo{background:#fff;color:var(--red);border:1px dashed var(--red)}
+body:not(.show-rev) .rev{display:none}
+/* 人工确认标记（用户要求：标清楚） */
+.hc{font-family:var(--mono);font-size:clamp(8px,1.2vh,10px);font-weight:700;color:var(--red);border:1.5px solid var(--red);background:var(--red-weak);padding:0 .7vw;white-space:nowrap;margin-left:.5vw}
+.note-close{font-size:clamp(9px,1.5vh,12px);color:var(--ink2);background:#f4f4f0;border-left:3px solid var(--mut);padding:1vh 1.2vw;margin:1vh 0 0}
+/* 导航 */
+#nav{position:fixed;bottom:1.4vh;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:900}
+#nav button{width:9px;height:9px;border:none;background:#555;cursor:pointer;padding:0}
+#nav button.on{background:var(--accent)}
+#pgno{position:fixed;bottom:1.2vh;right:2vw;font:600 11px var(--mono);color:#888;z-index:900}
+#hint{position:fixed;bottom:1.2vh;left:2vw;font:400 10px var(--mono);color:#666;z-index:900}
+#revToggle{position:fixed;top:1.2vh;right:2vw;z-index:1200;font:600 11px var(--sans);padding:6px 12px;border:1px solid #888;background:var(--paper);cursor:pointer}
+@media print{body{overflow:visible}.slide{position:relative;display:flex!important;page-break-after:always;height:100vh}#nav,#pgno,#hint,#revToggle{display:none}}
+</style>
+</head>
+<body class="show-rev">
+<button id="revToggle">修订标记：开</button>
+
+<!-- 01 封面 -->
+<section class="slide on">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <div class="cover-title">安克 eufy 摄像头<br>与英国儿保的功能交集</div>
+    <div class="cover-meta">研究日期 2026-09-21 ｜ 英格兰 0–6 岁，验证窗口 24–30 月龄 ｜ V8 模板版 · 可编辑</div>
+    <div class="cover-disc">产品以赛道发放设备 T8171/T8214 与英国官网当前货架为准；不代表英国上市、库存或认证情况。模板语法对齐《幼儿运动成长监测研究》《中国儿保耦合调研》；叠加 24 条回执裁决与修订标记。</div>
+    <div class="judge"><b>核心判断</b>英格兰 2–2½ 岁 review 是全国唯一的结构化家长问卷窗口（ASQ-3 完成 93.9%），但触达仅 80.8%、health visitor 十年减员约 45%——「评估之间的证据真空」真实存在。eufy 室外机足以承载「过线/未过线」的画面事实与家长三态确认；不足以承载任何发育评估宣称。</div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>01 / 13</span></div>
+</section>
+
+<!-- 02 封面 Q&A -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <table>
+      <thead><tr><th style="width:24%">问题</th><th>本次调研结论</th></tr></thead>
+      <tbody>
+        <tr><td>制度窗口在哪？</td><td>5 次法定 review；24–30 月龄用 ASQ-3 五领域三态计分，2024/25 完成 93.9%、触达 80.8%。 <span class="k">[G01][G02]</span></td></tr>
+        <tr><td>主数字是哪个？</td><td>81.4% 五域全达标（2024/25 官方）为主数字；79.2% 历史行；86.2% 仅研究对照；92.8% 为 2022/23 单域旧值。 <span class="k">[G01][R01]</span> <span class="rev rev-mod">修改</span></td></tr>
+        <tr><td>落差证据够吗？</td><td>倡导-执行落差三阶段成立：180 分钟指南 vs 23% 达标、2026.3 屏幕指南 vs 98% 两岁前用屏、共读 68%/52%。 <span class="k">[G04][R02][R04]</span></td></tr>
+        <tr><td>视觉最有差异的交集？</td><td>花园跳跃「过线/未过线」画面事实 + 家长三态确认 + Red Book 补充件。此为产品机会判断，非识别准确率结论。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>02 / 13</span></div>
+</section>
+
+<!-- 03 执行摘要 BLUF -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">0</span>执行摘要：五条建议（BLUF）</h2>
+    <div class="finding"><h4>R1 · 以「24–30 月龄 · 花园家庭 · 已装室外机」单漏斗首发英格兰 <span class="cf strong">strong</span></h4>
+      <div class="q"><b>证据</b>触达 80.8% / 完成 93.9% / ASQ-3 无英国常模且纸质 <span class="k">[G02][U01]</span>　<b>行动</b>demo 与物料只讲该漏斗 <span class="rev rev-new">新增</span></div></div>
+    <div class="finding"><h4>R2 · 消费级定位，宣称层全禁筛查/诊断词族 <span class="cf strong">strong</span></h4>
+      <div class="q"><b>证据</b>MHRA 分界取决于预期用途 <span class="k">[U01]</span>　<b>行动</b>构建期禁词校验覆盖全部物料</div></div>
+    <div class="finding"><h4>R3 · 主数字统一 81.4%，四口径分层 <span class="cf strong">strong</span></h4>
+      <div class="q"><b>证据</b>2024/25 官方 <span class="k">[G01]</span>；86.2% 主数字 <span class="rev rev-wd">撤回</span>　<b>行动</b>单域 2024/25 提数前标 pending <span class="hc">人工确认</span></div></div>
+    <div class="finding"><h4>R4 · 五交集第五列用已授权截图补齐 <span class="cf emerging">emerging</span></h4>
+      <div class="q"><b>证据</b>Mumsnet 焦虑帖 + eufy 误报差评 <span class="k">[E01][E02]</span>　<b>行动</b>截图去标识归档 <span class="hc">人工确认</span></div></div>
+    <div class="finding"><h4>R5 · 付费意愿止步假设 <span class="cf pending">待验证</span></h4>
+      <div class="q"><b>证据</b>零一手证据　<b>行动</b>3–5 地方当局 × 500–2000 组 × 12 个月试点先行</div></div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>03 / 13</span></div>
+</section>
+
+<!-- 04 制度事实 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">1</span>制度事实：HCP 与锚点窗口</h2>
+    <table>
+      <thead><tr><th>节点 / 年龄</th><th>内容与量表</th><th>触达率 2024/25</th><th class="bnd" style="width:28%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>New birth · 1–14 天</td><td>新生儿访视</td><td>85.2%</td><td class="bnd">UTLA 低至 9.7%</td></tr>
+        <tr><td>6–8 周 / 9–15 月</td><td>6–8 week / 12 month review</td><td>85.1% / 88.4%</td><td class="bnd">12 month 口径为 15 月龄内</td></tr>
+        <tr><td><b>24–30 月</b></td><td><b>2-to-2½ review · ASQ-3</b></td><td><b>80.8%</b>；内完成 <b>93.9%</b></td><td class="bnd">近两成没收到 review；非首版用户</td></tr>
+        <tr><td>苏格兰 / 威尔士 / 北爱</td><td>11 次 / Flying Start / 9 次</td><td>另轨</td><td class="bnd">只进对照表，不进产品承诺 <span class="rev rev-new">新增</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note-close">「27 月龄」全文撤回：官方原文 24–30 个月；ASQ-3 的 27 月龄只是问卷内部分档。 <span class="rev rev-wd">撤回</span></div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>04 / 13</span></div>
+</section>
+
+<!-- 05 主数字 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">2</span>主数字与口径：防混用表</h2>
+    <table>
+      <thead><tr><th>数字</th><th>口径</th><th>年份 / 来源</th><th>用法</th><th class="bnd" style="width:24%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td><b>81.4%</b></td><td>五域全达标</td><td>2024/25 官方 <span class="k">[G01]</span> <span class="cf strong">strong</span></td><td><b>主数字</b></td><td class="bnd">2023/24=80.4%</td></tr>
+        <tr><td>79.2%</td><td>同上</td><td>2022/23 官方</td><td>历史行</td><td class="bnd">不与 81.4 同句</td></tr>
+        <tr><td>86.2%</td><td>子样本反向</td><td>Jung 2024 <span class="k">[R01]</span> <span class="cf directional">directional</span></td><td>仅对照</td><td class="bnd">cutoff 基于美国常模</td></tr>
+        <tr><td>92.8%</td><td>gross motor 单域</td><td>2022/23 Fingertips <span class="cf pending">待验证</span></td><td>单域引用</td><td class="bnd">2024/25 单域未提取 <span class="hc">人工确认</span></td></tr>
+      </tbody>
+    </table>
+    <div class="finding"><h4>发现 2.1 · 灰色地带约 1/5：至少一域未达预期 <span class="cf strong">strong</span></h4>
+      <div class="q"><b>量化</b>18.6%（2024/25）；UTLA 极差 97.5 vs 60.3 <span class="k">[G01]</span>　<b>质性</b>轻-中度仅中等敏感，家庭要「有依据的安心」　<b>行动</b>叙事用 1/5 不用 13.8% <span class="rev rev-mod">修改</span></div></div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>05 / 13</span></div>
+</section>
+
+<!-- 06 落差 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">3</span>倡导-执行落差：英国版「膳食宝塔」</h2>
+    <table>
+      <thead><tr><th>阶段</th><th>官方倡导</th><th>执行现实</th><th>来源</th><th class="bnd" style="width:24%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>活动量</td><td>5 岁以下 ≥180 分钟/日</td><td>Bristol 419 名仅 <b>23%</b> 达标</td><td><span class="k">[R02]</span> <span class="cf directional">directional</span></td><td class="bnd">单城自报，不外推</td></tr>
+        <tr><td>屏幕</td><td>2026.3 指南：2 岁以下零屏幕</td><td><b>98%</b> 两岁前已每日用屏</td><td><span class="k">[G04]</span> <span class="cf strong">strong</span></td><td class="bnd">98% 为背景陈述</td></tr>
+        <tr><td>共读</td><td>每日共读倡导</td><td>68% vs 52%；男孩更低</td><td><span class="k">[R04]</span> <span class="cf directional">directional</span></td><td class="bnd">低收入样本研究</td></tr>
+        <tr><td>户外对照</td><td>花园文化国家</td><td>34% 工作日不户外（7–12 岁）</td><td><span class="k">[R03]</span> <span class="cf directional">directional</span></td><td class="bnd">年龄外推已标注</td></tr>
+      </tbody>
+    </table>
+    <div class="note-close">跨国同构：美国 AAP 3–5 岁 ≥3 小时、2–5 岁屏幕 ≤1 小时——三国同一种落差结构。产品不制造新要求，让已经发生的努力被看见。</div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>06 / 13</span></div>
+</section>
+
+<!-- 07 五交集 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">4</span>五交集矩阵：比赛公式逐格填实证</h2>
+    <table>
+      <thead><tr><th style="width:20%">交集条件</th><th>本方案答案</th><th>证据状态</th><th class="bnd" style="width:24%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>摄像头功能可实现</td><td>T8171 取流/2K/360°/本地存储；T8214 前庭</td><td><span class="k">[P01][P02]</span> <span class="cf strong">strong</span></td><td class="bnd">「检测有人」≠ 识别动作</td></tr>
+        <tr><td>顺应安防赛道</td><td>真机取流、现场能跑、6 分钟</td><td>赛题材料转述</td><td class="bnd">红线原文复核未完 <span class="hc">人工确认</span></td></tr>
+        <tr><td>符合儿保政策</td><td>对齐 ASQ-3 结构；Red Book 补充件</td><td><span class="k">[G02][U01]</span> <span class="cf strong">strong</span></td><td class="bnd">不引题面原文</td></tr>
+        <tr><td>符合文化习惯</td><td>花园游戏 + 庆祝&gt;监视 + 会话制</td><td><span class="k">[E01][R03]</span> <span class="cf emerging">emerging</span></td><td class="bnd">叙事稍偏即成「监控」</td></tr>
+        <tr><td>社区/电商证据</td><td>焦虑帖 + 误报/电池差评</td><td><span class="k">[E01][E02]</span> <span class="cf emerging">emerging</span></td><td class="bnd">截图归档中，授权已得 <span class="hc">人工确认</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>07 / 13</span></div>
+</section>
+
+<!-- 08 漏斗 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">5</span>市场漏斗：算到能背书为止</h2>
+    <table>
+      <thead><tr><th>层</th><th>定义</th><th>量级</th><th>算法与来源</th><th class="bnd" style="width:24%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>TAM</td><td>0–6 在册</td><td>≈390–400 万</td><td>ONS 567,708 ×7 <span class="k">[G03]</span></td><td class="bnd">各档 ±5%</td></tr>
+        <tr><td>锚点队列</td><td>24–30 月窗口/年</td><td>≈28 万</td><td>×6/12 <span class="k">[G03]</span></td><td class="bnd">5.5 万未触达 <span class="k">[G02]</span></td></tr>
+        <tr><td>SAM</td><td>∩花园∩摄像头</td><td>6–9 万/年</td><td>花园九成 × 渗透 25–35%</td><td class="bnd">两系数 D 级 <span class="hc">人工确认</span></td></tr>
+        <tr><td>SOM</td><td>试点 12 个月</td><td>500–2,000 组</td><td>3–5 地方当局</td><td class="bnd">与 R5 同口径</td></tr>
+      </tbody>
+    </table>
+    <div class="note-close">付费意愿零证据：商业推断止步假设；试点验证前不写转化与定价。 <span class="cf pending">待验证</span> <span class="rev rev-new">新增</span></div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>08 / 13</span></div>
+</section>
+
+<!-- 09 宣称边界 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">6</span>宣称边界：纸面靠近，宣称不靠近</h2>
+    <table>
+      <thead><tr><th style="width:26%">维度</th><th>做法</th><th class="bnd" style="width:34%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>术语与结构</td><td>对齐 ASQ-3 五领域与三态计分</td><td class="bnd">只对齐结构，不引题面 <span class="k">[U01]</span></td></tr>
+        <tr><td>宣称层</td><td>screening/assessment/diagnosis 全禁 + 构建期校验</td><td class="bnd">MHRA 分界看宣称不看功能</td></tr>
+        <tr><td>数字口径</td><td>过线=画面事实；Δ+5.5cm=观测差值</td><td class="bnd">不出现「应跳 X cm」；7.5cm 仅题面阈值 <span class="rev rev-mod">修改</span></td></tr>
+        <tr><td>标定</td><td>胶带线 5cm 主标定</td><td class="bnd">门框不共面，<span style="text-decoration:line-through">不作 cm 换算</span> <span class="rev rev-wd">撤回</span></td></tr>
+        <tr><td>MHRA</td><td>P0→P1→P2→P3</td><td class="bnd">默认停 P0</td></tr>
+      </tbody>
+    </table>
+    <div class="finding"><h4>发现 6.1 · 官方替产品背书了「数字反馈层」位置 <span class="cf strong">strong</span></h4>
+      <div class="q"><b>证据</b>ASQ-3 无英国常模 / 纸质 / 美数字版 GDPR 不可用 / 接入需付费 <span class="k">[U01]</span>　<b>行动</b>物料统一「Red Book 补充件」</div></div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>09 / 13</span></div>
+</section>
+
+<!-- 10 实现与标定 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">7</span>摄像头 Agent 与测量口径</h2>
+    <p class="lead-p">五层管道（采集→信号→判定→证据→表述）mock 端到端已验证；判定永远不经 LLM。</p>
+    <table>
+      <thead><tr><th>规格</th><th>值</th><th>实测/来源</th><th class="bnd" style="width:30%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>主标定物</td><td>胶带线 5cm</td><td>已知物体同平面</td><td class="bnd">机位/地面变化即失效，只存视频</td></tr>
+        <tr><td>观测差值</td><td>Δ+5.5cm</td><td>同孩子同任务</td><td class="bnd">个体记录非阈值</td></tr>
+        <tr><td>清晰度下限</td><td>clarity&lt;0.7 降级</td><td>0.93/0.91/0.77</td><td class="bnd">降级附注需家长确认</td></tr>
+        <tr><td>单摄下界</td><td>≈38.9%</td><td>v4 核查</td><td class="bnd">不吹全自动</td></tr>
+        <tr><td>真机验收</td><td>取流/帧/音轨/时间戳</td><td>清单已列</td><td class="bnd">未过不产生真机宣称 <span class="hc">人工确认</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>10 / 13</span></div>
+</section>
+
+<!-- 11 风险台账 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">8</span>八项人工确认：不假装完成 <span class="hc">人工确认清单</span></h2>
+    <table>
+      <thead><tr><th>#</th><th>待确认项</th><th>缓解动作</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Fingertips 2024/25 单域值</td><td>三层写法；赛前提数 gid 1938133223</td><td class="bnd">提数前用 92.8% 标年份</td></tr>
+        <tr><td>2</td><td>差评截图 6 张归档</td><td>人工截图去标识入 _inputs/</td><td class="bnd">授权已得 M21</td></tr>
+        <tr><td>3</td><td>付费意愿</td><td>试点设计先行</td><td class="bnd">不写转化定价</td></tr>
+        <tr><td>4</td><td>M22 红线原文复核</td><td>导出/截图授权后比对</td><td class="bnd">当前全转述</td></tr>
+        <tr><td>5–6</td><td>EHS 花园链接 / iHV 一手表</td><td>补一手链接升级 D→C</td><td class="bnd">现标新闻层</td></tr>
+        <tr><td>7–8</td><td>真机 SDK 验收 / 演示截图 masking</td><td>现场清单 / 发布前检查</td><td class="bnd">儿童与邻舍一律遮罩</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>11 / 13</span></div>
+</section>
+
+<!-- 12 研究证据说明 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">9</span>能做 ≠ 已经能可靠卖</h2>
+    <table>
+      <thead><tr><th style="width:30%">原始证据</th><th style="width:32%">有价值的结果</th><th>对产品的限制</th></tr></thead>
+      <tbody>
+        <tr><td>触达 80.8% / 完成 93.9% <span class="k">[G02]</span></td><td>问卷窗口真实且高完成</td><td>只能做补充件</td></tr>
+        <tr><td>ASQ-3 无常模/纸质 <span class="k">[U01]</span></td><td>官方背书数字反馈层</td><td>不引题面不宣称常模</td></tr>
+        <tr><td>81.4% 五域 <span class="k">[G01]</span></td><td>灰色地带 1/5 可背书</td><td>单域旧值标年份</td></tr>
+        <tr><td>Bristol 23% / Exeter 34% <span class="k">[R02][R03]</span></td><td>落差有量化锚</td><td>只作结构证据</td></tr>
+        <tr><td>HV 5,575 <span class="k">[N01][N02]</span></td><td>供给收缩支撑叙事</td><td>D 级待补一手</td></tr>
+        <tr><td>焦虑帖 + 误报差评 <span class="k">[E01][E02]</span></td><td>需求痛点双向可验证</td><td>截图归档中</td></tr>
+      </tbody>
+    </table>
+    <p class="lead-p" style="margin-top:auto"><b>收束：</b>能证明位置存在、窗口真实、落差可量化、红线清楚；不能证明付费、真机可靠、单域最新。前者够立项，后者够诚实。</p>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>12 / 13</span></div>
+</section>
+
+<!-- 13 来源与修订 -->
+<section class="slide">
+  <div class="ph">ANKER EUFY / 英国市场调研 · PPT 版</div>
+  <div class="body">
+    <h2 class="sec"><span class="no">附</span>来源分组与修订对照</h2>
+    <table>
+      <thead><tr><th style="width:16%">组</th><th>键与条目</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+      <tbody>
+        <tr><td>官方统计 G</td><td>[G01] 2024/25 统计评论 · [G02] HV delivery metrics · [G03] ONS 出生 · [G04] 2026.3 屏幕指南</td><td class="bnd">优先于新闻转述</td></tr>
+        <tr><td>官方委托 U</td><td>[U01] DHSC→UCL ASQ-3 评估</td><td class="bnd">制度论据</td></tr>
+        <tr><td>学术 R</td><td>[R01] Jung IJPDS 2024 · [R02] Bristol · [R03] Exeter · [R04] BookTrust</td><td class="bnd">标样本与年份</td></tr>
+        <tr><td>新闻 N / 社区 E</td><td>[N01] UCL 2026-03 · [N02] 5,575 · [E01] Mumsnet · [E02] Woot/Amazon</td><td class="bnd">补一手前不升级</td></tr>
+        <tr><td>产品 P</td><td>[P01] T8171 · [P02] T8214</td><td class="bnd">官方声明非实机结论</td></tr>
+      </tbody>
+    </table>
+    <div class="note-close">修订：v5 回执执行 → v6 漏斗+台账 → v8 模板版（三列分列/证据键/边界列/BLUF/四元组）+ 可编辑 runtime。撤回项：7.5cm 临床真值、27 月龄锚点、86.2% 主数字、门框 cm 换算。 <span class="rev rev-wd">撤回</span> <span class="rev rev-new">新增</span></div>
+  </div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>13 / 13</span></div>
+</section>
+
+<div id="nav"></div>
+<div id="pgno">01 / 13</div>
+<div id="hint">← → 翻页 · E 编辑 · Ctrl+S 保存 · 悬停左上角出控制</div>
+
+<script>
+/* 翻页 */
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var nav = document.getElementById('nav'), pgno = document.getElementById('pgno'), cur = 0;
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.onclick = function(){ go(i); };
+    nav.appendChild(b);
+  });
+  function go(i){
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function(s, j){ s.classList.toggle('on', j === cur); });
+    Array.prototype.forEach.call(nav.children, function(b, j){ b.classList.toggle('on', j === cur); });
+    pgno.textContent = String(cur + 1).padStart(2, '0') + ' / ' + slides.length;
+  }
+  document.addEventListener('keydown', function(e){
+    if (document.activeElement && document.activeElement.isContentEditable) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End') go(slides.length - 1);
+  });
+  var wheelLock = 0;
+  document.addEventListener('wheel', function(e){
+    if (document.body.classList.contains('edit-mode')) return;
+    var now = Date.now();
+    if (now - wheelLock < 500) return;
+    wheelLock = now;
+    go(cur + (e.deltaY > 0 ? 1 : -1));
+  }, { passive: true });
+  go(0);
+})();
+/* 修订标记开关 */
+document.getElementById('revToggle').addEventListener('click', function(){
+  var on = document.body.classList.toggle('show-rev');
+  this.textContent = '修订标记：' + (on ? '开' : '关');
+});
+</script>
+<script>
+/* =====================================================================
+ * Editable Deck Runtime · 注入 guizang 瑞士风 deck
+ * 契约：原生版式锁定； authored 文本走 data-edit-slot（contenteditable）；
+ * 主要卡片块在编辑模式成为 [data-slide-object]，可拖移（transform 偏移）；
+ * Pages 侧栏：缩略图 / 拖拽排序 / 复制 / 删除 / +New Page；
+ * 历史栈 undo/redo；Ctrl+S 保存草稿；Export HTML 单文件导出；Laser/Fullscreen。
+ * ===================================================================== */
+(function () {
+  'use strict';
+  const DECK = document.querySelectorAll('section.slide');
+  const SLOT_SEL = 'h1,h2,h3,h4,p,li,span.t-meta,span.t-cat,.lead,.num-mega,.bar-num,.lbl,.yr,.multi,.desc,.brief-main,.brief-note,.ledger-lbl,.k-num,.body-sm,.stmt-anchor,.force-num,.big-num,.cell-num,.bar-lbl';
+  const OBJ_SEL = '.finding,.judge,.note-close,table';
+
+  /* ---------- 状态 ---------- */
+  let editMode = false;
+  const history = []; let hPtr = -1;
+  function pushHist(rec) { history.splice(hPtr + 1); history.push(rec); hPtr = history.length - 1; if (history.length > 200) { history.shift(); hPtr--; } }
+
+  /* ---------- slot 标记 ---------- */
+  let slotSeq = 0;
+  DECK.forEach((slide, si) => {
+    slide.querySelectorAll(SLOT_SEL).forEach((el) => {
+      if (el.closest('[data-edit-slot]')) return;
+      el.setAttribute('data-edit-slot', 's' + (slotSeq++));
+      el.setAttribute('data-slot-label', (slide.dataset.slideId || 'p' + si) + '/' + (el.tagName.toLowerCase()));
+    });
+    slide.querySelectorAll(OBJ_SEL).forEach((el, oi) => {
+      el.setAttribute('data-slide-object', '1');
+      el.setAttribute('data-oid', (slide.dataset.slideId || 'p' + si) + '-o' + oi);
+    });
+  });
+
+  /* ---------- UI chrome ---------- */
+  const css = document.createElement('style');
+  css.textContent = `
+  body.edit-mode [data-edit-slot]{outline:1px dashed rgba(197,232,3,.0);cursor:text}
+  body.edit-mode [data-edit-slot]:hover{outline:1px dashed var(--accent);background:rgba(197,232,3,.08)}
+  body.edit-mode [data-edit-slot]:focus{outline:2px solid var(--accent);background:rgba(197,232,3,.12)}
+  body.edit-mode [data-slide-object]{cursor:grab;position:relative}
+  body.edit-mode [data-slide-object]:hover::after{content:'⠿';position:absolute;top:2px;right:4px;font-size:12px;color:var(--accent);pointer-events:none}
+  #ed-cluster,#pv-cluster{position:fixed;top:10px;left:10px;z-index:999;display:flex;gap:6px;opacity:0;pointer-events:none;transition:opacity .2s}
+  #pv-cluster{left:auto;right:10px}
+  body:hover #ed-cluster,body:hover #pv-cluster{opacity:1;pointer-events:auto}
+  #ed-cluster button,#pv-cluster button{font:600 12px/1 var(--sans);padding:7px 12px;border:1px solid var(--grey-2);background:var(--paper);color:var(--ink);cursor:pointer}
+  #ed-cluster button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-on)}
+  #ed-cluster button:disabled{opacity:.4;cursor:not-allowed}
+  #pages-panel{position:fixed;top:0;right:0;bottom:0;width:230px;background:var(--paper);border-left:1px solid var(--grey-2);z-index:998;overflow-y:auto;padding:14px;display:none}
+  body.pages-open #pages-panel{display:block}
+  .pg-row{display:flex;gap:8px;align-items:center;padding:6px;border:1px solid transparent;margin-bottom:6px;cursor:pointer}
+  .pg-row.cur{border-color:var(--accent)}
+  .pg-row .thumb{width:96px;height:54px;border:1px solid var(--grey-2);overflow:hidden;position:relative;flex:0 0 96px;background:#fff}
+  .pg-row .thumb > div{transform-origin:top left;position:absolute;top:0;left:0}
+  .pg-row .no{font:600 11px var(--mono);color:var(--grey-3)}
+  .pg-row .ops{margin-left:auto;display:flex;gap:4px}
+  .pg-row .ops button{font:600 10px var(--sans);padding:3px 6px;border:1px solid var(--grey-2);background:#fff;cursor:pointer}
+  .pg-row.drag-over{border-top:2px solid var(--accent)}
+  #rte-bar{position:fixed;z-index:1000;display:none;gap:4px;background:var(--ink);padding:5px;border-radius:3px}
+  #rte-bar button{font:600 11px var(--sans);color:#fff;background:none;border:none;padding:4px 8px;cursor:pointer}
+  #rte-bar button:hover{background:var(--accent);color:var(--accent-on)}
+  #laser-dot{position:fixed;width:10px;height:10px;border-radius:50%;background:#ff2d2d;box-shadow:0 0 8px #ff2d2d;z-index:2000;display:none;pointer-events:none}
+  body.laser-on #laser-dot{display:block}
+  `;
+  document.head.appendChild(css);
+
+  const cluster = document.createElement('div');
+  cluster.id = 'ed-cluster';
+  cluster.innerHTML = '<button id="btnEdit">Edit</button><button id="btnPages">Pages</button><button id="btnAdd">+Add</button><button id="btnUndo" disabled>Undo</button><button id="btnRedo" disabled>Redo</button><button id="btnSave">Save</button><button id="btnDone" style="display:none">Done</button>';
+  const pv = document.createElement('div');
+  pv.id = 'pv-cluster';
+  pv.innerHTML = '<button id="btnLaser">Laser</button><button id="btnFull">Fullscreen</button>';
+  const panel = document.createElement('div'); panel.id = 'pages-panel';
+  const rte = document.createElement('div'); rte.id = 'rte-bar';
+  rte.innerHTML = '<button data-cmd="bold">B</button><button data-cmd="italic">I</button><button data-size="0.85">A-</button><button data-size="1.15">A+</button>';
+  const laser = document.createElement('div'); laser.id = 'laser-dot';
+  document.body.append(cluster, pv, panel, rte, laser);
+
+  /* ---------- 编辑模式 ---------- */
+  const btnEdit = document.getElementById('btnEdit'), btnDone = document.getElementById('btnDone');
+  function setEdit(on) {
+    editMode = on;
+    document.body.classList.toggle('edit-mode', on);
+    btnEdit.classList.toggle('on', on);
+    btnDone.style.display = on ? '' : 'none';
+    document.querySelectorAll('[data-edit-slot]').forEach((el) => { el.contentEditable = on ? 'true' : 'false'; });
+    if (!on) { rte.style.display = 'none'; document.body.classList.remove('laser-on'); }
+    renderPages();
+  }
+  btnEdit.onclick = () => setEdit(true);
+  btnDone.onclick = () => setEdit(false);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (document.activeElement && document.activeElement.isContentEditable) { document.activeElement.blur(); return; }
+      if (editMode) setEdit(false);
+      document.body.classList.remove('laser-on');
+      return;
+    }
+    if ((e.key === 'e' || e.key === 'E') && !editMode && !(document.activeElement && document.activeElement.isContentEditable)) { setEdit(true); e.stopPropagation(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); saveDraft(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z' && editMode) { e.preventDefault(); e.shiftKey ? redo() : undo(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y' && editMode) { e.preventDefault(); redo(); }
+  }, true);
+
+  /* ---------- slot 编辑 + 历史 ---------- */
+  document.addEventListener('focusin', (e) => {
+    const el = e.target.closest && e.target.closest('[data-edit-slot]');
+    if (!el || !editMode) return;
+    el.dataset.prevHtml = el.innerHTML;
+    const r = el.getBoundingClientRect();
+    rte.style.display = 'flex';
+    rte.style.left = Math.min(r.left, innerWidth - 180) + 'px';
+    rte.style.top = Math.max(6, r.top - 38) + 'px';
+  });
+  document.addEventListener('focusout', (e) => {
+    const el = e.target.closest && e.target.closest('[data-edit-slot]');
+    if (!el || el.dataset.prevHtml == null) return;
+    if (el.innerHTML !== el.dataset.prevHtml) pushHist({ t: 'slot', el, prev: el.dataset.prevHtml, next: el.innerHTML });
+    rte.style.display = 'none'; syncHistBtns();
+  });
+  rte.addEventListener('mousedown', (e) => e.preventDefault());
+  rte.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const sel = document.getSelection();
+    const el = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement).closest('[data-edit-slot]');
+    if (!el) return;
+    if (b.dataset.cmd) document.execCommand(b.dataset.cmd);
+    if (b.dataset.size) {
+      const cur = parseFloat(el.dataset.scale || '1');
+      el.dataset.scale = (cur * parseFloat(b.dataset.size)).toFixed(2);
+      el.style.fontSize = 'calc(1em * ' + el.dataset.scale + ')';
+    }
+  });
+
+  /* ---------- 对象拖移 ---------- */
+  let drag = null;
+  document.addEventListener('mousedown', (e) => {
+    if (!editMode) return;
+    const obj = e.target.closest && e.target.closest('[data-slide-object]');
+    if (!obj || e.target.closest('[data-edit-slot]')) return;
+    const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(obj.style.transform || '');
+    drag = { el: obj, sx: e.clientX, sy: e.clientY, ox: m ? +m[1] : 0, oy: m ? +m[2] : 0, moved: false };
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', (e) => {
+    if (document.body.classList.contains('laser-on')) { laser.style.left = (e.clientX - 5) + 'px'; laser.style.top = (e.clientY - 5) + 'px'; }
+    if (!drag) return;
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+    drag.el.style.transform = 'translate(' + (drag.ox + dx) + 'px,' + (drag.oy + dy) + 'px)';
+  });
+  document.addEventListener('mouseup', () => {
+    if (drag && drag.moved) pushHist({ t: 'move', el: drag.el, prev: 'translate(' + drag.ox + 'px,' + drag.oy + 'px)', next: drag.el.style.transform });
+    drag = null; syncHistBtns();
+  });
+
+  /* ---------- undo / redo ---------- */
+  function applyRec(rec, rev) {
+    if (rec.t === 'slot') rec.el.innerHTML = rev ? rec.prev : rec.next;
+    if (rec.t === 'move') rec.el.style.transform = rev ? rec.prev : rec.next;
+    if (rec.t === 'order') { rec.parent.insertBefore(rec.moved, rev ? rec.ref : rec.refNext); }
+    if (rec.t === 'del') { if (rev) rec.parent.insertBefore(rec.el, rec.ref); else rec.el.remove(); }
+    if (rec.t === 'add') { if (rev) rec.el.remove(); else rec.parent.insertBefore(rec.el, rec.ref); }
+    renderPages();
+  }
+  function undo() { if (hPtr < 0) return; applyRec(history[hPtr], true); hPtr--; syncHistBtns(); }
+  function redo() { if (hPtr >= history.length - 1) return; hPtr++; applyRec(history[hPtr], false); syncHistBtns(); }
+  function syncHistBtns() { document.getElementById('btnUndo').disabled = hPtr < 0; document.getElementById('btnRedo').disabled = hPtr >= history.length - 1; }
+  document.getElementById('btnUndo').onclick = undo;
+  document.getElementById('btnRedo').onclick = redo;
+
+  /* ---------- Pages 侧栏 ---------- */
+  const btnPages = document.getElementById('btnPages');
+  btnPages.onclick = () => document.body.classList.toggle('pages-open');
+  function slides() { return Array.from(document.querySelectorAll('section.slide')); }
+  function renderPages() {
+    panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b style="font:600 12px var(--mono)">PAGES</b><button id="btnNew" style="font:600 11px var(--sans);padding:4px 8px;border:1px solid var(--grey-2);background:#fff;cursor:pointer">+New Page</button></div>';
+    slides().forEach((s, i) => {
+      const row = document.createElement('div');
+      row.className = 'pg-row' + (i === cur() ? ' cur' : '');
+      row.draggable = true;
+      row.dataset.idx = i;
+      const thumb = document.createElement('div'); thumb.className = 'thumb';
+      const clone = s.cloneNode(true);
+      clone.style.cssText = 'width:1600px;height:900px;transform:scale(0.06);pointer-events:none;position:absolute;top:0;left:0';
+      clone.querySelectorAll('[data-anim]').forEach((a) => { a.style.opacity = 1; a.style.transform = 'none'; });
+      const wrap = document.createElement('div'); wrap.appendChild(clone); thumb.appendChild(wrap);
+      row.appendChild(thumb);
+      const no = document.createElement('span'); no.className = 'no'; no.textContent = String(i + 1).padStart(2, '0'); row.appendChild(no);
+      const ops = document.createElement('span'); ops.className = 'ops';
+      ops.innerHTML = '<button data-op="copy">Copy</button><button data-op="del">Del</button>';
+      row.appendChild(ops);
+      row.onclick = (e) => {
+        const op = e.target.dataset && e.target.dataset.op;
+        if (op === 'copy') { const c = s.cloneNode(true); c.dataset.slideId = (s.dataset.slideId || 'p') + '-c' + Date.now(); s.parentNode.insertBefore(c, s.nextSibling); pushHist({ t: 'add', el: c, parent: s.parentNode, ref: s.nextSibling }); renderPages(); return; }
+        if (op === 'del') { if (slides().length <= 1) return; pushHist({ t: 'del', el: s, parent: s.parentNode, ref: s.nextSibling }); s.remove(); renderPages(); return; }
+        go(i);
+      };
+      row.ondragover = (e) => { e.preventDefault(); row.classList.add('drag-over'); };
+      row.ondragleave = () => row.classList.remove('drag-over');
+      row.ondrop = (e) => {
+        e.preventDefault(); row.classList.remove('drag-over');
+        const from = +e.dataTransfer.getData('text/plain');
+        if (from === i) return;
+        const list = slides(); const moved = list[from]; const parent = moved.parentNode;
+        const ref = list[i]; const refNext = ref.nextSibling;
+        parent.insertBefore(moved, from < i ? ref.nextSibling : ref);
+        pushHist({ t: 'order', parent, moved, ref, refNext });
+        renderPages();
+      };
+      row.ondragstart = (e) => e.dataTransfer.setData('text/plain', String(i));
+      panel.appendChild(row);
+    });
+    document.getElementById('btnNew').onclick = () => {
+      const src = slides()[cur()];
+      const c = src.cloneNode(true);
+      c.dataset.slideId = 'new-' + Date.now();
+      c.querySelectorAll('[data-edit-slot]').forEach((el) => { if (!el.closest('.chrome-min')) el.textContent = ''; });
+      src.parentNode.insertBefore(c, src.nextSibling);
+      pushHist({ t: 'add', el: c, parent: src.parentNode, ref: src.nextSibling });
+      renderPages();
+    };
+  }
+
+  /* ---------- 导航（复用模板翻页：模拟键盘） ---------- */
+  function cur() {
+    const act = document.querySelector('section.slide.active, section.slide.is-active, section.slide[data-active="true"]');
+    return act ? slides().indexOf(act) : 0;
+  }
+  function go(i) {
+    const n = slides().length;
+    const k = i - cur();
+    for (let j = 0; j < Math.abs(k); j++) {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: k > 0 ? 'ArrowRight' : 'ArrowLeft', bubbles: true }));
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: k > 0 ? 'ArrowRight' : 'ArrowLeft', bubbles: true }));
+    }
+    renderPages();
+  }
+
+  /* ---------- 保存 / 导出 ---------- */
+  function serialize() {
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('#ed-cluster,#pv-cluster,#pages-panel,#rte-bar,#laser-dot').forEach((n) => n.remove());
+    clone.querySelector('body').classList.remove('edit-mode', 'pages-open', 'laser-on');
+    clone.querySelectorAll('[data-edit-slot]').forEach((el) => { el.removeAttribute('contenteditable'); el.removeAttribute('data-prev-html'); });
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+  function saveDraft() {
+    try { localStorage.setItem('uk-v7-deck-draft', serialize()); } catch (e) {}
+    const blob = new Blob([serialize()], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '英国市场调研报告-V7-可编辑-已保存.html';
+    a.click();
+  }
+  document.getElementById('btnSave').onclick = saveDraft;
+  document.getElementById('btnAdd').onclick = () => {
+    if (!editMode) setEdit(true);
+    const s = slides()[cur()];
+    const layer = s.querySelector('.canvas-card') || s;
+    const el = document.createElement('div');
+    el.setAttribute('data-edit-slot', 's' + (slotSeq++));
+    el.setAttribute('data-slide-object', '1');
+    el.setAttribute('data-oid', 'add-' + Date.now());
+    el.contentEditable = 'true';
+    el.style.cssText = 'position:absolute;top:40%;left:10%;font:400 18px var(--sans),var(--sans-zh);color:var(--text-primary);background:var(--paper);padding:8px 12px;border:1px solid var(--accent);max-width:40%';
+    el.textContent = '新文本 · 点击编辑';
+    layer.appendChild(el);
+    pushHist({ t: 'add', el, parent: layer, ref: null });
+    syncHistBtns();
+  };
+
+  /* ---------- Laser / Fullscreen ---------- */
+  document.getElementById('btnLaser').onclick = () => document.body.classList.toggle('laser-on');
+  document.getElementById('btnFull').onclick = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  };
+
+  renderPages(); syncHistBtns();
+  console.info('[editable-deck] E=编辑 · Ctrl+S=保存 · Pages=侧栏 · 悬停左上角出控制');
+})();
+
+</script>
+</body>
+</html>
