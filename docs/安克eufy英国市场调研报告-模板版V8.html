@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>安克 eufy 英国市场调研报告 · 模板版 V8</title>
+<style>
+/* ============ 模板语法：对齐两份研究 PDF 的纸面语言 ============ */
+:root{
+  --ink:#111; --ink2:#3d3d3d; --mut:#6b6b6b; --line:#d8d8d4; --paper:#fbfbf9;
+  --accent:#1f7a5c; --accent-weak:#e6f2ec;
+  --amber:#a8760d; --amber-weak:#fbf1dd;
+  --red:#b23b3b; --red-weak:#fbe9e7;
+  --blue:#087c9a; --blue-weak:#e3f1f6;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e8e8e4;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85}
+.page{max-width:900px;margin:0 auto 26px;background:var(--paper);padding:52px 60px 34px;box-shadow:0 2px 14px rgba(0,0,0,.10);position:relative}
+@media(max-width:760px){.page{padding:30px 20px 24px;margin-bottom:14px}}
+/* 页眉页脚（模板签名） */
+.ph{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--mut);margin-bottom:34px}
+.pf{font-family:var(--mono);font-size:10.5px;color:var(--mut);border-top:1px solid var(--line);margin-top:40px;padding-top:8px;display:flex;justify-content:space-between}
+/* 封面 */
+.cover-title{font-size:40px;line-height:1.3;font-weight:700;letter-spacing:-1px;margin:6px 0 10px}
+.cover-meta{font-size:13px;color:var(--ink2);margin:2px 0}
+.cover-disc{font-size:12.5px;color:var(--mut);margin:10px 0 26px}
+.judge{border-left:3px solid var(--accent);background:var(--accent-weak);padding:14px 18px;margin:18px 0;font-size:14.5px}
+.judge b{display:block;font-size:12px;letter-spacing:2px;color:var(--accent);margin-bottom:6px;font-family:var(--mono)}
+/* 章节 */
+h2.sec{font-size:21px;font-weight:700;margin:8px 0 14px;letter-spacing:-.3px}
+h2.sec .no{font-family:var(--mono);font-weight:400;color:var(--mut);margin-right:10px}
+h3.sub{font-size:16px;font-weight:700;margin:22px 0 8px}
+p{margin:0 0 12px}
+.lead-p{font-size:15px}
+/* 表格：强制带「关键边界」列 */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0 16px}
+th{background:#efefeb;text-align:left;padding:9px 12px;font-size:12px;font-weight:700;border-bottom:2px solid var(--ink);vertical-align:top}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
+td.bnd{color:var(--ink2);background:#f6f6f2}
+/* 证据键 */
+.k{font-family:var(--mono);font-size:10.5px;color:var(--blue);white-space:nowrap}
+/* 置信度三档（web 纠偏） */
+.cf{font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:2px;border:1px solid currentColor;white-space:nowrap;margin-left:6px}
+.cf.strong{color:var(--accent)} .cf.directional{color:var(--blue)} .cf.emerging{color:var(--amber)} .cf.pending{color:var(--red)}
+/* 发现四元组（web 纠偏） */
+.finding{border:1px solid var(--line);border-left:3px solid var(--ink);padding:12px 16px;margin:12px 0;background:#fff}
+.finding h4{margin:0 0 6px;font-size:14.5px}
+.finding .q{font-size:12.5px;color:var(--ink2);margin:2px 0}
+.finding .q b{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--mut);margin-right:6px}
+/* 修订标记（用户要求） */
+.rev{font-family:var(--mono);font-size:10px;font-weight:700;padding:1px 7px;border-radius:2px;margin:0 3px;vertical-align:1px;white-space:nowrap}
+.rev-new{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7}
+.rev-mod{background:var(--amber-weak);color:var(--amber);border:1px solid #ecd9ae}
+.rev-wd{background:var(--red-weak);color:var(--red);border:1px solid #eccac7;text-decoration:line-through}
+.rev-todo{background:#fff;color:var(--red);border:1px dashed var(--red)}
+body:not(.show-rev) .rev{display:none}
+#revToggle{position:fixed;top:12px;right:12px;z-index:1200;font:600 12px var(--sans);padding:8px 14px;border:1px solid var(--ink);background:var(--paper);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+/* 来源页 */
+.src-group{font-size:14px;font-weight:700;margin:20px 0 8px;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.src-row{font-size:12.5px;margin:6px 0;line-height:1.6}
+.src-row .u{display:block;color:var(--mut);font-family:var(--mono);font-size:11px}
+.note-close{font-size:12.5px;color:var(--ink2);background:#f4f4f0;border-left:3px solid var(--mut);padding:10px 14px;margin:14px 0}
+@media print{body{background:#fff}.page{box-shadow:none;margin:0;max-width:none;page-break-after:always}#revToggle{display:none}}
+</style>
+</head>
+<body class="show-rev">
+<button id="revToggle">修订标记：开</button>
+
+<!-- ================= 封面 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <div class="cover-title">安克 eufy 摄像头<br>与英国儿保的功能交集</div>
+  <div class="cover-meta">研究日期 2026-09-21 ｜ 英格兰 0–6 岁，验证窗口 24–30 月龄 ｜ V8 模板版</div>
+  <div class="cover-disc">产品以赛道发放设备 T8171/T8214 与英国官网当前货架为准；不代表英国上市、库存或认证情况。本版严格按《幼儿运动成长监测研究》《中国儿保耦合调研》模板语法重写，叠加 24 条回执裁决与修订标记。</div>
+  <div class="judge"><b>核心判断</b>英格兰 2–2½ 岁 review 是全国唯一的结构化家长问卷窗口（ASQ-3 完成 93.9%），但触达仅 80.8%、health visitor 十年减员约 45%——「评估之间的证据真空」真实存在。eufy 室外机的取流、2K、360° 与本地存储能力，足以承载「过线/未过线」的画面事实与家长三态确认；不足以承载任何发育评估宣称。</div>
+  <table>
+    <thead><tr><th style="width:26%">问题</th><th>本次调研结论</th></tr></thead>
+    <tbody>
+      <tr><td>制度窗口在哪？</td><td>5 次法定 review；24–30 月龄用 ASQ-3 五领域三态计分，2024/25 完成 93.9%、触达 80.8%。 <span class="k">[G01][G02]</span></td></tr>
+      <tr><td>主数字是哪个？</td><td>81.4% 五域全达标（2024/25 官方）为主数字；79.2% 为历史行；86.2% 仅研究对照；92.8% 为 2022/23 单域旧值。 <span class="k">[G01][R01]</span> <span class="rev rev-mod">修改</span></td></tr>
+      <tr><td>落差证据够吗？</td><td>倡导-执行落差三阶段成立：180 分钟指南 vs 23% 达标、2026.3 屏幕指南 vs 98% 两岁前用屏、共读 68%/52%。 <span class="k">[G04][R02][R04]</span></td></tr>
+      <tr><td>视觉最有差异的交集？</td><td>花园跳跃「过线/未过线」画面事实 + 家长三态确认 + Red Book 补充件。此为产品机会判断，非识别准确率结论。</td></tr>
+    </tbody>
+  </table>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>封面</span></div>
+</div>
+
+<!-- ================= 0 执行摘要 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">0</span>执行摘要：五条建议（BLUF）</h2>
+  <div class="finding"><h4>R1 · 以「24–30 月龄 · 花园家庭 · 已装室外机」单漏斗首发英格兰 <span class="cf strong">strong</span></h4>
+    <div class="q"><b>证据</b>触达 80.8% / 完成 93.9% / ASQ-3 无英国常模且为纸质版 <span class="k">[G02][U01]</span></div>
+    <div class="q"><b>含义</b>窗口唯一、接收人明确、数字反馈层官方背书空缺</div>
+    <div class="q"><b>建议行动</b>demo 与物料只讲该漏斗；苏格兰/威尔士/北爱只进对照表 <span class="rev rev-new">新增</span></div></div>
+  <div class="finding"><h4>R2 · 消费级定位，宣称层全禁筛查/诊断词族 <span class="cf strong">strong</span></h4>
+    <div class="q"><b>证据</b>MHRA 分界取决于预期用途；赛题红线同条 <span class="k">[U01]</span></div>
+    <div class="q"><b>含义</b>纸面对齐 ASQ-3 结构，宣称不靠近临床；MHRA 四阶段默认停 P0</div>
+    <div class="q"><b>建议行动</b>构建期禁词校验覆盖全部物料 <span class="rev rev-keep" style="background:#eceff1;color:#455a64;border:1px solid #cfd8dc">沿用</span></div></div>
+  <div class="finding"><h4>R3 · 主数字统一 81.4%，四口径分层展示 <span class="cf strong">strong</span></h4>
+    <div class="q"><b>证据</b>2024/25 官方统计评论 <span class="k">[G01]</span>；旧稿 86.2% 主数字撤回 <span class="rev rev-wd">撤回</span></div>
+    <div class="q"><b>建议行动</b>任何物料不得混用口径；单域 2024/25 值提数前标 pending <span class="rev rev-todo">待验证</span></div></div>
+  <div class="finding"><h4>R4 · 五交集第五列用已授权截图补齐 <span class="cf emerging">emerging</span></h4>
+    <div class="q"><b>证据</b>Mumsnet 焦虑帖与 eufy 误报差评存在但无截图归档 <span class="k">[E01][E02]</span></div>
+    <div class="q"><b>建议行动</b>人工浏览器截图去标识后入 _inputs/，登记 URL+日期 <span class="rev rev-todo">待验证</span></div></div>
+  <div class="finding"><h4>R5 · 付费意愿止步假设，试点验证前不写转化与定价 <span class="cf pending">待验证</span></h4>
+    <div class="q"><b>证据</b>零一手证据</div>
+    <div class="q"><b>建议行动</b>3–5 个地方当局 × 500–2000 组 × 12 个月试点设计先行</div></div>
+  <div class="note-close">置信度图例：strong=官方统计/官方委托；directional=学术研究（标样本与年份）；emerging=新闻层/社区电商（交叉核证）；pending=槽位已建待补。升级路径：pending→emerging 需两家交叉；emerging→directional 需同行评审或官方数据集。</div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>1</span></div>
+</div>
+
+<!-- ================= 1 制度事实 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">1</span>制度事实：Healthy Child Programme 与锚点窗口</h2>
+  <p class="lead-p">英格兰 0–5 岁儿保由 health visitor 执行、记录于 Red Book；法定 review 五次，学龄段另轨。24–30 月龄的 2-to-2½ year review 是唯一全国统一使用 ASQ-3 的节点。 <span class="k">[G02]</span> 下列触达率为 2024/25 官方口径。 <span class="k">[G02]</span></p>
+  <table>
+    <thead><tr><th>节点 / 年龄</th><th>内容与量表</th><th>触达率 2024/25</th><th class="bnd" style="width:30%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>Antenatal · 孕 28 周起</td><td>产前访视</td><td>—</td><td class="bnd">无公开完成率口径，不引用</td></tr>
+      <tr><td>New birth · 1–14 天</td><td>新生儿访视</td><td>85.2%（14 天内）</td><td class="bnd">地区 82.1–90.8%，UTLA 低至 9.7%</td></tr>
+      <tr><td>6–8 周</td><td>6–8 week review</td><td>85.1%</td><td class="bnd">UTLA 13.9–98.8%，地方差异极大</td></tr>
+      <tr><td>9–15 月</td><td>12 month review</td><td>88.4%（15 月龄内）</td><td class="bnd">口径为「15 月龄内」，非 12 月龄当月</td></tr>
+      <tr><td><b>24–30 月</b></td><td><b>2-to-2½ review · ASQ-3 五领域</b></td><td><b>80.8%</b>；review 内 ASQ-3 完成 <b>93.9%</b></td><td class="bnd">近两成孩子连 review 都没收到；他们不是首版用户</td></tr>
+      <tr><td>学龄段</td><td>school entry / Year 6/8/10</td><td>另轨</td><td class="bnd">超出 0–6 范围，只作档案延续叙事</td></tr>
+    </tbody>
+  </table>
+  <p>四地区对照：苏格兰核心访视约 11 次（MICHP，含 27–30 月与 3 岁 school readiness），中间层缺口小、不作首发；威尔士走 Flying Start 本土程序；北爱约 9 次。三地只进对照表，不进产品承诺。 <span class="rev rev-new">新增</span></p>
+  <div class="note-close">「27 月龄」表述全文撤回：官方原文为 24–30 个月（the 2-to-2½-year review），UCL/DHSC 报告通篇同口径。 <span class="rev rev-wd">撤回</span> ASQ-3 的 27 月龄只是问卷内部分档，不是制度节点。</div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>2</span></div>
+</div>
+
+<!-- ================= 2 主数字 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">2</span>主数字与口径：一张表防止混用</h2>
+  <p class="lead-p">同一份报告里放多个「达标率」会自相矛盾。下列四数分属不同口径与年份，用法固定，不许互换。 <span class="rev rev-mod">修改</span></p>
+  <table>
+    <thead><tr><th>数字</th><th>口径</th><th>年份 / 来源</th><th>用法</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td><b>81.4%</b></td><td>五领域全部达到预期</td><td>2024/25 · 官方统计评论 <span class="k">[G01]</span> <span class="cf strong">strong</span></td><td><b>主数字</b></td><td class="bnd">2023/24 为 80.4%；近五年趋势稳定</td></tr>
+      <tr><td>79.2%</td><td>同上</td><td>2022/23 · 官方 <span class="k">[G01]</span></td><td>历史对照行</td><td class="bnd">不得与 81.4 同句出现</td></tr>
+      <tr><td>86.2%</td><td>低于转介线比例的反向（13.8% below cutoff）</td><td>2018/19–2020/21 · 64 LAs 子样本 · Jung et al. IJPDS 2024 <span class="k">[R01]</span> <span class="cf directional">directional</span></td><td>仅研究对照</td><td class="bnd">另一数据集/口径/年份； cutoff 基于美国常模</td></tr>
+      <tr><td>92.8%</td><td>gross motor 单领域达标</td><td>2022/23 · Fingertips <span class="k">[G01]</span> <span class="cf pending">待验证</span></td><td>单域引用</td><td class="bnd">2024/25 单域值未提取；官方评论仅定性「各域上升」 <span class="rev rev-todo">待验证</span></td></tr>
+    </tbody>
+  </table>
+  <div class="finding"><h4>发现 2.1 · 灰色地带规模可背书：约 1/5 孩子至少一域未达预期 <span class="cf strong">strong</span></h4>
+    <div class="q"><b>量化</b>100−81.4=18.6%（2024/25）；地区极差 Y&H 85.6% vs WM 78.0%，UTLA 97.5% vs 60.3% <span class="k">[G01]</span></div>
+    <div class="q"><b>质性</b>ASQ-3 对轻-中度迟缓仅中等敏感——「有点担心但没被标记」的家庭要的是有依据的安心</div>
+    <div class="q"><b>建议行动</b>叙事用「1/5」而非「13.8%」，避免与撤回口径混淆 <span class="rev rev-mod">修改</span></div></div>
+  <div class="finding"><h4>发现 2.2 · 供给侧收缩：HV 在岗 5,575 人，十年 −45% <span class="cf emerging">emerging</span></h4>
+    <div class="q"><b>量化</b>5,575（2026-01）；峰值约 10,200；UCL 2026-03 口径「五年 −1/5」；部分 caseload &gt;1,000 家庭，英格兰无安全上限 <span class="k">[N01][N02]</span></div>
+    <div class="q"><b>质性</b>不占人手的观察助手从 nice-to-have 变刚需</div>
+    <div class="q"><b>建议行动</b>正式稿前补 iHV / NHS Digital 一手表，升级至 directional <span class="rev rev-todo">待验证</span></div></div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>3</span></div>
+</div>
+
+<!-- ================= 3 落差 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">3</span>倡导-执行落差：英国版「膳食宝塔」三段论证</h2>
+  <p class="lead-p">类比不是段子，是结构：政策把标准定清楚 → 家庭行为达不到（非不认同，缺反馈回路）→ 中间层即产品位置。下列三阶段各有量化锚。 <span class="rev rev-mod">修改</span></p>
+  <table>
+    <thead><tr><th>阶段</th><th>官方倡导</th><th>执行现实</th><th>来源</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>① 活动量</td><td>NHS：5 岁以下每日 ≥180 分钟；3–4 岁含 60 分钟中高强度</td><td>Bristol 419 名 2–4 岁仅 <b>23%</b> 达标</td><td><span class="k">[R02]</span> <span class="cf directional">directional</span></td><td class="bnd">单一城市、家长自报；不外推全国</td></tr>
+      <tr><td>② 屏幕</td><td>2026-03-27 政府首份指南：2 岁以下零屏幕、2–5 岁 ≤1 小时、用餐就寝无屏 <span class="k">[G04]</span></td><td>约 <b>98%</b> 儿童两岁前已每日用屏；1/4 家长承认管不住</td><td><span class="k">[G04]</span> <span class="cf strong">strong</span></td><td class="bnd">98% 出自指南背景陈述，独立数据集待补</td></tr>
+      <tr><td>③ 共读</td><td>BookTrust/NHS 倡导每日共读</td><td>每日共读 68%（家长爱阅读）vs 52%（不爱）；男孩更低</td><td><span class="k">[R04]</span> <span class="cf directional">directional</span></td><td class="bnd">样本为低收入背景家庭研究，非全国随机</td></tr>
+      <tr><td>对照 · 户外</td><td>花园文化国家</td><td>34% 工作日完全不户外、20% 周末不户外（7–12 岁）</td><td><span class="k">[R03]</span> <span class="cf directional">directional</span></td><td class="bnd">年龄外推已标注局限；0–6 趋势仅作旁证</td></tr>
+    </tbody>
+  </table>
+  <p>跨国同构（M07③）：美国 AAP 对 3–5 岁要求每日 ≥3 小时活动、2–5 岁屏幕 ≤1 小时——三国三种制度，同一种落差结构。产品不制造新要求，让已经发生的努力被看见。</p>
+  <div class="note-close">文化气质约束：英国育儿文化反量化，但制度用量化问卷、HV 会因「不会双脚跳」定期回电。产品气质必须是「轻松的花园亲子游戏 + 安心确认」，庆祝 &gt; 监视。 <span class="k">[E01]</span></div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>4</span></div>
+</div>
+
+<!-- ================= 4 五交集 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">4</span>五交集矩阵：比赛公式逐格填实证</h2>
+  <table>
+    <thead><tr><th style="width:22%">交集条件</th><th>本方案答案</th><th>证据状态</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>摄像头功能可实现</td><td>T8171 取流 / 2K / 360° / 本地存储；T8214 前庭第二场景</td><td><span class="k">[P01][P02]</span> <span class="cf strong">strong</span></td><td class="bnd">「检测到有人移动」≠ 识别动作判断发展</td></tr>
+      <tr><td>顺应安防赛道要求</td><td>真机现场取流、作品现场能跑、6 分钟说清</td><td>赛题材料（转述，不引原文）</td><td class="bnd">M22 红线原文复核未完成 <span class="rev rev-todo">待验证</span></td></tr>
+      <tr><td>符合当地儿保政策</td><td>对齐 ASQ-3 领域与三态计分；Red Book 补充件定位</td><td><span class="k">[G02][U01]</span> <span class="cf strong">strong</span></td><td class="bnd">只对齐结构，不引题面原文（商业授权）</td></tr>
+      <tr><td>符合本土文化习惯</td><td>花园游戏 + 庆祝&gt;监视 + 会话制</td><td><span class="k">[E01][R03]</span> <span class="cf emerging">emerging</span></td><td class="bnd">反量化气质是双刃：叙事稍偏即成「监控」</td></tr>
+      <tr><td>社区/电商证据可验证</td><td>Mumsnet 焦虑帖 + eufy 误报/电池离线差评</td><td><span class="k">[E01][E02]</span> <span class="cf emerging">emerging</span> <span class="rev rev-todo">待验证</span></td><td class="bnd">截图去标识归档中；授权已得（M21）</td></tr>
+    </tbody>
+  </table>
+  <div class="finding"><h4>发现 4.1 · 差评是改造空间，不是产品缺陷自认 <span class="cf emerging">emerging</span></h4>
+    <div class="q"><b>量化</b>误报把洗碗机提示音/狗叫/脚步声判为哭声 → alarm fatigue 原话；电池机「随机离线、20 英尺外检测不到」 <span class="k">[E02]</span></div>
+    <div class="q"><b>质性</b>家长要的不是更多推送，是「我该不该担心」的回答——与赛题出题人保存一年的用户反馈同构</div>
+    <div class="q"><b>建议行动</b>demo 用「候选不自动入册 + 无法判断合法输出」正面回应误报疲劳</div></div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>5</span></div>
+</div>
+
+<!-- ================= 5 漏斗 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">5</span>市场规模与首发漏斗：算到能背书为止</h2>
+  <table>
+    <thead><tr><th>层</th><th>定义</th><th>量级（英格兰）</th><th>算法与来源</th><th class="bnd" style="width:24%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>TAM</td><td>0–6 岁在册幼儿</td><td>约 390–400 万</td><td>ONS 2024 出生 567,708 ×7 档 <span class="k">[G03]</span></td><td class="bnd">各档 ±5%；2024 为 2021 以来首次回升 +0.7%</td></tr>
+      <tr><td>锚点队列</td><td>每年进入 24–30 月窗口</td><td>约 28 万/年</td><td>567,708 × 6/12 <span class="k">[G03]</span></td><td class="bnd">其中约 5.5 万/年连 review 都没收到 <span class="k">[G02]</span></td></tr>
+      <tr><td>SAM</td><td>锚点 ∩ 花园 ∩ 摄像头</td><td>约 6–9 万/年</td><td>花园约九成（EHS 口径）× 渗透 25–35%</td><td class="bnd">两系数均 D 级新闻层，标「不假装精确」 <span class="rev rev-todo">待验证</span></td></tr>
+      <tr><td>SOM</td><td>试点 12 个月</td><td>500–2,000 组</td><td>3–5 地方当局 × 自愿家庭</td><td class="bnd">与 R5 验证计划同口径</td></tr>
+    </tbody>
+  </table>
+  <div class="note-close">付费意愿零证据：本报告全部商业推断止步于「假设」。试点验证前不写转化率与定价。 <span class="cf pending">待验证</span> <span class="rev rev-new">新增</span></div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>6</span></div>
+</div>
+
+<!-- ================= 6 宣称边界 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">6</span>产品定义与宣称边界：纸面靠近，宣称不靠近</h2>
+  <table>
+    <thead><tr><th style="width:30%">维度</th><th>本方案做法</th><th class="bnd" style="width:34%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>术语与结构</td><td>对齐 ASQ-3 五领域与三态计分（Yes/Sometimes/Not Yet ≙ 做到了/有时会/还不会）</td><td class="bnd">只对齐结构；题面原文不引用（商业授权） <span class="k">[U01]</span></td></tr>
+      <tr><td>宣称层</td><td>screening / assessment / diagnosis 词族全禁；构建期禁词校验</td><td class="bnd">MHRA 分界取决于预期用途与宣称，不取决于功能</td></tr>
+      <tr><td>数字口径</td><td>过线/未过线=画面可见事实；Δ+5.5cm=同孩子同任务观测差值</td><td class="bnd">不出现「孩子应该跳 X cm」；7.5cm 仅作问卷题面阈值一次性说明 <span class="rev rev-mod">修改</span></td></tr>
+      <tr><td>标定</td><td>胶带线（5cm 已知物体、与跳跃同平面）为主标定</td><td class="bnd">门框竖直面对地面不共面，<span class="wd" style="text-decoration:line-through">不作 cm 换算</span>，只作画面参照 <span class="rev rev-wd">撤回</span></td></tr>
+      <tr><td>MHRA 路线</td><td>P0 消费级 → P1 专业共创 → P2 信效度 → P3 SaMD</td><td class="bnd">默认停 P0；进 P3 为商业决策，成本与周期完全不同</td></tr>
+    </tbody>
+  </table>
+  <div class="finding"><h4>发现 6.1 · 官方替产品背书了「数字反馈层」的位置 <span class="cf strong">strong</span></h4>
+    <div class="q"><b>证据</b>DHSC 委托 UCL：ASQ-3 未在英国人群做效度验证、无英国常模；英格兰授权版为纸质；美国数字版因 GDPR 不可用；接入 NHS/地方系统需额外付费 <span class="k">[U01]</span></div>
+    <div class="q"><b>含义</b>制度用的量具存在数字空转——产品位置恰在空转里，且只能做补充件</div>
+    <div class="q"><b>建议行动</b>物料统一表述「Red Book 补充件」，永不表述「替代 review」</div></div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>7</span></div>
+</div>
+
+<!-- ================= 7 实现与标定 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">7</span>摄像头 Agent 与测量口径：判定交给代码</h2>
+  <p class="lead-p">五层管道（采集→信号→判定→证据→表述）已在 mock 信号源端到端验证：跳跃状态机 standing→takeoff→airborne→landing，模糊落地帧置信度 0.93→0.77 自动降级；eufy SDK / RTSP 为预留接入位，未接入不产生里程碑。</p>
+  <table>
+    <thead><tr><th>规格</th><th>值</th><th>实测/来源</th><th class="bnd" style="width:30%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>主标定物</td><td>胶带线宽 5cm</td><td>已知物体、与跳跃同平面</td><td class="bnd">机位/云台/变焦/地面变化即失效；失效只存视频不出结论</td></tr>
+      <tr><td>观测差值</td><td>Δ+5.5cm（20.0→25.5 示例）</td><td>同孩子同任务同机位</td><td class="bnd">个体记录非阈值；不宣称显著改善</td></tr>
+      <tr><td>清晰度下限</td><td>clarity &lt; 0.7 降级</td><td>mock 实测 0.93/0.91/0.77</td><td class="bnd">降级候选附注「落地帧脚部略糊，需家长确认」</td></tr>
+      <tr><td>单摄识别下界</td><td>约 38.9%（部分动作）</td><td>v4 核查</td><td class="bnd">故不吹全自动；三级可采地图只采高置信动作</td></tr>
+      <tr><td>真机验收</td><td>取流/帧/音轨/时间戳/有效帧率</td><td>清单已列</td><td class="bnd">未过验收前一切真机宣称撤回 <span class="rev rev-todo">待验证</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note-close">表述层纪律：LLM 只收已确认结构化记录做文案润色；无 key 自动降级本地模板。判定永远不经 LLM——监管与可靠双重理由。</div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>8</span></div>
+</div>
+
+<!-- ================= 8 风险台账 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">8</span>风险台账与八项人工确认：不假装完成</h2>
+  <table>
+    <thead><tr><th>#</th><th>待确认项</th><th>缓解动作</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Fingertips 2024/25 单领域值 <span class="rev rev-todo">待验证</span></td><td>三层写法已处理；赛前从 gid 1938133223 提数</td><td class="bnd">提数前 gross motor 只用 92.8%（2022/23）并标年份</td></tr>
+      <tr><td>2</td><td>差评截图 6 张归档 <span class="rev rev-todo">待验证</span></td><td>人工浏览器截图去标识 → _inputs/ 登记 URL+日期</td><td class="bnd">授权已得 M21；平台反爬不可自动抓取</td></tr>
+      <tr><td>3</td><td>付费意愿零证据</td><td>试点设计先行</td><td class="bnd">不写转化与定价</td></tr>
+      <tr><td>4</td><td>M22 赛题红线原文复核</td><td>用户导出或截图授权后逐条比对</td><td class="bnd">当前全部转述，不引原文</td></tr>
+      <tr><td>5</td><td>EHS 花园覆盖一手链接</td><td>补 EHS 2023-24 表链接</td><td class="bnd">现标 D 级新闻层</td></tr>
+      <tr><td>6</td><td>iHV 人力一手表</td><td>补 iHV/NHS Digital 表</td><td class="bnd">5,575 现标 D 级</td></tr>
+      <tr><td>7</td><td>真机 SDK 验收</td><td>现场按清单逐项过</td><td class="bnd">未过不产生真机宣称</td></tr>
+      <tr><td>8</td><td>演示截图去标识</td><td>发布前 masking 检查</td><td class="bnd">儿童面部/邻舍一律遮罩</td></tr>
+    </tbody>
+  </table>
+  <div class="note-close">舆论风险 R5：「摄像头监控儿童」反噬。三重保险：庆祝&gt;监视铁律 + 会话制 + 四色标签「无法判断」合法输出。Mumsnet 焦虑帖只作需求证据，不作监控证据。 <span class="rev rev-new">新增</span></div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>9</span></div>
+</div>
+
+<!-- ================= 9 研究证据说明 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">9</span>研究证据说明：能做，不等于已经能可靠卖</h2>
+  <table>
+    <thead><tr><th style="width:30%">原始证据</th><th style="width:32%">有价值的结果</th><th>对产品的限制</th></tr></thead>
+    <tbody>
+      <tr><td>官方统计：触达 80.8% / 完成 93.9% <span class="k">[G02]</span></td><td>制度性问卷窗口真实且高完成</td><td>材料只能是补充件；19.2% 未触达家庭不是首版用户</td></tr>
+      <tr><td>官方委托：ASQ-3 无英国常模、纸质、美数字版 GDPR 不可用 <span class="k">[U01]</span></td><td>官方背书数字反馈层位置</td><td>不引题面、不宣称常模/百分位</td></tr>
+      <tr><td>官方统计：81.4% 五域全达标 <span class="k">[G01]</span></td><td>灰色地带约 1/5 可背书</td><td>单域 2024/25 未提取，旧值标年份</td></tr>
+      <tr><td>学术：Bristol 23% / Exeter 34% <span class="k">[R02][R03]</span></td><td>倡导-执行落差有量化锚</td><td>单城自报 / 年龄外推，只作结构证据</td></tr>
+      <tr><td>新闻层：HV 5,575 / −45% <span class="k">[N01][N02]</span></td><td>供给侧收缩支撑叙事</td><td>D 级；正式稿前补一手</td></tr>
+      <tr><td>社区电商：焦虑帖 + 误报差评 <span class="k">[E01][E02]</span></td><td>需求与痛点双向可验证</td><td>截图归档中；差评是改造空间</td></tr>
+      <tr><td>现售能力：T8171 取流/2K/360°/本地存储 <span class="k">[P01]</span></td><td>采集层硬件条件成立</td><td>「检测有人」≠「识别动作判断发展」</td></tr>
+    </tbody>
+  </table>
+  <p><b>一句话收束：</b>这份报告能证明位置存在、窗口真实、落差可量化、红线清楚；不能证明家长愿意付钱、真机判定可靠、单域最新数值。前者够立项，后者够诚实。</p>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>10</span></div>
+</div>
+
+<!-- ================= 来源 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <div class="src-group">来源 / 官方统计与委托研究（G·U）</div>
+  <div class="src-row"><span class="k">[G01]</span> gov.uk《Child development outcomes, 2024 to 2025 statistical commentary》（2025-11-04 发布；81.4%/80.4%；地区极差）<span class="u">https://www.gov.uk/government/statistics/child-development-outcomes-data-for-2024-to-2025/child-development-outcomes-2024-to-2025-statistical-commentary</span></div>
+  <div class="src-row"><span class="k">[G02]</span> gov.uk《Health visitor service delivery metrics 2024 to 2025》（80.8%/93.9%/88.4%/85.2%/85.1%）<span class="u">https://www.gov.uk/government/statistics/health-visitor-service-delivery-data-for-2024-to-2025</span></div>
+  <div class="src-row"><span class="k">[G03]</span> ONS《Births in England and Wales: 2024》（英格兰 567,708，+0.7%）<span class="u">https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/birthsummarytablesenglandandwales/2024</span></div>
+  <div class="src-row"><span class="k">[G04]</span> 英国政府家庭在线行为指南（2026-03-27；2 岁以下零屏幕、2–5 岁 ≤1 小时、用餐就寝无屏；98% 与 1/4 背景陈述）<span class="u">https://www.gov.uk/ （家庭在线行为指南发布页）</span></div>
+  <div class="src-row"><span class="k">[U01]</span> DHSC 委托 UCL：ASQ-3 英国使用评估（无英国常模 / 纸质授权版 / 美数字版 GDPR 不可用 / 接入需额外付费）<span class="u">UCL 报告页（转述自 v4 核查）</span></div>
+  <div class="src-group">来源 / 学术研究（R）</div>
+  <div class="src-row"><span class="k">[R01]</span> Jung et al., IJPDS 2024：64 地方当局 226,505 名儿童 ASQ-3 记录（2018/19–2020/21；86.2%/13.8%）<span class="u">PMC11934300</span></div>
+  <div class="src-row"><span class="k">[R02]</span> Bristol 419 名 2–4 岁儿童活动量研究（180 分钟达标 23%）<span class="u">v4 核查引用</span></div>
+  <div class="src-row"><span class="k">[R03]</span> University of Exeter / Born in Bradford 队列 2,568 名 7–12 岁（34% 工作日不户外、20% 周末）<span class="u">Wellbeing, Space and Society, 2025</span></div>
+  <div class="src-row"><span class="k">[R04]</span> BookTrust《Reading in the Early Years》（每日共读 68% vs 52%；男孩更低）<span class="u">https://www.booktrust.org.uk/resources/find-resources/reading-in-the-early-years-supporting-generational-cycles-of-readers/</span></div>
+  <div class="src-group">来源 / 新闻层与社区电商（N·E）</div>
+  <div class="src-row"><span class="k">[N01]</span> UCL 新闻 2026-03：英格兰 HV 五年减少五分之一<span class="u">https://www.ucl.ac.uk/news/2026/mar/number-health-visitors-england-falls-fifth-over-five-years</span></div>
+  <div class="src-row"><span class="k">[N02]</span> 报道：HV 在岗 5,575（2026-01）、峰值约 10,200、caseload &gt;1,000、英格兰无上限<span class="u">theukpulse.co.uk（交叉核证第二家待补）</span></div>
+  <div class="src-row"><span class="k">[E01]</span> Mumsnet《When did your child jump both feet off ground?》等 2 岁 check 求助帖（HV 定期回电实例）<span class="u">mumsnet.com/talk/（截图归档中）</span></div>
+  <div class="src-row"><span class="k">[E02]</span> Woot/Amazon eufy 评论区：alarm fatigue 原话、电池机随机离线<span class="u">woot.com / amazon.com（截图归档中）</span></div>
+  <div class="src-group">来源 / 产品官方（P）</div>
+  <div class="src-row"><span class="k">[P01]</span> eufy SoloCam E30（T8171）产品页：2K、360°、太阳能、本地存储<span class="u">https://www.eufy.com/ （T8171 产品页）</span></div>
+  <div class="src-row"><span class="k">[P02]</span> eufy Video Doorbell E340（T8214）产品页：双摄<span class="u">https://www.eufy.com/video-doorbell-e340</span></div>
+  <div class="note-close">所有网页于 2026-09-21 访问或经 v4/v6 核查传递。官方统计优先于新闻转述；新闻层条目在补齐一手链接前不得升级置信度。功能均为官方声明，不是实机性能结论。</div>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>11</span></div>
+</div>
+
+<!-- ================= 附录：方法与修订 ================= -->
+<div class="page">
+  <div class="ph">ANKER EUFY / 英国市场调研</div>
+  <h2 class="sec"><span class="no">附</span>方法论、证据分级与修订对照</h2>
+  <h3 class="sub">A1 · 证据分级（方法细节置附录，正文只留一行图例）</h3>
+  <table>
+    <thead><tr><th>级</th><th>定义</th><th>键前缀</th><th>置信档</th><th class="bnd" style="width:26%">关键边界</th></tr></thead>
+    <tbody>
+      <tr><td>A 官方统计</td><td>gov.uk / ONS / NHS 发布</td><td>G</td><td>strong</td><td class="bnd">可作主论据</td></tr>
+      <tr><td>B 官方委托</td><td>DHSC→UCL 等</td><td>U</td><td>strong</td><td class="bnd">制度论据</td></tr>
+      <tr><td>C 学术研究</td><td>同行评审 / 队列</td><td>R</td><td>directional</td><td class="bnd">须标样本与年份</td></tr>
+      <tr><td>D 新闻层</td><td>一手 403/付费墙，两家交叉</td><td>N</td><td>emerging</td><td class="bnd">正式稿前补一手</td></tr>
+      <tr><td>E 社区电商</td><td>Mumsnet / Amazon / Woot</td><td>E</td><td>emerging</td><td class="bnd">截图去标识归档</td></tr>
+      <tr><td>F 待补</td><td>槽位已建未取数</td><td>—</td><td>pending</td><td class="bnd">明示已知未解</td></tr>
+    </tbody>
+  </table>
+  <h3 class="sub">A2 · 修订对照（v5 → v6 → v8 模板版）</h3>
+  <table>
+    <thead><tr><th>版本</th><th>增量</th><th>标记</th></tr></thead>
+    <tbody>
+      <tr><td>v5.0</td><td>24 条回执执行版：骨架重排 + 2024/25 全量数值替换</td><td><span class="rev rev-mod">修改</span></td></tr>
+      <tr><td>v6.0</td><td>段 7 市场漏斗 + 段 8 跨国对照与风险台账</td><td><span class="rev rev-new">新增</span></td></tr>
+      <tr><td>v8 模板版</td><td>按两份研究 PDF 模板语法重写：三列分列页脚、证据键、关键边界列、封面核心判断+Q&A、来源分组页；叠加 web 纠偏（BLUF 执行摘要、置信三档、发现四元组）；可编辑 runtime 注入</td><td><span class="rev rev-new">新增</span></td></tr>
+      <tr><td>撤回项</td><td>「7.5cm 临床真值」「27 月龄锚点」「86.2% 主数字」「门框 cm 换算」</td><td><span class="rev rev-wd">撤回</span></td></tr>
+    </tbody>
+  </table>
+  <h3 class="sub">A3 · 术语对照（M04）</h3>
+  <p style="font-size:13px">health visitor 健康访视员 ｜ 2-to-2½ year review 2 至 2 岁半发育评估 ｜ Red Book (PCHR) 个人儿童健康记录 ｜ ASQ-3 年龄与阶段问卷第三版 ｜ gross motor 粗大运动 ｜ referral cutoff 转介线（mean−2SD）｜ observed delta 观测差值 ｜ questionnaire item threshold 问卷题面阈值 ｜ advocacy–practice gap 倡导-执行落差</p>
+  <div class="pf"><span>2026-09-21 ｜ 官方事实 / 研究证据 / 产品推断分列</span><span>12</span></div>
+</div>
+
+<script>
+/* 修订标记开关 */
+document.getElementById('revToggle').addEventListener('click', function(){
+  var on = document.body.classList.toggle('show-rev');
+  this.textContent = '修订标记：' + (on ? '开' : '关');
+});
+</script>
+<script>
+/* =====================================================================
+ * Editable Deck Runtime · 注入 guizang 瑞士风 deck
+ * 契约：原生版式锁定； authored 文本走 data-edit-slot（contenteditable）；
+ * 主要卡片块在编辑模式成为 [data-slide-object]，可拖移（transform 偏移）；
+ * Pages 侧栏：缩略图 / 拖拽排序 / 复制 / 删除 / +New Page；
+ * 历史栈 undo/redo；Ctrl+S 保存草稿；Export HTML 单文件导出；Laser/Fullscreen。
+ * ===================================================================== */
+(function () {
+  'use strict';
+  const DECK = document.querySelectorAll('.page');
+  const SLOT_SEL = 'h1,h2,h3,h4,p,li,span.t-meta,span.t-cat,.lead,.num-mega,.bar-num,.lbl,.yr,.multi,.desc,.brief-main,.brief-note,.ledger-lbl,.k-num,.body-sm,.stmt-anchor,.force-num,.big-num,.cell-num,.bar-lbl';
+  const OBJ_SEL = '.finding,.judge,.note-close,table,.src-group';
+
+  /* ---------- 状态 ---------- */
+  let editMode = false;
+  const history = []; let hPtr = -1;
+  function pushHist(rec) { history.splice(hPtr + 1); history.push(rec); hPtr = history.length - 1; if (history.length > 200) { history.shift(); hPtr--; } }
+
+  /* ---------- slot 标记 ---------- */
+  let slotSeq = 0;
+  DECK.forEach((slide, si) => {
+    slide.querySelectorAll(SLOT_SEL).forEach((el) => {
+      if (el.closest('[data-edit-slot]')) return;
+      el.setAttribute('data-edit-slot', 's' + (slotSeq++));
+      el.setAttribute('data-slot-label', (slide.dataset.slideId || 'p' + si) + '/' + (el.tagName.toLowerCase()));
+    });
+    slide.querySelectorAll(OBJ_SEL).forEach((el, oi) => {
+      el.setAttribute('data-slide-object', '1');
+      el.setAttribute('data-oid', (slide.dataset.slideId || 'p' + si) + '-o' + oi);
+    });
+  });
+
+  /* ---------- UI chrome ---------- */
+  const css = document.createElement('style');
+  css.textContent = `
+  body.edit-mode [data-edit-slot]{outline:1px dashed rgba(197,232,3,.0);cursor:text}
+  body.edit-mode [data-edit-slot]:hover{outline:1px dashed var(--accent);background:rgba(197,232,3,.08)}
+  body.edit-mode [data-edit-slot]:focus{outline:2px solid var(--accent);background:rgba(197,232,3,.12)}
+  body.edit-mode [data-slide-object]{cursor:grab;position:relative}
+  body.edit-mode [data-slide-object]:hover::after{content:'⠿';position:absolute;top:2px;right:4px;font-size:12px;color:var(--accent);pointer-events:none}
+  #ed-cluster,#pv-cluster{position:fixed;top:10px;left:10px;z-index:999;display:flex;gap:6px;opacity:0;pointer-events:none;transition:opacity .2s}
+  #pv-cluster{left:auto;right:10px}
+  body:hover #ed-cluster,body:hover #pv-cluster{opacity:1;pointer-events:auto}
+  #ed-cluster button,#pv-cluster button{font:600 12px/1 var(--sans);padding:7px 12px;border:1px solid var(--grey-2);background:var(--paper);color:var(--ink);cursor:pointer}
+  #ed-cluster button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-on)}
+  #ed-cluster button:disabled{opacity:.4;cursor:not-allowed}
+  #pages-panel{position:fixed;top:0;right:0;bottom:0;width:230px;background:var(--paper);border-left:1px solid var(--grey-2);z-index:998;overflow-y:auto;padding:14px;display:none}
+  body.pages-open #pages-panel{display:block}
+  .pg-row{display:flex;gap:8px;align-items:center;padding:6px;border:1px solid transparent;margin-bottom:6px;cursor:pointer}
+  .pg-row.cur{border-color:var(--accent)}
+  .pg-row .thumb{width:96px;height:54px;border:1px solid var(--grey-2);overflow:hidden;position:relative;flex:0 0 96px;background:#fff}
+  .pg-row .thumb > div{transform-origin:top left;position:absolute;top:0;left:0}
+  .pg-row .no{font:600 11px var(--mono);color:var(--grey-3)}
+  .pg-row .ops{margin-left:auto;display:flex;gap:4px}
+  .pg-row .ops button{font:600 10px var(--sans);padding:3px 6px;border:1px solid var(--grey-2);background:#fff;cursor:pointer}
+  .pg-row.drag-over{border-top:2px solid var(--accent)}
+  #rte-bar{position:fixed;z-index:1000;display:none;gap:4px;background:var(--ink);padding:5px;border-radius:3px}
+  #rte-bar button{font:600 11px var(--sans);color:#fff;background:none;border:none;padding:4px 8px;cursor:pointer}
+  #rte-bar button:hover{background:var(--accent);color:var(--accent-on)}
+  #laser-dot{position:fixed;width:10px;height:10px;border-radius:50%;background:#ff2d2d;box-shadow:0 0 8px #ff2d2d;z-index:2000;display:none;pointer-events:none}
+  body.laser-on #laser-dot{display:block}
+  `;
+  document.head.appendChild(css);
+
+  const cluster = document.createElement('div');
+  cluster.id = 'ed-cluster';
+  cluster.innerHTML = '<button id="btnEdit">Edit</button><button id="btnPages">Pages</button><button id="btnAdd">+Add</button><button id="btnUndo" disabled>Undo</button><button id="btnRedo" disabled>Redo</button><button id="btnSave">Save</button><button id="btnDone" style="display:none">Done</button>';
+  const pv = document.createElement('div');
+  pv.id = 'pv-cluster';
+  pv.innerHTML = '<button id="btnLaser">Laser</button><button id="btnFull">Fullscreen</button>';
+  const panel = document.createElement('div'); panel.id = 'pages-panel';
+  const rte = document.createElement('div'); rte.id = 'rte-bar';
+  rte.innerHTML = '<button data-cmd="bold">B</button><button data-cmd="italic">I</button><button data-size="0.85">A-</button><button data-size="1.15">A+</button>';
+  const laser = document.createElement('div'); laser.id = 'laser-dot';
+  document.body.append(cluster, pv, panel, rte, laser);
+
+  /* ---------- 编辑模式 ---------- */
+  const btnEdit = document.getElementById('btnEdit'), btnDone = document.getElementById('btnDone');
+  function setEdit(on) {
+    editMode = on;
+    document.body.classList.toggle('edit-mode', on);
+    btnEdit.classList.toggle('on', on);
+    btnDone.style.display = on ? '' : 'none';
+    document.querySelectorAll('[data-edit-slot]').forEach((el) => { el.contentEditable = on ? 'true' : 'false'; });
+    if (!on) { rte.style.display = 'none'; document.body.classList.remove('laser-on'); }
+    renderPages();
+  }
+  btnEdit.onclick = () => setEdit(true);
+  btnDone.onclick = () => setEdit(false);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (document.activeElement && document.activeElement.isContentEditable) { document.activeElement.blur(); return; }
+      if (editMode) setEdit(false);
+      document.body.classList.remove('laser-on');
+      return;
+    }
+    if ((e.key === 'e' || e.key === 'E') && !editMode && !(document.activeElement && document.activeElement.isContentEditable)) { setEdit(true); e.stopPropagation(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); saveDraft(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z' && editMode) { e.preventDefault(); e.shiftKey ? redo() : undo(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y' && editMode) { e.preventDefault(); redo(); }
+  }, true);
+
+  /* ---------- slot 编辑 + 历史 ---------- */
+  document.addEventListener('focusin', (e) => {
+    const el = e.target.closest && e.target.closest('[data-edit-slot]');
+    if (!el || !editMode) return;
+    el.dataset.prevHtml = el.innerHTML;
+    const r = el.getBoundingClientRect();
+    rte.style.display = 'flex';
+    rte.style.left = Math.min(r.left, innerWidth - 180) + 'px';
+    rte.style.top = Math.max(6, r.top - 38) + 'px';
+  });
+  document.addEventListener('focusout', (e) => {
+    const el = e.target.closest && e.target.closest('[data-edit-slot]');
+    if (!el || el.dataset.prevHtml == null) return;
+    if (el.innerHTML !== el.dataset.prevHtml) pushHist({ t: 'slot', el, prev: el.dataset.prevHtml, next: el.innerHTML });
+    rte.style.display = 'none'; syncHistBtns();
+  });
+  rte.addEventListener('mousedown', (e) => e.preventDefault());
+  rte.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const sel = document.getSelection();
+    const el = sel.anchorNode && (sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement).closest('[data-edit-slot]');
+    if (!el) return;
+    if (b.dataset.cmd) document.execCommand(b.dataset.cmd);
+    if (b.dataset.size) {
+      const cur = parseFloat(el.dataset.scale || '1');
+      el.dataset.scale = (cur * parseFloat(b.dataset.size)).toFixed(2);
+      el.style.fontSize = 'calc(1em * ' + el.dataset.scale + ')';
+    }
+  });
+
+  /* ---------- 对象拖移 ---------- */
+  let drag = null;
+  document.addEventListener('mousedown', (e) => {
+    if (!editMode) return;
+    const obj = e.target.closest && e.target.closest('[data-slide-object]');
+    if (!obj || e.target.closest('[data-edit-slot]')) return;
+    const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(obj.style.transform || '');
+    drag = { el: obj, sx: e.clientX, sy: e.clientY, ox: m ? +m[1] : 0, oy: m ? +m[2] : 0, moved: false };
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', (e) => {
+    if (document.body.classList.contains('laser-on')) { laser.style.left = (e.clientX - 5) + 'px'; laser.style.top = (e.clientY - 5) + 'px'; }
+    if (!drag) return;
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+    drag.el.style.transform = 'translate(' + (drag.ox + dx) + 'px,' + (drag.oy + dy) + 'px)';
+  });
+  document.addEventListener('mouseup', () => {
+    if (drag && drag.moved) pushHist({ t: 'move', el: drag.el, prev: 'translate(' + drag.ox + 'px,' + drag.oy + 'px)', next: drag.el.style.transform });
+    drag = null; syncHistBtns();
+  });
+
+  /* ---------- undo / redo ---------- */
+  function applyRec(rec, rev) {
+    if (rec.t === 'slot') rec.el.innerHTML = rev ? rec.prev : rec.next;
+    if (rec.t === 'move') rec.el.style.transform = rev ? rec.prev : rec.next;
+    if (rec.t === 'order') { rec.parent.insertBefore(rec.moved, rev ? rec.ref : rec.refNext); }
+    if (rec.t === 'del') { if (rev) rec.parent.insertBefore(rec.el, rec.ref); else rec.el.remove(); }
+    if (rec.t === 'add') { if (rev) rec.el.remove(); else rec.parent.insertBefore(rec.el, rec.ref); }
+    renderPages();
+  }
+  function undo() { if (hPtr < 0) return; applyRec(history[hPtr], true); hPtr--; syncHistBtns(); }
+  function redo() { if (hPtr >= history.length - 1) return; hPtr++; applyRec(history[hPtr], false); syncHistBtns(); }
+  function syncHistBtns() { document.getElementById('btnUndo').disabled = hPtr < 0; document.getElementById('btnRedo').disabled = hPtr >= history.length - 1; }
+  document.getElementById('btnUndo').onclick = undo;
+  document.getElementById('btnRedo').onclick = redo;
+
+  /* ---------- Pages 侧栏 ---------- */
+  const btnPages = document.getElementById('btnPages');
+  btnPages.onclick = () => document.body.classList.toggle('pages-open');
+  function slides() { return Array.from(document.querySelectorAll('.page')); }
+  function renderPages() {
+    panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b style="font:600 12px var(--mono)">PAGES</b><button id="btnNew" style="font:600 11px var(--sans);padding:4px 8px;border:1px solid var(--grey-2);background:#fff;cursor:pointer">+New Page</button></div>';
+    slides().forEach((s, i) => {
+      const row = document.createElement('div');
+      row.className = 'pg-row' + (i === cur() ? ' cur' : '');
+      row.draggable = true;
+      row.dataset.idx = i;
+      const thumb = document.createElement('div'); thumb.className = 'thumb';
+      const clone = s.cloneNode(true);
+      clone.style.cssText = 'width:1600px;height:900px;transform:scale(0.06);pointer-events:none;position:absolute;top:0;left:0';
+      clone.querySelectorAll('[data-anim]').forEach((a) => { a.style.opacity = 1; a.style.transform = 'none'; });
+      const wrap = document.createElement('div'); wrap.appendChild(clone); thumb.appendChild(wrap);
+      row.appendChild(thumb);
+      const no = document.createElement('span'); no.className = 'no'; no.textContent = String(i + 1).padStart(2, '0'); row.appendChild(no);
+      const ops = document.createElement('span'); ops.className = 'ops';
+      ops.innerHTML = '<button data-op="copy">Copy</button><button data-op="del">Del</button>';
+      row.appendChild(ops);
+      row.onclick = (e) => {
+        const op = e.target.dataset && e.target.dataset.op;
+        if (op === 'copy') { const c = s.cloneNode(true); c.dataset.slideId = (s.dataset.slideId || 'p') + '-c' + Date.now(); s.parentNode.insertBefore(c, s.nextSibling); pushHist({ t: 'add', el: c, parent: s.parentNode, ref: s.nextSibling }); renderPages(); return; }
+        if (op === 'del') { if (slides().length <= 1) return; pushHist({ t: 'del', el: s, parent: s.parentNode, ref: s.nextSibling }); s.remove(); renderPages(); return; }
+        go(i);
+      };
+      row.ondragover = (e) => { e.preventDefault(); row.classList.add('drag-over'); };
+      row.ondragleave = () => row.classList.remove('drag-over');
+      row.ondrop = (e) => {
+        e.preventDefault(); row.classList.remove('drag-over');
+        const from = +e.dataTransfer.getData('text/plain');
+        if (from === i) return;
+        const list = slides(); const moved = list[from]; const parent = moved.parentNode;
+        const ref = list[i]; const refNext = ref.nextSibling;
+        parent.insertBefore(moved, from < i ? ref.nextSibling : ref);
+        pushHist({ t: 'order', parent, moved, ref, refNext });
+        renderPages();
+      };
+      row.ondragstart = (e) => e.dataTransfer.setData('text/plain', String(i));
+      panel.appendChild(row);
+    });
+    document.getElementById('btnNew').onclick = () => {
+      const src = slides()[cur()];
+      const c = src.cloneNode(true);
+      c.dataset.slideId = 'new-' + Date.now();
+      c.querySelectorAll('[data-edit-slot]').forEach((el) => { if (!el.closest('.chrome-min')) el.textContent = ''; });
+      src.parentNode.insertBefore(c, src.nextSibling);
+      pushHist({ t: 'add', el: c, parent: src.parentNode, ref: src.nextSibling });
+      renderPages();
+    };
+  }
+
+  /* ---------- 导航（复用模板翻页：模拟键盘） ---------- */
+  function cur() {
+    const act = document.querySelector('section.slide.active, section.slide.is-active, section.slide[data-active="true"]');
+    return act ? slides().indexOf(act) : 0;
+  }
+  function go(i) {
+    const n = slides().length;
+    const k = i - cur();
+    for (let j = 0; j < Math.abs(k); j++) {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: k > 0 ? 'ArrowRight' : 'ArrowLeft', bubbles: true }));
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: k > 0 ? 'ArrowRight' : 'ArrowLeft', bubbles: true }));
+    }
+    renderPages();
+  }
+
+  /* ---------- 保存 / 导出 ---------- */
+  function serialize() {
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('#ed-cluster,#pv-cluster,#pages-panel,#rte-bar,#laser-dot').forEach((n) => n.remove());
+    clone.querySelector('body').classList.remove('edit-mode', 'pages-open', 'laser-on');
+    clone.querySelectorAll('[data-edit-slot]').forEach((el) => { el.removeAttribute('contenteditable'); el.removeAttribute('data-prev-html'); });
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+  function saveDraft() {
+    try { localStorage.setItem('uk-v7-deck-draft', serialize()); } catch (e) {}
+    const blob = new Blob([serialize()], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '英国市场调研报告-V7-可编辑-已保存.html';
+    a.click();
+  }
+  document.getElementById('btnSave').onclick = saveDraft;
+  document.getElementById('btnAdd').onclick = () => {
+    if (!editMode) setEdit(true);
+    const s = slides()[cur()];
+    const layer = s.querySelector('.canvas-card') || s;
+    const el = document.createElement('div');
+    el.setAttribute('data-edit-slot', 's' + (slotSeq++));
+    el.setAttribute('data-slide-object', '1');
+    el.setAttribute('data-oid', 'add-' + Date.now());
+    el.contentEditable = 'true';
+    el.style.cssText = 'position:absolute;top:40%;left:10%;font:400 18px var(--sans),var(--sans-zh);color:var(--text-primary);background:var(--paper);padding:8px 12px;border:1px solid var(--accent);max-width:40%';
+    el.textContent = '新文本 · 点击编辑';
+    layer.appendChild(el);
+    pushHist({ t: 'add', el, parent: layer, ref: null });
+    syncHistBtns();
+  };
+
+  /* ---------- Laser / Fullscreen ---------- */
+  document.getElementById('btnLaser').onclick = () => document.body.classList.toggle('laser-on');
+  document.getElementById('btnFull').onclick = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  };
+
+  renderPages(); syncHistBtns();
+  console.info('[editable-deck] E=编辑 · Ctrl+S=保存 · Pages=侧栏 · 悬停左上角出控制');
+})();
+
+</script>
+</body>
+</html>
