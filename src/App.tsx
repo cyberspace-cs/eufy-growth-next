@@ -1,14 +1,15 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from './store';
 import { buildReport, pendingList, confirmedList } from './core/report';
 import { BLADES, LEVEL_META, MILESTONES, OBS } from './core/rules';
 import { CHILD, DAY_TIMELINE, META } from './data/seed';
 import type { Evidence, Knife, TriState } from './types';
 
-type Tab = 'home' | 'review' | 'report' | 'settings';
+type Tab = 'home' | 'live' | 'review' | 'report' | 'settings';
 
 const TABS: { key: Tab; label: string; icon: string }[] = [
   { key: 'home', label: '今天', icon: 'M3 11.5 12 4l9 7.5M5.5 10v10h13V10' },
+  { key: 'live', label: '实时', icon: 'M12 8v4l3 2M21 12a9 9 0 1 1-9-9' },
   { key: 'review', label: '待确认', icon: 'M4 12.5 10 18 20 6' },
   { key: 'report', label: '周报', icon: 'M6 3h9l4 4v14H6zM9 12h7M9 16h5' },
   { key: 'settings', label: '设置', icon: 'M12 3l8 3v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z' },
@@ -63,6 +64,7 @@ export default function App() {
         </header>
 
         {tab === 'home' && <Home evidence={state.evidence} pendingCount={pending.length} />}
+        {tab === 'live' && <Live />}
         {tab === 'review' && <Review list={pending} onConfirm={confirm} onReject={reject} onUnjudge={unjudge} />}
         {tab === 'report' && <Report report={report} />}
         {tab === 'settings' && <Settings state={state} update={update} reset={reset} />}
@@ -170,6 +172,132 @@ function Review({ list, onConfirm, onReject, onUnjudge }: {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/* ---------- 实时：摄像头 Agent 会话（SSE，学 Night Watch 同意优先 + 决策留痕） ---------- */
+interface LiveCandidate {
+  id: string; blade: string; code: string; value: string;
+  confidence: number; note: string; status: string; tri?: string | null;
+  distCm?: number | null; level?: string;
+}
+interface LiveEvent {
+  type: string; machine?: string; state?: string; t?: number;
+  sessionId?: string; blade?: string; candidate?: LiveCandidate;
+  reason?: string; phase?: string; kind?: string; value?: number;
+}
+
+function Live() {
+  const [connected, setConnected] = useState(false);
+  const [running, setRunning] = useState<string | null>(null);
+  const [events, setEvents] = useState<LiveEvent[]>([]);
+  const [candidates, setCandidates] = useState<LiveCandidate[]>([]);
+  const esRef = useRef<EventSource | null>(null);
+
+  useEffect(() => {
+    const es = new EventSource('/api/stream');
+    esRef.current = es;
+    es.onopen = () => setConnected(true);
+    es.onerror = () => setConnected(false);
+    es.onmessage = (msg) => {
+      const ev: LiveEvent = JSON.parse(msg.data);
+      if (ev.type === 'hello') { setConnected(true); return; }
+      setEvents((prev) => [ev, ...prev].slice(0, 40));
+      if (ev.type === 'session-start' && ev.blade) setRunning(ev.blade);
+      if (ev.type === 'session-end') setRunning(null);
+      if (ev.type === 'candidate' && ev.candidate) setCandidates((p) => [ev.candidate!, ...p]);
+      if (ev.type === 'candidate-updated' && ev.candidate)
+        setCandidates((p) => p.map((c) => (c.id === ev.candidate!.id ? ev.candidate! : c)));
+    };
+    return () => { es.close(); esRef.current = null; };
+  }, []);
+
+  const startSession = async (blade: string) => {
+    setCandidates([]); setEvents([]);
+    await fetch('/api/session/start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ blade }),
+    });
+  };
+  const stopSession = async () => { await fetch('/api/session/stop', { method: 'POST' }); };
+  const confirmCand = async (id: string, tri: string) => {
+    await fetch(`/api/candidates/${id}/confirm`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tri }),
+    });
+  };
+
+  return (
+    <div className="page">
+      <div className="live-status">
+        <span className={connected ? 'dot ok' : 'dot off'} />
+        <b>{connected ? 'Agent 服务已连接' : 'Agent 服务未连接'}</b>
+        <span className="dim">信号源 demo-mock-signal · 判定为纯代码状态机，不经 LLM</span>
+      </div>
+      {!connected && (
+        <p className="note">静态部署不含后端。完整体验请启动 <code>node server/camera-agent/index.mjs</code> 或访问 Agent 版部署地址。</p>
+      )}
+
+      <div className="live-actions">
+        {(['walk', 'talk', 'eat'] as Knife[]).map((k) => (
+          <button key={k} className={'btn ' + (running === k ? 'some' : 'ok')} disabled={!!running}
+            onClick={() => startSession(k)}>
+            {running === k ? `采集中 · ${BLADES[k].name}` : `开始一次 · ${BLADES[k].name}`}
+          </button>
+        ))}
+        {running && <button className="btn ghost" onClick={stopSession}>结束会话</button>}
+      </div>
+
+      <div className="live-grid">
+        <section className="card">
+          <h3>Agent 事件流 {running && <span className="live-badge">LIVE</span>}</h3>
+          <div className="live-console">
+            {events.length === 0 && <p className="dim">会话由家长显式开启（同意优先），开启后这里实时显示信号、状态机迁移与审计记录。</p>}
+            {events.map((ev, i) => (
+              <div key={i} className="sig-row">
+                <span className="sig-kind">{ev.type}</span>
+                <span className="sig-text">
+                  {ev.type === 'signal' && `信号 ${ev.kind} ${ev.value ?? ''} ${ev.phase ?? ''}`}
+                  {ev.type === 'state' && `状态机 ${ev.machine} → ${ev.state}`}
+                  {ev.type === 'audit' && `审计 ${ev.reason}`}
+                  {ev.type === 'candidate' && `候选 ${ev.candidate?.value}`}
+                  {ev.type === 'candidate-updated' && `确认 ${ev.candidate?.id} → ${ev.candidate?.status}`}
+                  {ev.type === 'session-start' && `会话开始 ${ev.blade}`}
+                  {ev.type === 'session-end' && `会话结束 ${ev.reason}`}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="card">
+          <h3>本会话候选（{candidates.filter((c) => c.status === 'candidate').length} 待确认）</h3>
+          {candidates.length === 0 && <p className="dim">候选不自动入册，家长三态确认后才成为记录。</p>}
+          {candidates.map((c) => (
+            <div key={c.id} className={'cand live-cand'}>
+              <div className="cand-head">
+                <b>{OBS[c.code]?.label ?? c.code}</b>
+                <span className="pill" style={{ color: LEVEL_META[(c.level as keyof typeof LEVEL_META) || 'visible'].color, background: LEVEL_META[(c.level as keyof typeof LEVEL_META) || 'visible'].bg }}>
+                  {LEVEL_META[(c.level as keyof typeof LEVEL_META) || 'visible'].label}
+                </span>
+              </div>
+              <p className="cand-value">{c.value}</p>
+              <p className="dim">置信度 {(c.confidence * 100).toFixed(0)}%{c.note ? ` · ${c.note}` : ''}</p>
+              {c.status === 'candidate' ? (
+                <div className="tri-row">
+                  <button className="btn ok" onClick={() => confirmCand(c.id, 'done')}>做到了</button>
+                  <button className="btn some" onClick={() => confirmCand(c.id, 'sometimes')}>有时会</button>
+                  <button className="btn no" onClick={() => confirmCand(c.id, 'notyet')}>还不会</button>
+                  <button className="btn ghost" onClick={() => confirmCand(c.id, 'reject')}>排除</button>
+                </div>
+              ) : (
+                <p className="dim">已处理：{c.status}{c.tri ? ` · ${{ done: '做到了', sometimes: '有时会', notyet: '还不会' }[c.tri] ?? ''}` : ''}</p>
+              )}
+            </div>
+          ))}
+        </section>
+      </div>
     </div>
   );
 }

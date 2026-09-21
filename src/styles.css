@@ -139,6 +139,34 @@ button { font-family: inherit; cursor: pointer; }
 .toggle-row b { font-size: 14px; display: block; }
 .toggle-row input { width: 20px; height: 20px; accent-color: var(--accent); }
 
+/* ===== 实时 Agent ===== */
+.live-status { display: flex; align-items: center; gap: 8px; padding: 4px; flex-wrap: wrap; }
+.live-status .dot { width: 9px; height: 9px; border-radius: 50%; }
+.dot.ok { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-weak); }
+.dot.off { background: var(--red); box-shadow: 0 0 0 3px var(--red-weak); }
+.live-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.live-actions .btn { flex: 1; min-width: 130px; }
+.live-actions .btn:disabled { opacity: .75; }
+.live-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+.live-badge {
+  background: var(--red); color: #fff; font-size: 10px; font-weight: 800;
+  padding: 1px 8px; border-radius: 8px; margin-left: 8px; vertical-align: middle;
+  animation: pulse 1.4s infinite;
+}
+@keyframes pulse { 50% { opacity: .55; } }
+.live-console { max-height: 420px; overflow-y: auto; font-variant-numeric: tabular-nums; }
+.sig-row { display: flex; gap: 10px; padding: 4px 0; border-top: 1px dashed var(--line); font-size: 12.5px; }
+.sig-kind {
+  flex-shrink: 0; width: 108px; font-weight: 700; font-size: 11px; color: var(--ink3);
+  text-transform: uppercase; letter-spacing: .5px; padding-top: 2px;
+}
+.sig-text { color: var(--ink2); word-break: break-all; }
+.live-cand + .live-cand { border-top: 1px dashed var(--line); margin-top: 10px; padding-top: 10px; }
+
+@media (max-width: 768px) {
+  .live-grid { grid-template-columns: 1fr; }
+}
+
 /* ===== 手机底部导航 ===== */
 .tabbar { display: none; }
 

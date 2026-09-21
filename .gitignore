@@ -7,3 +7,6 @@ node_modules/
 secrets.*
 _smoke.mjs
 .DS_Store
+
+# 动态部署组装产物（scripts/build-deploy.mjs 生成）
+deploy/

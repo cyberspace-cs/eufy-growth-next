@@ -23,22 +23,40 @@ node server/llm-gateway/server.mjs   # 可选 LLM 网关（无 key 时自动降�
 ## 架构
 
 ```
-src/
-  types.ts          # Evidence / AppState / Milestone 类型
-  core/rules.ts     # 三尖刀目录、WS/T 里程碑、PHRASE 表述函数、FORBIDDEN 禁词表
-  core/report.ts    # 证据状态机（candidate→三态确认→confirmed）+ 周报生成
-  data/seed.ts      # 小满 26 月龄一周剧本（确定性脚本，非预录）+ 小满的一天时间线
-  store.tsx         # localStorage 持久化
-  App.tsx           # 手机底部导航 + 桌面侧栏双布局
+src/                          # 前端（React 18 + TS + Vite）
+  types.ts                    # Evidence / AppState / Milestone 类型
+  core/rules.ts               # 三尖刀目录、WS/T 里程碑、PHRASE 表述函数、FORBIDDEN 禁词表
+  core/report.ts              # 证据状态机（candidate→三态确认→confirmed）+ 周报生成
+  data/seed.ts                # 小满 26 月龄一周剧本（确定性脚本，非预录）+ 小满的一天时间线
+  store.tsx                   # localStorage 持久化
+  App.tsx                     # 手机底部导航 + 桌面侧栏双布局 + 实时会话页
+
+server/camera-agent/          # 摄像头 Agent 后端（零依赖，仅 Node 内置模块）
+  index.mjs                   # HTTP + SSE 服务：静态托管 dist、会话 API、三态确认
+  adapters/                   # 采集层：mock-source（确定性信号）· eufy-sdk（预留）· rtsp（预留）
+  pipeline/walk.mjs           # 会走：运动信号 → 跳跃状态机（standing→takeoff→airborne→landing）
+  pipeline/talk.mjs           # 会说：VAD 语音段 → 回合计数（不做角色分离，多声源→unjudgeable）
+  pipeline/eat.mjs            # 会吃：举勺周期 + 屏幕标志 + 会话时长
+  pipeline/engine.mjs         # 会话引擎：信号→管道→事件总线（会话制，同意优先）
+
+server/llm-gateway/           # 可选 LLM 网关：只做活动文案与沟通摘要，输入限已确认记录
+
 scripts/
-  check-discipline.mjs   # 构建期禁词校验（学 ShiftX 原则检验环节）
-server/llm-gateway/
-  server.mjs        # 可选 LLM 服务：只做活动文案与沟通摘要，输入限已确认记录
+  check-discipline.mjs        # 构建期禁词校验（学 ShiftX 原则检验环节）
+  build-deploy.mjs            # 组装 deploy/（dist + camera-agent），动态部署产物
 docs/
-  hackathon-2026-study.md   # AdventureX 2026 七个获奖作品研究
-  blueprint.md              # 产品与技术蓝图（继承自 cn 版）
+  camera-agent-architecture.md    # 摄像头 Agent 分层架构（含获奖作品对照表）
+  hackathon-2026-study.md         # AdventureX 2026 七个获奖作品研究
+  blueprint.md                    # 产品与技术蓝图（继承自 cn 版）
 public/
   deck.html report.html uk-deck.html   # 路演与报告（继承自 cn 版）
+```
+
+### 处理链路（判定永远不经 LLM，学 FinSight「代码计算、AI 解释」）
+
+```
+采集层(适配器) → 信号层(运动量/VAD/餐具周期) → 判定层(纯代码状态机+标定换算)
+→ 证据层(candidate+审计日志+SSE 推送家长复核) → 表述层(PHRASE 函数 + LLM 只做解释)
 ```
 
 ## 三尖刀
