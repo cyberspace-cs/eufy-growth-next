@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eufy 成长相机 · Demo 服务器导航</title>
+<style>
+:root{--ink:#1c2620;--ink2:#46564d;--ink3:#7c8a81;--paper:#f5f6f2;--card:#fff;--line:#e3e7e0;
+--accent:#1f7a5c;--accent-weak:#e6f2ec;--amber:#a8760d;--amber-weak:#fbf1dd;--red:#b23b3b;--red-weak:#fbe9e7;--blue:#087c9a;--blue-weak:#e3f1f6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;padding:40px 20px}
+.wrap{max-width:880px;margin:0 auto}
+header{text-align:center;margin-bottom:8px}
+header h1{font-size:26px;font-weight:800;letter-spacing:.5px}
+header h1 b{color:var(--accent)}
+header p{color:var(--ink3);font-size:13px;margin-top:6px}
+.host{display:inline-flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 16px;font-size:13px;margin-top:14px;font-weight:600;color:var(--ink2)}
+.host code{background:var(--accent-weak);color:var(--accent);padding:2px 8px;border-radius:8px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.grid{display:grid;gap:16px;margin-top:28px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 4px 18px rgba(28,38,32,.05);text-decoration:none;color:inherit;transition:border-color .15s}
+.svc:hover{border-color:var(--accent)}
+.svc .ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:0 0 44px}
+.svc.next .ico{background:var(--accent-weak)} .svc.cn .ico{background:var(--blue-weak)} .svc.growth .ico{background:var(--amber-weak)}
+.svc .info{flex:1;min-width:0}
+.svc h2{font-size:16.5px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{font-size:10.5px;font-weight:700;padding:2px 10px;border-radius:12px}
+.b-main{background:var(--accent);color:#fff}
+.b-ref{background:var(--blue-weak);color:var(--blue)}
+.b-old{background:var(--amber-weak);color:var(--amber)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.dot.ok{background:var(--accent);box-shadow:0 0 0 3px var(--accent-weak)}
+.dot.off{background:var(--red);box-shadow:0 0 0 3px var(--red-weak)}
+.dot.chk{background:var(--ink3)}
+.svc .desc{font-size:12.5px;color:var(--ink2);margin-top:5px;line-height:1.65}
+.svc .url{font-size:12px;color:var(--ink3);margin-top:7px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.links a{font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-weak);padding:3px 11px;border-radius:12px;text-decoration:none}
+.links a:hover{text-decoration:underline}
+footer{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:34px;line-height:1.9}
+footer code{background:#eef1ec;padding:1px 7px;border-radius:6px;font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><b>eufy</b> 成长相机 · Demo 服务器导航</h1>
+  <p>黑客松项目 · 三服务在线 · 同一局域网直接访问</p>
+  <span class="host">本机地址 <code id="hostip">—</code></span>
+</header>
+
+<div class="grid">
+  <a class="svc next" id="s8081" href="#" target="_blank">
+    <span class="ico">🤖</span>
+    <span class="info">
+      <h2>eufy-growth-next 完整版 <span class="badge b-main">主推 · 演示用这个</span> <span class="dot chk" data-ping="8081"></span></h2>
+      <p class="desc">前端（cn 版手机框 UI）+ 摄像头 Agent 后端。切「实时」tab 可开跳跃/共读/进餐会话，看 SSE 事件流与状态机判定，候选行内三态确认。</p>
+      <p class="url">http://<span class="ip">localhost</span>:8081/</p>
+      <span class="links">
+        <a href="/deck.html" target="_blank">6 分钟路演</a>
+        <a href="/report.html" target="_blank">方案报告</a>
+        <a href="/uk-deck.html" target="_blank">英国调研 deck</a>
+      </span>
+    </span>
+  </a>
+
+  <a class="svc cn" id="s8090" href="#" target="_blank">
+    <span class="ico">📱</span>
+    <span class="info">
+      <h2>eufy-growth-cn 纯静态版 <span class="badge b-ref">UI 风格参照</span> <span class="dot chk" data-ping="8090"></span></h2>
+      <p class="desc">中国 0–6 三尖刀单文件演示（app.html 手机 App、15 页路演、V3-CN 报告、21 页英国调研）。零依赖，双击即用。</p>
+      <p class="url">http://<span class="ip">localhost</span>:8090/ · app 直达 <span class="ip">:8090</span>/app.html</p>
+    </span>
+  </a>
+
+  <a class="svc growth" id="s5173" href="#" target="_blank">
+    <span class="ico">⚛️</span>
+    <span class="info">
+      <h2>eufy-growth React 原型 <span class="badge b-old">工程底座 · 历史版</span> <span class="dot chk" data-ping="5173"></span></h2>
+      <p class="desc">React 18 + TS + Vite 原型（表述纪律 PHRASE/FORBIDDEN 的发源地），vite dev 热更新，供代码考古与对照。</p>
+      <p class="url">http://<span class="ip">localhost</span>:5173/</p>
+    </span>
+  </a>
+</div>
+
+<footer>
+  启停：<code>scripts/demo-server.sh start|stop|status</code>（eufy-growth-next 仓库内）<br>
+  公网演示：https://rz6xfrye.qwenwork.host/ （静态版 · 代码推 Gitee/GitHub 后自动可拉取重建）<br>
+  仓库：gitee.com/buleboy8065/eufy-growth-next · github.com/cyberspace-cs/eufy-growth-next
+</footer>
+</div>
+
+<script>
+// 显示真实主机 IP（通过服务探测回显）并做在线检测
+var ip = location.hostname || 'localhost';
+document.querySelectorAll('.ip').forEach(function(e){ e.textContent = ip; });
+document.getElementById('hostip').textContent = ip;
+document.getElementById('s8081').href = 'http://' + ip + ':8081/';
+document.getElementById('s8090').href = 'http://' + ip + ':8090/';
+document.getElementById('s5173').href = 'http://' + ip + ':5173/';
+
+document.querySelectorAll('.dot[data-ping]').forEach(function(dot){
+  var port = dot.getAttribute('data-ping');
+  var img = new Image();
+  img.onload = function(){ dot.className = 'dot ok'; };
+  img.onerror = function(){
+    // Image 加载失败也可能是 404 —— 用 fetch no-cors 二次确认端口是否可达
+    fetch('http://' + ip + ':' + port + '/', {mode:'no-cors'})
+      .then(function(){ dot.className = 'dot ok'; })
+      .catch(function(){ dot.className = 'dot off'; });
+  };
+  img.src = 'http://' + ip + ':' + port + '/favicon.ico?ping=' + Date.now();
+  setTimeout(function(){ if(dot.className.indexOf('chk')>=0) dot.className='dot off'; }, 2500);
+});
+</script>
+</body>
+</html>

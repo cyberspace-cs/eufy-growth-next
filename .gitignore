@@ -10,3 +10,7 @@ _smoke.mjs
 
 # 动态部署组装产物（scripts/build-deploy.mjs 生成）
 deploy/
+
+# Demo 服务器运行时（PID/日志）
+.demo-run/
+demo/index.html

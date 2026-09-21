@@ -20,6 +20,27 @@ npm run check:discipline  # 表述纪律校验（禁词 grep，出现即失败�
 node server/llm-gateway/server.mjs   # 可选 LLM 网关（无 key 时自动降级本地模板）
 ```
 
+## 团队 Demo 服务器（局域网）
+
+一条命令把本机变成三服务 demo 服务器 + 统一导航门户：
+
+```bash
+scripts/demo-server.sh start     # 启动全部（幂等，已在运行的跳过）
+scripts/demo-server.sh status    # 四服务在线状态
+scripts/demo-server.sh stop|restart
+```
+
+| 端口 | 服务 | 说明 |
+|---|---|---|
+| 8000 | 导航门户 | `demo/portal.html`，自动显示本机 IP + 在线探测灯，团队从这里进 |
+| 8081 | 完整版 | 本仓库前端（cn 版手机框 UI）+ 摄像头 Agent（实时会话/SSE） |
+| 8090 | cn 静态版 | eufy-growth-cn（UI 风格参照仓），缺失时自动从 Gitee 克隆 |
+| 5173 | React 原型 | eufy-growth（表述纪律发源地），缺失时自动克隆 |
+
+- 仓库根目录默认取本仓库父目录，可用 `EUFY_REPOS_BASE=/path scripts/demo-server.sh start` 覆盖
+- 全部绑定 0.0.0.0，同网段直接访问 `http://<本机IP>:8000/`
+- 公网演示：https://rz6xfrye.qwenwork.host/ （静态版）
+
 ## 架构
 
 ```
