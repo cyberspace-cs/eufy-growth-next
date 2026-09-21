@@ -1,0 +1,139 @@
+<header class="topbar"><a href="#top" class="brand">安克 eufy 成长相机<span> / 代码实现方案</span></a><span class="top-meta">ENGINEERING PLAN · V1 · 2026.09</span><div class="tools"><button onclick="window.print()">打印 / 存为 PDF</button></div></header>
+<aside class="sidebar"><div class="sidebar-label">DOC CONTENTS</div><nav aria-label="文档目录"><a href="#overview"><span>01</span>系统总览与五层架构</a><a href="#repo"><span>02</span>仓库与目录结构</a><a href="#model"><span>03</span>数据模型</a><a href="#pipeline"><span>04</span>判定层状态机</a><a href="#adapters"><span>05</span>采集层适配器与验收清单</a><a href="#api"><span>06</span>API 与 SSE 协议</a><a href="#discipline"><span>07</span>表述纪律工程化</a><a href="#llm"><span>08</span>LLM 网关边界</a><a href="#frontend"><span>09</span>前端架构</a><a href="#testing"><span>10</span>测试与验证记录</a><a href="#deploy"><span>11</span>部署形态</a><a href="#roadmap"><span>12</span>路线图 M1—M4</a><a href="#conventions"><span>13</span>工程约定</a></nav><div class="side-note"><span class="dot"></span>现状 + 路线<br>仓库：eufy-growth-next（Gitee/GitHub 双远端）</div></aside>
+<main id="main">
+<section class="hero" id="top"><div class="hero-top"><span class="eyebrow">ANKER EUFY GROWTH CAMERA · CODE IMPLEMENTATION</span><span class="tag">代码实现方案 · 供开发评审</span></div><div class="hero-grid"><div><p class="hero-overline">判定交给代码，解释交给 AI，确认交给人</p><h1>摄像头 Agent<br><span>五层管道</span>已跑通。</h1><p class="hero-copy">前端 React 18 + TS + Vite；后端零依赖 Node 22 服务。<br>mock 信号源全链路端到端验证通过；eufy SDK 为预留接入位。</p><div class="hero-actions"><a class="primary" href="#overview">阅读架构 <span>↘</span></a><a href="#roadmap">跳到路线图 →</a></div></div><div class="age-art"><span class="age-label">已验证 / 预留 / 未实现</span><div class="age-number" style="font-size:64px">E2E<span>✓</span></div><p>walk 3 候选 · eat 4 候选 · talk 回合+unjudgeable · 三态确认 REST · SSE 推送</p></div></div><div class="hero-note"><strong>诚实边界</strong><span>未实现能力明确标注，不冒充已接入</span><span>SDK 文档核对前不发明 API 名称</span><span>真实取流失败不自动降级为模拟成功</span></div></section>
+
+<section class="chapter" id="overview"><div class="chapter-head"><span class="chapter-no">01</span><div><span class="eyebrow">OVERVIEW</span><h2>系统总览与五层架构</h2><p>设计原则对照 AdventureX 2026 获奖作品</p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>层</th><th>位置</th><th>职责</th><th>关键约束</th></tr></thead><tbody>
+<tr><td>采集层</td><td>server/camera-agent/adapters/</td><td>信号源适配：mock（确定性脚本）· eufy SDK（预留）· RTSP（预留）</td><td>信号是适配器与管道的唯一契约；换真实 SDK 只改本层</td></tr>
+<tr><td>信号层</td><td>adapters 输出</td><td>帧间运动量 / VAD 语音活动段 / 餐具运动周期 / 屏幕标志</td><td>原始信号带时间戳，可回放测试</td></tr>
+<tr><td>判定层</td><td>pipeline/{walk,talk,eat}.mjs</td><td>纯代码状态机 + 阈值 + 标定换算 → candidate</td><td><strong>永远不经 LLM</strong>；无法测量保留原因，不写零分</td></tr>
+<tr><td>证据层</td><td>pipeline/engine.mjs + index.mjs</td><td>candidate 登记、审计日志、SSE 推送、三态确认 REST</td><td>会话制（家长显式开启）；候选不自动入册</td></tr>
+<tr><td>表述层</td><td>src/core/rules.ts + server/llm-gateway/</td><td>PHRASE 确定性文案 + LLM 可选润色</td><td>LLM 只收已确认结构化记录；无 key 降级本地模板</td></tr>
+</tbody></table></div>
+<p>原则来源：Night Watch（信号→置信度→决策全程留痕、同意优先会话制）、FinSight（确定性计算交给代码，LLM 只解释）、Fiona（主路判定/旁路表述物理分离）、冰箱精灵（双端实时同步 → 本方案用 SSE 实现，纯 HTTP 穿透任何静态网关，无需 WebSocket 升级）。</p>
+</div></section>
+
+<section class="chapter" id="repo"><div class="chapter-head"><span class="chapter-no">02</span><div><span class="eyebrow">REPOSITORY</span><h2>仓库与目录结构</h2><p>eufy-growth-next · 双远端</p></div></div><div class="chapter-body">
+<pre style="background:#f0f4f2;padding:18px;border-radius:4px;font-size:12.5px;line-height:1.7;overflow-x:auto">eufy-growth-next/
+├── src/                          # 前端 React 18 + TS + Vite
+│   ├── types.ts                  # Evidence / AppState / Milestone
+│   ├── core/rules.ts             # 三尖刀目录 · WS/T+ASQ 里程碑 · PHRASE · FORBIDDEN
+│   ├── core/report.ts            # 状态机辅助 + 周报生成（只用已确认）
+│   ├── data/seed.ts              # 小满 26 月一周剧本 + 一天时间线
+│   ├── store.tsx                 # localStorage 持久化
+│   └── App.tsx                   # 双布局（手机底导/桌面侧栏）+ Live 会话页
+├── server/camera-agent/          # 摄像头 Agent（零依赖，仅 node:http/fs/path）
+│   ├── index.mjs                 # HTTP+SSE：静态托管 dist、会话 API、确认 API
+│   ├── adapters/                 # mock-source.mjs · eufy-sdk-source.mjs(预留) · rtsp-source.mjs(预留)
+│   └── pipeline/                 # walk/talk/eat.mjs + engine.mjs（SessionManager）
+├── server/llm-gateway/server.mjs # 可选 LLM 网关（deepseek/qwen/ark，无 key 降级）
+├── scripts/
+│   ├── check-discipline.mjs      # 构建期禁词校验
+│   └── build-deploy.mjs          # 组装 deploy/（dist+agent）动态部署产物
+├── public/                       # deck.html · report.html · uk-deck.html（继承 cn 版交付物）
+└── docs/                         # 本三份文档 + 架构/研究笔记 + source/defense-0-6.html</pre>
+<p>远端：Gitee buleboy8065/eufy-growth-next 与 GitHub cyberspace-cs/eufy-growth-next，main 分支同步。构建命令：<code>npm run build</code>（tsc --noEmit + vite build）；<code>npm run check:discipline</code>；Agent 本地：<code>node server/camera-agent/index.mjs</code>（默认 8081）；开发代理：vite dev 将 /api 转发 8081。</p>
+</div></section>
+
+<section class="chapter" id="model"><div class="chapter-head"><span class="chapter-no">03</span><div><span class="eyebrow">DATA MODEL</span><h2>数据模型</h2><p>核心事件字段 · 版本与权限</p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead><tbody>
+<tr><td>id / blade / code</td><td>string</td><td>事件标识；尖刀（walk/talk/eat）；观察类型 code（对应 OBS 目录）</td></tr>
+<tr><td>observedAt / source</td><td>string</td><td>时间戳；来源：vision / audio / demo（真机接入后增 sdk）</td></tr>
+<tr><td>level</td><td>enum</td><td>四色来源标签：visible / parent / suggestion / unknown —— 全站每条输出必带其一</td></tr>
+<tr><td>status / tri</td><td>enum</td><td>candidate / confirmed / rejected / unjudgeable；三态 done / sometimes / notyet</td></tr>
+<tr><td>value / confidence</td><td>string / 0—1</td><td>人读描述；判定置信度（状态机给出，非模型输出）</td></tr>
+<tr><td>distCm / words / foods</td><td>可空</td><td>观测距离（同任务差值用）；词/句候选；食物候选（确认才入账）</td></tr>
+<tr><td>protocolVersion / calibrationId</td><td>M2 计划</td><td>任务协议版本与标定批次——同条件比较的判定依据（路线图）</td></tr>
+</tbody></table></div>
+<p>关联原则：通过同一事件 id 关联画面与声音，避免把不同孩子、不同餐次或不同时间拼成一条事实。保留原始候选与纠错记录，重新生成报告时只用最新已确认版本。导出文件为唯一跨设备载体（无账号后端时不自动同步）。</p>
+</div></section>
+
+<section class="chapter" id="pipeline"><div class="chapter-head"><span class="chapter-no">04</span><div><span class="eyebrow">STATE MACHINES</span><h2>判定层状态机</h2><p>三管道迁移表 · 阈值与降级</p></div></div><div class="chapter-body">
+<h3>walk · 跳跃状态机</h3>
+<div class="table-wrap"><table><thead><tr><th>状态</th><th>迁移条件</th><th>动作</th></tr></thead><tbody>
+<tr><td>standing</td><td>motion ≥ 0.85 或 phase=takeoff</td><td>→ possible_takeoff</td></tr>
+<tr><td>possible_takeoff</td><td>motion ∈ [0.5, 0.8]</td><td>→ possible_airborne（记 tAir）</td></tr>
+<tr><td>possible_airborne</td><td>motion ≥ 0.85 且 phase=landing</td><td>出候选：distCm = disp_px × 5cm / 12.4px；confidence = min(0.95, 0.55 + 0.4 × clarity)；→ standing</td></tr>
+<tr><td>任意非 standing</td><td>3 秒未迁移</td><td>审计日志记录原因，重置 standing（不写零分）</td></tr>
+</tbody></table></div>
+<p>clarity &lt; 0.7 时候选自动附注「落地帧脚部略糊，需家长确认」并压低置信度——E2E 实测：清晰帧 0.93 / 0.91，模糊帧 0.77。</p>
+<h3>talk · 回合计数</h3>
+<p>voice-on/off 事件流；相邻段间隔 ≤2.5s 计一个回合；会话结束输出 turn_take 候选（附「VAD 只测语音活动，不做说话人分离」注记）。出现 overlap 标志（双声源）→ 直接出 unjudgeable 候选，回合候选不产出——多声源不出提示。</p>
+<h3>eat · 周期统计</h3>
+<p>分钟级采样：举勺周期 ≥8 次/分 记自主段，≤4 次/分 记疑似喂饭段；屏幕在场累计 ≥5 分钟触发 no_screen 候选；会话结束出 meal_duration（附「会话起止计时，不宣称实际进食时长」）。追喂候选附注「指南要求不强迫进食，请家长确认」。</p>
+</div></section>
+
+<section class="chapter" id="adapters"><div class="chapter-head"><span class="chapter-no">05</span><div><span class="eyebrow">ADAPTERS</span><h2>采集层适配器与验收清单</h2><p>mock 可运行 · SDK/RTSP 预留位</p></div></div><div class="chapter-body">
+<p><strong>MockSource：</strong>确定性脚本（非预录视频）。三段剧本：walk 3 跳（58/61/47px，第三次模糊）、talk 6 回合+1 双声源、eat 21 分钟（前 12 分钟自主、后段喂、12—19 分钟屏幕）。tick 加速播放（walk/talk 220ms、eat 320ms 每模拟单位）。</p>
+<p><strong>EufySDKSource（预留，抛错不冒充）：</strong>接入验收清单——① 登录与设备列表；② 前台短时取流稳定（不承诺电池设备全天采集）；③ 帧可绘入 canvas；④ 音轨/时间戳/有效帧率；⑤ 事件主动拉取（无 push 配置）。全部通过前不产生真实里程碑，不发明 API 名称。</p>
+<p><strong>RTSPSource（预留）：</strong>ffmpeg 抽帧方案已写明参数（-vf fps=4,scale=640:-1 image2pipe），帧差信号 motion = mean(|gray_t − gray_{t−1}|)/255 与管道契约一致；本机不编译 ffmpeg，仅在具备环境的服务器路径生效。</p>
+</div></section>
+
+<section class="chapter" id="api"><div class="chapter-head"><span class="chapter-no">06</span><div><span class="eyebrow">API & SSE</span><h2>API 与 SSE 协议</h2><p>六个端点 · 五类事件</p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>方法</th><th>路径</th><th>说明</th></tr></thead><tbody>
+<tr><td>GET</td><td>/api/health</td><td>服务与当前会话状态（注：Page 网关保留 /healthz，故用 /api/health）</td></tr>
+<tr><td>POST</td><td>/api/session/start</td><td>{blade} 开启采集会话；自动停上一会话并记原因</td></tr>
+<tr><td>POST</td><td>/api/session/stop</td><td>家长手动结束（同意优先）</td></tr>
+<tr><td>GET</td><td>/api/stream</td><td>SSE：signal / state / candidate / candidate-updated / session-start / session-end / audit</td></tr>
+<tr><td>GET</td><td>/api/candidates</td><td>当前候选 + 最近 20 条审计</td></tr>
+<tr><td>POST</td><td>/api/candidates/:id/confirm</td><td>{tri: done|sometimes|notyet|reject}；更新后广播 candidate-updated</td></tr>
+</tbody></table></div>
+<p>事件均带 sessionId 与时间戳；candidate 事件在引擎侧登记后广播（管道只发事件，存储归 SessionManager）。SSE 15s 心跳防断连；req close 时退订。</p>
+</div></section>
+
+<section class="chapter" id="discipline"><div class="chapter-head"><span class="chapter-no">07</span><div><span class="eyebrow">DISCIPLINE</span><h2>表述纪律工程化</h2><p>把「原则检验」变成可执行脚本</p></div></div><div class="chapter-body">
+<p><strong>PHRASE 函数：</strong>所有面向用户的文案只能经 rules.ts 的 PHRASE 生成——firstRecord 不写「人生第一次」、noSample 输出「未获得可判断样本，不等同于不会」、modeled 标注「成人示范后完成」、plateChange 不换算摄入、occluded 不评价独立性、deltaNote 永远带「个体记录，非标准阈值」。</p>
+<p><strong>FORBIDDEN + 构建期校验：</strong>check-discipline.mjs 扫描 src/ 全部 ts/tsx/html/md，命中禁词即 exit 1（CI 可挂）。已处理两类误报：FORBIDDEN 数组自引用（strip 定义块）、继承旧交付物的否定语境文案（「不做 XX」声明不扫描，规则写入脚本注释）。当前状态：<strong>0 违规通过</strong>。</p>
+<p><strong>四色标签强制：</strong>LEVEL_META 全站唯一出处；报告只用 confirmed；pending 数与覆盖说明永远显示。</p>
+</div></section>
+
+<section class="chapter" id="llm"><div class="chapter-head"><span class="chapter-no">08</span><div><span class="eyebrow">LLM GATEWAY</span><h2>LLM 网关边界</h2><p>只做两件事 · 三层防护 · 降级可演示</p></div></div><div class="chapter-body">
+<p>端点：POST /api/activity（下周陪玩文案）、POST /api/summary（儿保沟通摘要）。<strong>输入过滤：</strong>只接受 status=confirmed 的结构化记录，无已确认记录返回 422。系统提示词内置禁词清单与五条铁律（不诊断/不评分/不排名/不推测记录外能力/建议必须挂证据编号）。供应商：deepseek / qwen / ark 三选一，经 env 注入（LLM_PROVIDER / LLM_API_KEY / LLM_MODEL / LLM_BASE_URL），密钥永不入库。<strong>降级：</strong>无 key 或调用失败 → 返回本地模板文案并标 degraded:true——比赛演示永不因模型中断。默认不发送儿童原始音视频。</p>
+</div></section>
+
+<section class="chapter" id="frontend"><div class="chapter-head"><span class="chapter-no">09</span><div><span class="eyebrow">FRONTEND</span><h2>前端架构</h2><p>双布局 · Live 页 · i18n 规划</p></div></div><div class="chapter-body">
+<p>React 18 函数组件 + Context store（localStorage 持久化，SSR 安全 try/catch）。五页：今天（反直觉开场+一天时间线+三尖刀卡）、实时（EventSource 接 /api/stream，会话按钮+事件控制台+行内三态确认）、待确认（剧本候选复核）、周报（buildReport 只读已确认）、设置（信任设计面板+数据源状态）。响应式：≤768px 手机底导（safe-area 适配），桌面侧栏双栏。</p>
+<p><strong>i18n（M3 计划）：</strong>文案字典抽离 zh/en 两包；英国包替换：WS/T→ASQ-3 对照、儿保→health visitor、客厅机位→花园机位、母子健康手册→Red Book；语言切换不改数据结构与状态机（内容配置与代码分离原则）。</p>
+</div></section>
+
+<section class="chapter" id="testing"><div class="chapter-head"><span class="chapter-no">10</span><div><span class="eyebrow">TESTING</span><h2>测试与验证记录</h2><p>2026-09-21 本机 E2E 实测</p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>测试</th><th>结果</th></tr></thead><tbody>
+<tr><td>tsc --noEmit + vite build</td><td>通过（修复 1 处未用导入后）</td></tr>
+<tr><td>check-discipline</td><td>0 禁词通过（首轮 21 处误报已按规则处理）</td></tr>
+<tr><td>walk 会话 E2E</td><td>3 候选：23.4cm/0.93、24.6cm/0.91、模糊帧 19.0cm/0.77 自动降级 ✓</td></tr>
+<tr><td>eat 会话 E2E</td><td>4 候选：no_screen 第 5 分钟触发、self_spoon 12 分钟、force_feed 9 分钟、meal_duration 21 分钟 ✓</td></tr>
+<tr><td>talk 会话</td><td>6 回合候选 + overlap→unjudgeable 路径 ✓</td></tr>
+<tr><td>confirm REST</td><td>c1 done 更新并广播 ✓</td></tr>
+<tr><td>LLM 网关降级</td><td>无 key 返回本地模板 degraded:true ✓</td></tr>
+<tr><td>双端渲染</td><td>1440×900 侧栏 / 390×844 底导截图验证 ✓</td></tr>
+<tr><td>动态部署包</td><td>deploy/（dist+agent）本地起服验证；QW Pages 动态发布待新会话（同会话 static/dynamic 互斥）</td></tr>
+</tbody></table></div>
+<p>待补：纠错后重算测试、无数据非零测试、跨任务不比较测试（针对性单测，M2）。</p>
+</div></section>
+
+<section class="chapter" id="deploy"><div class="chapter-head"><span class="chapter-no">11</span><div><span class="eyebrow">DEPLOYMENT</span><h2>部署形态</h2><p>静态 V2 在线 · 动态 Agent 版待发</p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>形态</th><th>内容</th><th>状态</th></tr></thead><tbody>
+<tr><td>静态站</td><td>vite build 产物 dist/（含 deck/report/uk-deck）</td><td>已上线 QW Pages V2</td></tr>
+<tr><td>动态 Agent 版</td><td>deploy/ = dist + camera-agent 单服务（PORT/HOST env，8081）</td><td>本地产物已验证；需新会话首次发布 dynamic</td></tr>
+<tr><td>自有服务器</td><td>taoxie.vip 子路径 + Nginx 只读检查 + 版本化 release 可回滚</td><td>按迁移计划待执行；密钥/私钥不入库</td></tr>
+<tr><td>LLM 网关</td><td>独立 Node 服务，env 注入供应商 key</td><td>脚手架可用；生产 key 仅部署环境配置</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section class="chapter" id="roadmap"><div class="chapter-head"><span class="chapter-no">12</span><div><span class="eyebrow">ROADMAP</span><h2>路线图 M1—M4</h2><p>现状 → 真机 → 双语 → 封装</p></div></div><div class="chapter-body">
+<div class="table-wrap"><table><thead><tr><th>里程碑</th><th>内容</th><th>验收标准</th></tr></thead><tbody>
+<tr><td>M1 · 参赛闭环（当前）</td><td>mock 全链路 + 静态部署 + 三份文档</td><td>已完成；6 分钟演示动线走通</td></tr>
+<tr><td>M2 · 真机接入</td><td>EufySDKSource 按验收清单实现；protocolVersion/calibrationId 字段；三项单测</td><td>现场 T8171 前台取流出真实候选；失败不冒充模拟成功</td></tr>
+<tr><td>M3 · 双语全龄</td><td>i18n 字典抽离 + 英国内容包 + 0—6 年龄导航页</td><td>EN 切换后全链路文案无中文残留；年龄卡可点开看场景</td></tr>
+<tr><td>M4 · 移动端封装</td><td>Capacitor 容器评估（先验证赛事 SDK 兼容性再锁定）；Android/iOS 权限与生命周期</td><td>完成前交付名一律为「手机 Web demo」，不称原生 App</td></tr>
+</tbody></table></div>
+<p>明确不做（除非重开决策）：账号后端与云同步、地面四角单应标定 UI（二期）、营养/过敏原、说话人角色分离、任何诊断性输出。</p>
+</div></section>
+
+<section class="chapter" id="conventions"><div class="chapter-head"><span class="chapter-no">13</span><div><span class="eyebrow">CONVENTIONS</span><h2>工程约定</h2><p>git · 凭据 · 构建</p></div></div><div class="chapter-body">
+<p>双远端 main 同步推送；token 仅用于单次推送 URL，推后还原干净 remote；.env/key/secrets 全在 .gitignore。构建链：npm run build（含 tsc 类型闸）→ check:discipline → build-deploy.mjs 组装。提交信息中文、说明「为什么」。文档三件套互引不重复：市场报告（为什么做英国）/ 0-6 方案（做什么）/ 本方案（怎么做）。</p>
+<p class="fine">声明：本方案描述的现售能力以官方公开资料为据；「预留/未实现」项在验证完成前不得对外宣称已支持。</p>
+</div></section>
+</main>
+<footer><p class="footer-statement">判定交给代码，确认交给人，<br>解释才交给 AI。</p><p>安克 eufy 成长相机 · 代码实现方案 V1 · 2026.09 · 仓库 eufy-growth-next</p><a href="#top">回到顶部 ↑</a></footer>
