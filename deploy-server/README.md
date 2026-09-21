@@ -67,6 +67,36 @@ git push demo main
 
 > push 时客户端会直接看到 hook 输出，包含成功/失败与线上 URL。
 
+### 一次性推三个：`push-all.sh`
+
+```bash
+bash deploy-server/push-all.sh              # 推全部三个
+bash deploy-server/push-all.sh next         # 只推某个（cn / next / react）
+bash deploy-server/push-all.sh --force next # 本地 rebase/reset 过后需要
+```
+
+它会自动校正 `demo` remote 地址、提示未提交改动、把服务器构建日志逐行回显到本地，
+并在遇到远端分叉时（`non-fast-forward`）明确告诉你要不要加 `--force`。
+
+> `HISTORY` 被重写过（本地 `git reset` / `rebase`）之后，部署远端裸仓库的旧历史
+> 会挡住推送 —— 这是唯一需要 `--force` 的场景，用它之前先确认「以本地为准」。
+
+---
+
+## 上线验收
+
+浏览器不可用的环境（本项目的沙箱里 Chromium 在 ARM64 上直跑 core dump）下，
+用链接图爬取代替「人工看一眼」：断链、MIME 错配（静态文件被 SPA 回退吞成 `text/html`）、
+空响应、Agent 的 HTTP + SSE + 会话写路径，一次跑完。
+
+```bash
+python3 deploy-server/tools/verify-demo.py                                 # 公网
+python3 deploy-server/tools/verify-demo.py --base http://127.0.0.1:8111    # 后端直连
+```
+
+退出码 0 即全通；它会展开 10 个入口页的同源引用逐个探测，最后真开一次
+`session/start` → `session/stop` 验证写路径。
+
 ---
 
 ## 子路径挂载要点
