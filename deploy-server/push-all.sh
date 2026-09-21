@@ -66,17 +66,24 @@ push_one() {
   echo "  分支 $branch @ $head  $subject"
   [ "$dirty" != "0" ] && echo "  ⚠ 有 $dirty 处未提交改动，本次只推已提交内容"
 
-  if ! git push $PF demo HEAD:main 2>/tmp/eufy-push-err; then
-    if grep -q 'non-fast-forward\|fetch first' /tmp/eufy-push-err; then
+  # 服务器 hook 的输出走 stderr，必须一起收，否则部署日志（最有用的部分）会被吞掉
+  local tmpout; tmpout="$(mktemp)"
+  if git push $PF demo HEAD:main >"$tmpout" 2>&1; then
+    # 只保留 remote: 行，去掉 ssh 噪声
+    sed -n 's/^remote: \{0,4\}//p' "$tmpout" | sed 's/[[:space:]]*$//' | sed '/^$/d' | sed 's/^/    │ /'
+    rm -f "$tmpout"
+    echo "  ✔ $name 已推送"
+  else
+    if grep -q 'non-fast-forward\|fetch first' "$tmpout"; then
       echo "  ⚠ 远端历史与本地分叉（多为本地 rebase/reset 过）"
       echo "    确认要以本地为准，就加 --force 再跑一次：bash $0 --force $name"
     fi
-    sed 's/^/    /' /tmp/eufy-push-err | tail -6
+    sed 's/^/    /' "$tmpout" | tail -8
+    rm -f "$tmpout"
     echo "  ✘ $name 推送失败"
     FAILED+=("$name")
     return 1
   fi
-  echo "  ✔ $name 已推送"
 }
 
 targets=()
