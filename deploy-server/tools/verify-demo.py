@@ -7,8 +7,12 @@ eufy demo 线上验收 · 链接图爬取
 体积异常（HTML 被当成 JS 返回之类）全部揪出来，最后再端到端探一次摄像头 Agent。
 
 用法：
-    python3 verify-demo.py                                 # 公网
-    python3 verify-demo.py --base http://127.0.0.1:8111    # 打本地后端直连
+    python3 verify-demo.py                                 # 公网（默认 https://taoxie.vip/eufy-demo）
+    python3 verify-demo.py --base http://127.0.0.1/eufy-demo   # 本机 nginx 直连（绕开公网代理）
+
+注意：--base 必须指向「静态站点」所在的 URL（nginx 在 80/443 上服务 /var/www/eufy-demo）。
+8111 只是摄像头 Agent 的后端（API 在 /eufy-demo/next/api/ 下、由 nginx 反代），
+不要把 base 指到 8111 —— 那样静态资源会被 SPA 回退吞成 HTML，探测必然全红。
 """
 import argparse
 import http.client
