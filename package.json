@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "check:discipline": "node scripts/check-discipline.mjs"
+    "check:discipline": "node scripts/check-discipline.mjs",
+    "postinstall": "bash scripts/env-sync.sh",
+    "postbuild": "bash scripts/env-sync.sh"
   },
   "dependencies": {
     "react": "^18.3.1",
